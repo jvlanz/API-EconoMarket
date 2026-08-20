@@ -19,30 +19,40 @@ public class Produto {
 		return id;
 	}
 	public void setId(Long id) {
-		this.id = id;
+		if (id!=null && id>0) {
+			this.id = id;
+		}
 	}
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		if (descricao!=null && descricao.length()>0) {
+			this.descricao = descricao;
+		}
 	}
 	public String getMarca() {
 		return marca;
 	}
 	public void setMarca(String marca) {
-		this.marca = marca;
+		if (marca!=null && marca.length()>0) {
+			this.marca = marca;
+		}
 	}
 	public Long getFkUnidade() {
 		return fkUnidade;
 	}
 	public void setFkUnidade(Long fkUnidade) {
-		this.fkUnidade = fkUnidade;
+		if (fkUnidade!=null && fkUnidade>0) {
+			this.fkUnidade = fkUnidade;
+		}
 	}
 	public Long getFkMercado() {
 		return fkMercado;
 	}
 	public void setFk_mercado(Long fkMercado) {
-		this.fkMercado = fkMercado;
+		if (fkMercado!=null && fkMercado>0) {
+			this.fkMercado = fkMercado;
+		}
 	}
 }
