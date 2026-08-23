@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.economarket.api.entities.Cliente;
-import com.economarket.api.repositories.ClienteRepositories;
+import com.economarket.api.repositories.ClienteRepository;
 
 @Service
-public class ClienteServices {
+public class ClienteService {
 	@Autowired
-	private ClienteRepositories repository;
+	private ClienteRepository repository;
 	private List<Cliente> clientes = new ArrayList();
 	
 	
