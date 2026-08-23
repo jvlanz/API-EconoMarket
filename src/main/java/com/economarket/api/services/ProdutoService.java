@@ -46,7 +46,6 @@ public class ProdutoService {
 	public Produto alterar(Long id, Produto produto) {
 		Produto prod = consultarUm(id);
 		prod.setDescricao(produto.getDescricao());
-		prod.setMarca(produto.getMarca());
 		prod.setMedida(produto.getMedida());
 		prod.setValorMedida(produto.getValorMedida());
 		return repository.save(prod);

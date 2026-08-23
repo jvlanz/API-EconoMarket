@@ -15,7 +15,6 @@ public class Produto {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String descricao;
-	private String marca;
 	@ManyToOne
 	@JoinColumn(name="idMedida")
 	private Medida medida;
@@ -33,12 +32,6 @@ public class Produto {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-	public String getMarca() {
-		return marca;
-	}
-	public void setMarca(String marca) {
-		this.marca = marca;
 	}
 	public Medida getMedida() {
 		return medida;
