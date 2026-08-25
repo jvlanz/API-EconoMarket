@@ -16,7 +16,6 @@ public class MedidaService {
 	private MedidaRepository repository;
 // id
 // medida
-	private List<Medida> medidas = new ArrayList<Medida>();
 
 	public Medida salvar(Medida medida) {
 		if (medida.getMedida().isEmpty()) {

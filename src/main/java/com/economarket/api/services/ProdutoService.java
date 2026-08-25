@@ -1,6 +1,5 @@
 package com.economarket.api.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +18,6 @@ public class ProdutoService {
 // marca
 // idMedida
 // valorMedida
-	private List<Produto> produtos = new ArrayList<Produto>();
 	
 	public Produto salvar(Produto produto) {
 		if (produto.getDescricao().isEmpty()) {

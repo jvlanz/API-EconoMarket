@@ -16,7 +16,6 @@ public class MarcaService {
 	private MarcaRepository repository;
 // id
 // marca
-	private List<Marca> marcas = new ArrayList<Marca>();
 
 	public Marca salvar(Marca marca) {
 		if (marca.getMarca().isEmpty()) {

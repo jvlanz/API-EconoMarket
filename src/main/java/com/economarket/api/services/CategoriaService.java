@@ -16,7 +16,6 @@ public class CategoriaService {
 	private CategoriaRepository repository;
 // id
 // categoria
-	private List<Categoria> categorias = new ArrayList<Categoria>();
 
 	public Categoria salvar(Categoria categoria) {
 		if (categoria.getCategoria().isEmpty()) {

@@ -17,8 +17,7 @@ public class ProdutoMarcaService {
 // id
 // idProduto
 // idMarca
-	private List<ProdutoMarca> produtosMarca = new ArrayList<ProdutoMarca>();
-	
+
 	public ProdutoMarca salvar(ProdutoMarca produtoMarca) {
 		if (produtoMarca.getProduto()==null) {
 			throw new RuntimeException("O produto deve ser informado");
