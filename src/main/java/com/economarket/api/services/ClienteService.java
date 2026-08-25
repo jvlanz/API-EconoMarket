@@ -1,13 +1,10 @@
 package com.economarket.api.services;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.AulaApi.entities.Produto;
 import com.economarket.api.entities.Cliente;
 import com.economarket.api.repositories.ClienteRepository;
 
@@ -15,13 +12,12 @@ import com.economarket.api.repositories.ClienteRepository;
 public class ClienteService {
 	@Autowired
 	private ClienteRepository repository;
-	
-	
+
 	public Cliente salvar(Cliente cliente) {
 		
 		if (repository.existsByEmail(cliente.getEmail())) {
-            throw new RuntimeException("Este e-mail já está cadastrado");
-        }
+			throw new RuntimeException("Este e-mail já está cadastrado");
+		}
 		return repository.save(cliente);
 	}
 	public void deletar(Long id) {

@@ -35,7 +35,7 @@ public class ListaCompraController {
 			ListaCompra lista = service.consultarUm(id);
 			return ResponseEntity.status(HttpStatus.OK).body(lista);
 		} catch(Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Mercado não encontrado");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Lista de compras não encontrada");
 		}
 	}
 
