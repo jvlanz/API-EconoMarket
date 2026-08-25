@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.economarket.api.entities.Compra;
 import com.economarket.api.repositories.CompraRepository;
 
+@Service
 public class CompraService {
 	@Autowired
 	private CompraRepository repository;

@@ -24,6 +24,7 @@ public class Produto {
 	private Medida medida;
 //	private Long idMedida;      // ex. 'g'
 	private Float valorMedida;  // ex. '300' para '300g'
+	private String figura;
 
 	public Long getId() {
 		return id;
@@ -54,5 +55,11 @@ public class Produto {
 	}
 	public void setValorMedida(Float valorMedida) {
 		this.valorMedida = valorMedida;
+	}
+	public String getFigura() {
+		return figura;
+	}
+	public void setFigura(String figura) {
+		this.figura = figura;
 	}
 }

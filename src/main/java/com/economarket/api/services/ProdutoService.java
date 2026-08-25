@@ -18,6 +18,7 @@ public class ProdutoService {
 // marca
 // idMedida
 // valorMedida
+// figura
 	
 	public Produto salvar(Produto produto) {
 		if (produto.getDescricao().isEmpty()) {
@@ -44,8 +45,10 @@ public class ProdutoService {
 	public Produto alterar(Long id, Produto produto) {
 		Produto prod = consultarUm(id);
 		prod.setDescricao(produto.getDescricao());
+		prod.setCategoria(produto.getCategoria());
 		prod.setMedida(produto.getMedida());
 		prod.setValorMedida(produto.getValorMedida());
+		prod.setFigura(produto.getFigura());
 		return repository.save(prod);
 	}
 	public void excluir(Long id) {
