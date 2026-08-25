@@ -8,4 +8,6 @@ import com.economarket.api.entities.Cliente;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
+	boolean existsByEmail(String email); //serve para verificar se possui um email repetido
+
 }

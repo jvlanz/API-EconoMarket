@@ -2,10 +2,12 @@ package com.economarket.api.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.AulaApi.entities.Produto;
 import com.economarket.api.entities.Cliente;
 import com.economarket.api.repositories.ClienteRepository;
 
@@ -13,20 +15,30 @@ import com.economarket.api.repositories.ClienteRepository;
 public class ClienteService {
 	@Autowired
 	private ClienteRepository repository;
-	private List<Cliente> clientes = new ArrayList();
 	
 	
 	public Cliente salvar(Cliente cliente) {
-		if(cliente.getNome().isBlank()) {
-			throw new RuntimeException("O nome precisa ser informado");
-		}
 		
-		if (cliente.getNome().length()<3) {
-			throw new RuntimeException("O nome precisa ter mais de 2 caracteres");
-		}
-		//mais validações
-		
+		if (repository.existsByEmail(cliente.getEmail())) {
+            throw new RuntimeException("Este e-mail já está cadastrado");
+        }
 		return repository.save(cliente);
+	}
+	public void deletar(Long id) {
+		repository.deleteById(id);
+	}
+	public Cliente consultarUm(Long id) {
+		Optional<Cliente> opt = repository.findById(id);
+		Cliente cliente= opt.orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+		return cliente;
+	}
+	public Cliente alterar(Long id, Cliente cliente) {
+		Cliente clienteConsultado = consultarUm(id);
+		clienteConsultado.setNome(cliente.getNome());
+		clienteConsultado.setEmail(cliente.getEmail());
+		clienteConsultado.setTelefone(cliente.getTelefone());
+		
+		return repository.save(clienteConsultado);
 	}
 
 }
