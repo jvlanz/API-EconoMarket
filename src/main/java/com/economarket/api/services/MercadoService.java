@@ -16,7 +16,7 @@ public class MercadoService {
 // id
 // nome
 // link
-	
+
 	public Mercado salvar(Mercado mercado) {
 		if (mercado.getNome().isEmpty()) {
 			throw new RuntimeException("O nome deve ser informado");
@@ -46,5 +46,4 @@ public class MercadoService {
 		repository.deleteById(id);
 	}
 }
-
 
