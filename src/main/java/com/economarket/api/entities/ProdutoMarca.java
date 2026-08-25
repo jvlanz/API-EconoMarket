@@ -13,7 +13,7 @@ import jakarta.persistence.JoinColumn;
 @Entity
 public class ProdutoMarca {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
 	@JoinColumn(name="idProduto")
