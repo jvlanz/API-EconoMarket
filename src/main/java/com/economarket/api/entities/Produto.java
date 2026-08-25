@@ -1,5 +1,6 @@
 package com.economarket.api.entities;
 
+import com.economarket.api.entities.Categoria;
 import com.economarket.api.entities.Medida;
 
 import jakarta.persistence.Entity;
@@ -15,6 +16,9 @@ public class Produto {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
+	@ManyToOne
+	@JoinColumn(name="idCategoria")
+	private Categoria categoria;
 	@ManyToOne
 	@JoinColumn(name="idMedida")
 	private Medida medida;
@@ -32,6 +36,12 @@ public class Produto {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 	public Medida getMedida() {
 		return medida;
