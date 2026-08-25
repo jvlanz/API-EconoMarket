@@ -1,4 +1,4 @@
-package com.economarket.api.utils;
+package com.economarket.api.scrapers;
 
 public class ObterPrecos {
 	public void run() {

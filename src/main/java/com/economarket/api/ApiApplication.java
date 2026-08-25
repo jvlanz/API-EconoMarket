@@ -4,9 +4,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import com.economarket.api.utils.ObterPrecos;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.economarket.api.scrapers.ObterPrecos;
 
 @SpringBootApplication
 public class ApiApplication {
