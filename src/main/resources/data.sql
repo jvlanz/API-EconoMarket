@@ -21,7 +21,9 @@ insert into produto (descricao, id_categoria, id_medida, valor_medida) values ('
 insert into produto (descricao, id_categoria, id_medida, valor_medida) values ('queijo fatiado', 3, 3, 150);
 insert into produto (descricao, id_categoria, id_medida, valor_medida) values ('queijo fatiado', 3, 3, 150);
 insert into produto (descricao, id_categoria, id_medida, valor_medida) values ('queijo fatiado', 3, 3, 150);
-insert into marca (marca) values ('friolac');
-insert into marca (marca) values ('italac');
-insert into marca (marca) values ('tirol');
+insert into marca (marca) values ('Friolac');
+insert into marca (marca) values ('Italac');
+insert into marca (marca) values ('Tirol');
 insert into produto_marca (id_produto, id_marca) values (1, 1);
+insert into clientes (nome, email, senha, telefone) values ('João', 'joao@gmail.com', '1234', '47 9912-3456');
+insert into lista_compra (produto_marca, mercado) values (1, 1);
