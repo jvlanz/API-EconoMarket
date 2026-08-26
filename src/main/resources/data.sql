@@ -150,7 +150,7 @@ insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) v
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Desinfetante', 6, 6, 2, 'desinfetante.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Água Sanitária', 6, 6, 2, 'agua_sanitaria.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Esponja de Aço', 6, 7, 1, 'esponja_aco.jpg');
-insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Limpador Multiuso', 6, 1, 500, 'multiuso.jpg');
+insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Limpador Multiuso', 6, 1, 500, 'desinfetante.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Saco de Lixo 50L', 6, 7, 1, 'saco_lixo.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Flanela de Limpeza', 6, 1, 1, 'flanela.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Papel Toalha', 6, 7, 2, 'papel_toalha.jpg');
@@ -162,13 +162,13 @@ insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) v
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Shampoo', 7, 6, 350, 'shampoo.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Condicionador', 7, 6, 350, 'condicionador.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Desodorante Aerosol', 7, 1, 150, 'desodorante.jpg');
-insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Aparelho de Barbear', 7, 1, 2, 'barbear.jpg');
+insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Aparelho de Barbear', 7, 1, 2, 'navalha.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Fio Dental', 7, 1, 50, 'fio_dental.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Absorvente Higiênico', 7, 7, 8, 'absorvente.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Algodão Bola', 7, 7, 1, 'algodao.jpg');
 
 -- Bebidas (Cat 8)
-insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Refrigerante Cola 2L', 8, 6, 2, 'reri_cola.jpg');
+insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Refrigerante Cola 2L', 8, 6, 2, 'refri_lata.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Cerveja Lata', 8, 1, 350, 'cerveja.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Água Mineral sem Gás', 8, 6, 500, 'agua.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Suco de Laranja Caixinha', 8, 6, 1, 'suco.jpg');
@@ -176,7 +176,7 @@ insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) v
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Vinho Tinto Seco', 8, 6, 750, 'vinho.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Água Tônica', 8, 1, 350, 'tonica.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Chá Gelado', 8, 6, 1, 'cha.jpg');
-insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Refrigerante Guaraná', 8, 6, 2, 'guarana.jpg');
+insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Refrigerante Guaraná', 8, 6, 2, 'refri_lata.jpg');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Isotônico', 8, 6, 500, 'isotonico.jpg');
 
 -- Utilidades (Cat 9)
