@@ -24,13 +24,13 @@ public class CompraController {
 	@Autowired
 	private CompraService service;
 
-	@GetMapping
-	public ResponseEntity<List<Compra>> getCompras() {
-		return ResponseEntity.status(HttpStatus.OK).body(service.consultar());
-	}
+//	@GetMapping
+//	public ResponseEntity<List<Compra>> getCompras() {
+//		return ResponseEntity.status(HttpStatus.OK).body(service.consultar());
+//	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getUmProduto(@PathVariable long id) {
+	public ResponseEntity<?> getUmaCompra(@PathVariable long id) {
 		try {
 			Compra compra = service.consultarUm(id);
 			return ResponseEntity.status(HttpStatus.OK).body(compra);

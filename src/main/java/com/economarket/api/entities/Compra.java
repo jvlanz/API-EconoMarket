@@ -21,6 +21,9 @@ public class Compra {
 	@ManyToOne
 	@JoinColumn(name="idCliente")
 	private Cliente cliente;
+	@ManyToOne
+	@JoinColumn(name="idStatus")
+	private Status status;
 
 	public Long getId() {
 		return id;
@@ -45,5 +48,11 @@ public class Compra {
 	}
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 }

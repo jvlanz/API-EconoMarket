@@ -25,12 +25,12 @@ public class ApiMercadoController {
 	private ApiMercadoService service;
 
 	@GetMapping
-	public ResponseEntity<List<ApiMercado>> getMercados() {
+	public ResponseEntity<List<ApiMercado>> getAPIs() {
 		return ResponseEntity.status(HttpStatus.OK).body(service.consultar());
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getUmProduto(@PathVariable long id) {
+	public ResponseEntity<?> getUmAPI(@PathVariable long id) {
 		try {
 			ApiMercado apiMercado = service.consultarUm(id);
 			return ResponseEntity.status(HttpStatus.OK).body(apiMercado);

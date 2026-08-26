@@ -25,6 +25,9 @@ public class CompraService {
 		if (compra.getListaCompra()==null) {
 			throw new RuntimeException("A lista de compras deve ser informada");
 		}
+		if (compra.getStatus()==null) {
+			throw new RuntimeException("O status da compra deve ser informado");
+		}
 		repository.save(compra);
 		return compra;
 	}
@@ -33,15 +36,22 @@ public class CompraService {
 		return repository.findAll();
 	}
 	public Compra consultarUm(Long id) {
-		Optional<Compra> opt = repository.findById(id);
-		Compra compra = opt.orElseThrow(() -> new RuntimeException("Compra não encontrada"));
-		return compra;
+//		Optional<Compra> opt = repository.findById(id);
+//		Compra compra = opt.orElseThrow(() -> new RuntimeException("Compra não encontrada"));
+		for(Compra compra : repository.findAll()) {
+			if (compra.getCliente().getId()==id && compra.getStatus().getId()==1) { // retorna PRIMEIRO carrinho aberto de cliente
+				return compra;
+			}
+		}
+		new RuntimeException("Usuário não possui compra em aberto");
+		return null;
 	}
 	public Compra alterar(Long id, Compra compra) {
 		Compra co = consultarUm(id);
 		co.setCliente(compra.getCliente());
 		co.setListaCompra(compra.getListaCompra());
 		co.setData(compra.getData());
+		co.setStatus(compra.getStatus());
 		return repository.save(co);
 	}
 	public void excluir(Long id) {

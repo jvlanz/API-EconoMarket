@@ -26,7 +26,7 @@ public class PrecoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getUmProduto(@PathVariable long id) {
+	public ResponseEntity<?> getUmPreco(@PathVariable long id) {
 		try {
 			Preco preco = service.consultarUm(id);
 			return ResponseEntity.status(HttpStatus.OK).body(preco);

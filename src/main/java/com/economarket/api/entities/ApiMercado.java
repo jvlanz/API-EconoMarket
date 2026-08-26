@@ -1,6 +1,6 @@
 package com.economarket.api.entities;
 
-import com.economarket.api.entities.Mercado;
+//import com.economarket.api.entities.Mercado;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

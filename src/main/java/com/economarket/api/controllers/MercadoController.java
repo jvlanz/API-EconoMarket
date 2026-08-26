@@ -30,7 +30,7 @@ public class MercadoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getUmProduto(@PathVariable long id) {
+	public ResponseEntity<?> getUmMercado(@PathVariable long id) {
 		try {
 			Mercado mercado = service.consultarUm(id);
 			return ResponseEntity.status(HttpStatus.OK).body(mercado);

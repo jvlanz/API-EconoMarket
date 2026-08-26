@@ -30,7 +30,7 @@ public class ListaCompraController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getUmProduto(@PathVariable long id) {
+	public ResponseEntity<?> getUmaListaCompra(@PathVariable long id) {
 		try {
 			ListaCompra lista = service.consultarUm(id);
 			return ResponseEntity.status(HttpStatus.OK).body(lista);
