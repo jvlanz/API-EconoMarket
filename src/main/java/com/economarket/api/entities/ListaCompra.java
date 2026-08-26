@@ -17,7 +17,8 @@ public class ListaCompra {
 	ProdutoMarca produtoMarca;
 	@ManyToOne
 	@JoinColumn(name="idMercado")
-	Mercado Mercado;
+	Mercado mercado;
+	private Float quantidade;
 
 	public Long getId() {
 		return id;
@@ -32,9 +33,15 @@ public class ListaCompra {
 		this.produtoMarca = produtoMarca;
 	}
 	public Mercado getMercado() {
-		return Mercado;
+		return mercado;
 	}
 	public void setMercado(Mercado mercado) {
-		Mercado = mercado;
+		this.mercado = mercado;
+	}
+	public Float getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(Float quantidade) {
+		this.quantidade =quantidade;
 	}
 }

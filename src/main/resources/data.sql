@@ -543,14 +543,15 @@ insert into produto_marca (id_produto, id_marca) values (28, 10);
 insert into produto_marca (id_produto, id_marca) values (29, 10);
 insert into produto_marca (id_produto, id_marca) values (30, 10);
 
+
 -- ==========================================
 -- 7. LISTA DE COMPRAS
 -- ==========================================
-insert into lista_compra (id_produto_marca, id_mercado) values (1, 1);
-insert into lista_compra (id_produto_marca, id_mercado) values (2, 1);
-insert into lista_compra (id_produto_marca, id_mercado) values (3, 2);
-insert into lista_compra (id_produto_marca, id_mercado) values (4, 3);
-insert into lista_compra (id_produto_marca, id_mercado) values (5, 4);
+insert into lista_compra (id_produto_marca, id_mercado, quantidade) values (1, 1, 1);
+insert into lista_compra (id_produto_marca, id_mercado, quantidade) values (2, 1, 1);
+insert into lista_compra (id_produto_marca, id_mercado, quantidade) values (3, 2, 1);
+insert into lista_compra (id_produto_marca, id_mercado, quantidade) values (4, 3, 1);
+insert into lista_compra (id_produto_marca, id_mercado, quantidade) values (5, 4, 1);
 
 
 -- ==========================================

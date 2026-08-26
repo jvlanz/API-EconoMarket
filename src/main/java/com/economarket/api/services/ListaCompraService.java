@@ -21,6 +21,9 @@ public class ListaCompraService {
 		if (listaCompra.getMercado()==null) {
 			throw new RuntimeException("A marca deve ser informada");
 		}
+		if (listaCompra.getQuantidade()==0) { // TODO se quantidade for 0, remover item da lista de compras
+			throw new RuntimeException("A quantidade não pode ser zero");
+		}
 		repository.save(listaCompra);
 		return listaCompra;
 	}
@@ -37,6 +40,7 @@ public class ListaCompraService {
 		ListaCompra lista = consultarUm(id);
 		lista.setProdutoMarca(listaCompra.getProdutoMarca());
 		lista.setMercado(listaCompra.getMercado());
+		lista.setQuantidade(listaCompra.getQuantidade());
 		return repository.save(lista);
 	}
 	public void excluir(Long id) {
