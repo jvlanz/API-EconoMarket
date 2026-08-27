@@ -830,7 +830,11 @@ insert into compra (id_cliente, data, id_status) values (5, '2026-08-25', 1);
 -- 7. LISTA DE COMPRAS
 -- ==========================================
 insert into lista_compra (id_compra, id_produto_marca, quantidade) values (1, 1, 1);
-insert into lista_compra (id_compra, id_produto_marca, quantidade) values (1, 2, 1);
+insert into lista_compra (id_compra, id_produto_marca, quantidade) values (1, 2, 10);
+insert into lista_compra (id_compra, id_produto_marca, quantidade) values (1, 3, 3);
+insert into lista_compra (id_compra, id_produto_marca, quantidade) values (1, 4, 1);
+insert into lista_compra (id_compra, id_produto_marca, quantidade) values (1, 5, 2);
+insert into lista_compra (id_compra, id_produto_marca, quantidade) values (1, 6, 1);
 insert into lista_compra (id_compra, id_produto_marca, quantidade) values (2, 3, 1);
 insert into lista_compra (id_compra, id_produto_marca, quantidade) values (3, 4, 1);
 insert into lista_compra (id_compra, id_produto_marca, quantidade) values (4, 5, 1);
