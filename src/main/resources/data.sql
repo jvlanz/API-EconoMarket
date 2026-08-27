@@ -40,6 +40,7 @@ insert into mercado (nome, link) values ('Mercado Bom Preço', 'https://www.bomp
 -- ==========================================
 -- 3. CLIENTES (20 entradas)
 -- ==========================================
+insert into cliente (nome, email, senha, telefone) values ('Anônimo', 'anon@email.com', '1234', '00 0000-0000');
 insert into cliente (nome, email, senha, telefone) values ('João', 'joao@gmail.com', '1234', '47 9912-3456');
 insert into cliente (nome, email, senha, telefone) values ('Maria Silva', 'maria.silva@gmail.com', 'abcd', '47 98877-1122');
 insert into cliente (nome, email, senha, telefone) values ('Carlos Souza', 'carlos.souza@outlook.com', 'senha123', '48 99655-4433');
@@ -85,14 +86,14 @@ insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) v
 
 -- Hortifruti (Cat 1)
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Maçã Gala', 1, 4, 1, 'maca.jpg');
-insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Banana Nanica', 1, 4, 1, 'banana.jpg');
-insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Tomate Ítala', 1, 4, 1, 'tomate.jpg');
-insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Batata Inglesa', 1, 4, 1, 'batata.jpg');
-insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Cebola Branca', 1, 4, 1, 'cebola.jpg');
-insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Alface Crespa', 1, 1, 1, 'alface.jpg');
-insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Cenoura', 1, 4, 1, 'cenoura.jpg');
+insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Banana Nanica', 1, 4, 1, '');
+insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Tomate Ítala', 1, 4, 1, '');
+insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Batata Inglesa', 1, 4, 1, '');
+insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Cebola Branca', 1, 4, 1, '');
+insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Alface Crespa', 1, 1, 1, '');
+insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Cenoura', 1, 4, 1, '');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Mamão Formosa', 1, 4, 1, 'mamao.jpg');
-insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Abacaxi Pérola', 1, 1, 1, 'abacaxi.jpg');
+insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Abacaxi Pérola', 1, 1, 1, '');
 insert into produto (descricao, id_categoria, id_medida, valor_medida, figura) values ('Limão Tahiti', 1, 4, 1, 'limao.jpg');
 
 -- Açougue (Cat 2)
