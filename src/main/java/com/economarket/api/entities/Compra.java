@@ -1,6 +1,7 @@
 package com.economarket.api.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Compra {
@@ -15,9 +18,9 @@ public class Compra {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private Date data;
-	@ManyToOne
-	@JoinColumn(name="idListaCompra")
-	private ListaCompra listaCompra;
+	@OneToMany(mappedBy="compra") // tabela em ListaCompra
+	@JsonManagedReference
+	private List<ListaCompra> listaCompra;
 	@ManyToOne
 	@JoinColumn(name="idCliente")
 	private Cliente cliente;
@@ -37,10 +40,10 @@ public class Compra {
 	public void setData(Date data) {
 		this.data = data;
 	}
-	public ListaCompra getListaCompra() {
+	public List<ListaCompra> getListaCompra() {
 		return listaCompra;
 	}
-	public void setListaCompra(ListaCompra listaCompra) {
+	public void setListaCompra(List<ListaCompra> listaCompra) {
 		this.listaCompra = listaCompra;
 	}
 	public Cliente getCliente() {

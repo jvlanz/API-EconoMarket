@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class ListaCompra {
@@ -13,11 +14,12 @@ public class ListaCompra {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
+	@JoinColumn(name="idCompra")
+	@JsonBackReference
+	private Compra compra;
+	@ManyToOne
 	@JoinColumn(name="idProdutoMarca")
 	ProdutoMarca produtoMarca;
-	@ManyToOne
-	@JoinColumn(name="idMercado")
-	Mercado mercado;
 	private Float quantidade;
 
 	public Long getId() {
@@ -26,17 +28,17 @@ public class ListaCompra {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public Compra getCompra() {
+		return compra;
+	}
+	public void setCompra(Compra compra) {
+		this.compra = compra;
+	}
 	public ProdutoMarca getProdutoMarca() {
 		return produtoMarca;
 	}
 	public void setProdutoMarca(ProdutoMarca produtoMarca) {
 		this.produtoMarca = produtoMarca;
-	}
-	public Mercado getMercado() {
-		return mercado;
-	}
-	public void setMercado(Mercado mercado) {
-		this.mercado = mercado;
 	}
 	public Float getQuantidade() {
 		return quantidade;

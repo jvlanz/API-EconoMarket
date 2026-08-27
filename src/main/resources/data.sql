@@ -546,16 +546,6 @@ insert into produto_marca (id_produto, id_marca) values (30, 10);
 
 
 -- ==========================================
--- 7. LISTA DE COMPRAS
--- ==========================================
-insert into lista_compra (id_produto_marca, id_mercado, quantidade) values (1, 1, 1);
-insert into lista_compra (id_produto_marca, id_mercado, quantidade) values (2, 1, 1);
-insert into lista_compra (id_produto_marca, id_mercado, quantidade) values (3, 2, 1);
-insert into lista_compra (id_produto_marca, id_mercado, quantidade) values (4, 3, 1);
-insert into lista_compra (id_produto_marca, id_mercado, quantidade) values (5, 4, 1);
-
-
--- ==========================================
 -- 8. PREÇOS
 -- ==========================================
 insert into preco (id_produto_marca, id_mercado, preco, data) values (1, 1, 14.99, '2026-08-22');
@@ -829,9 +819,19 @@ insert into preco (id_produto_marca, id_mercado, preco, data) values (3, 2, 43.1
 -- ==========================================
 -- 9. COMPRAS
 -- ==========================================
-insert into compra (id_cliente, id_lista_compra, data, id_status) values (1, 1, '2026-08-24', 1);
-insert into compra (id_cliente, id_lista_compra, data, id_status) values (2, 2, '2026-08-24', 1);
-insert into compra (id_cliente, id_lista_compra, data, id_status) values (3, 3, '2026-08-25', 1);
-insert into compra (id_cliente, id_lista_compra, data, id_status) values (4, 4, '2026-08-25', 1);
-insert into compra (id_cliente, id_lista_compra, data, id_status) values (5, 5, '2026-08-25', 1);
+insert into compra (id_cliente, data, id_status) values (1, '2026-08-24', 1);
+insert into compra (id_cliente, data, id_status) values (2, '2026-08-24', 1);
+insert into compra (id_cliente, data, id_status) values (3, '2026-08-25', 1);
+insert into compra (id_cliente, data, id_status) values (4, '2026-08-25', 1);
+insert into compra (id_cliente, data, id_status) values (5, '2026-08-25', 1);
+
+
+-- ==========================================
+-- 7. LISTA DE COMPRAS
+-- ==========================================
+insert into lista_compra (id_compra, id_produto_marca, quantidade) values (1, 1, 1);
+insert into lista_compra (id_compra, id_produto_marca, quantidade) values (1, 2, 1);
+insert into lista_compra (id_compra, id_produto_marca, quantidade) values (2, 3, 1);
+insert into lista_compra (id_compra, id_produto_marca, quantidade) values (3, 4, 1);
+insert into lista_compra (id_compra, id_produto_marca, quantidade) values (4, 5, 1);
 

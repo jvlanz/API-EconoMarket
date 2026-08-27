@@ -15,11 +15,11 @@ public class ListaCompraService {
 	private ListaCompraRepository repository;
 
 	public ListaCompra salvar(ListaCompra listaCompra) {
+		if (listaCompra.getCompra()==null) {
+			throw new RuntimeException("A compra deve ser informada");
+		}
 		if (listaCompra.getProdutoMarca()==null) {
 			throw new RuntimeException("O produto deve ser informado");
-		}
-		if (listaCompra.getMercado()==null) {
-			throw new RuntimeException("A marca deve ser informada");
 		}
 		if (listaCompra.getQuantidade()==0) { // TODO se quantidade for 0, remover item da lista de compras
 			throw new RuntimeException("A quantidade não pode ser zero");
@@ -38,8 +38,8 @@ public class ListaCompraService {
 	}
 	public ListaCompra alterar(Long id, ListaCompra listaCompra) {
 		ListaCompra lista = consultarUm(id);
+		lista.setCompra(listaCompra.getCompra());
 		lista.setProdutoMarca(listaCompra.getProdutoMarca());
-		lista.setMercado(listaCompra.getMercado());
 		lista.setQuantidade(listaCompra.getQuantidade());
 		return repository.save(lista);
 	}
