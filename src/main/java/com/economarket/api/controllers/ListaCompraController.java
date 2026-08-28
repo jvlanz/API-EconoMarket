@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.economarket.api.entities.ListaCompra;
 import com.economarket.api.services.ListaCompraService;
+import com.economarket.api.dto.ListaCompraTransfer;
 
 @RestController
 @RequestMapping("listaCompra")
@@ -32,27 +33,27 @@ public class ListaCompraController {
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getUmaListaCompra(@PathVariable long id) {
 		try {
-			ListaCompra lista = service.consultarUm(id);
-			return ResponseEntity.status(HttpStatus.OK).body(lista);
+			ListaCompra lItem = service.consultarUm(id);
+			return ResponseEntity.status(HttpStatus.OK).body(lItem);
 		} catch(Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Lista de compras não encontrada");
 		}
 	}
 
 	@PostMapping
-	public ResponseEntity<?> salvar(@RequestBody ListaCompra lista) {
+	public ResponseEntity<?> salvar(@RequestBody ListaCompraTransfer itemTransfer) {
 		try {
-			lista = service.salvar(lista);
-			return ResponseEntity.status(HttpStatus.CREATED).body(lista);
+			ListaCompra lItem = service.salvar(itemTransfer);
+			return ResponseEntity.status(HttpStatus.CREATED).body(lItem);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> alterar(@PathVariable long id, @RequestBody ListaCompra lista) {
+	public ResponseEntity<?> alterar(@PathVariable long id, @RequestBody ListaCompra lItem) {
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(service.alterar(id, lista));
+			return ResponseEntity.status(HttpStatus.OK).body(service.alterar(id, lItem));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 			
