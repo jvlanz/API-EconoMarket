@@ -28,13 +28,17 @@ public class PrecoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getUmPreco(@PathVariable long id) {
-		try {
-			Preco preco = service.consultarUm(id);
-			return ResponseEntity.status(HttpStatus.OK).body(preco);
-		} catch(Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Preco não encontrado");
-		}
+//	public ResponseEntity<?> getUmPreco(@PathVariable long id) { // TODO comparar com idProdutoMarca
+//		try {
+//			Preco preco = service.consultarUm(id);
+//			return ResponseEntity.status(HttpStatus.OK).body(preco);
+//		} catch(Exception e) {
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Preco não encontrado");
+//		}
+//	}
+	public ResponseEntity<List<Preco>> getPrecos(@PathVariable long id) {
+		List<Preco> precos = service.consultarPrecos(id);
+		return ResponseEntity.status(HttpStatus.OK).body(precos);
 	}
 
 // não será necessário alterar/remover preco via API

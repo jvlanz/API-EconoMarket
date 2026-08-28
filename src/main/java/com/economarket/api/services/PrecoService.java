@@ -1,11 +1,13 @@
 package com.economarket.api.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+//import com.economarket.api.entities.Compra;
 import com.economarket.api.entities.Preco;
 import com.economarket.api.repositories.PrecoRepository;
 
@@ -40,6 +42,15 @@ public class PrecoService {
 		Optional<Preco> opt = repository.findById(id);
 		Preco pre = opt.orElseThrow(() -> new RuntimeException("produto não encontrado"));
 		return pre;
+	}
+	public List<Preco> consultarPrecos(Long id) {
+		List<Preco> precos = new ArrayList();
+		for(Preco pre : repository.findAll()) {
+			if (pre.getProdutoMarca().getId()==id) { // retorna PRIMEIRO carrinho aberto de cliente
+				precos.add(pre);
+			}
+		}
+		return precos;
 	}
 	public Preco alterar(Long id, Preco preco) {
 		Preco pre = consultarUm(id);
