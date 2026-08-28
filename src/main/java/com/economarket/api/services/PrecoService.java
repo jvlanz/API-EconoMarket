@@ -44,7 +44,7 @@ public class PrecoService {
 		return pre;
 	}
 	public List<Preco> consultarPrecos(Long id) {
-		List<Preco> precos = new ArrayList();
+		List<Preco> precos = new ArrayList<Preco>();
 		for(Preco pre : repository.findAll()) {
 			if (pre.getProdutoMarca().getId()==id) { // retorna PRIMEIRO carrinho aberto de cliente
 				precos.add(pre);
