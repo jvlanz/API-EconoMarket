@@ -2,8 +2,8 @@ package com.economarket.api.dto;
 
 public class ListaCompraTransfer {
 	private Long id;
-	private Long idCompra;
-	private Long idProdutoMarca;
+	private Long idCliente;
+	private Long idProduto;
 	private Float quantidade;
 
 	public long getId() {
@@ -12,17 +12,17 @@ public class ListaCompraTransfer {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Long getIdCompra() {
-		return idCompra;
+	public Long getIdCliente() {
+		return idCliente;
 	}
-	public void setIdCompra(long idCompra) {
-		this.idCompra = idCompra;
+	public void setIdCliente(long idCliente) {
+		this.idCliente = idCliente;
 	}
-	public Long getIdProdutoMarca() {
-		return idProdutoMarca;
+	public Long getIdProduto() {
+		return idProduto;
 	}
-	public void setIdProdutoMarca(Long idProdutoMarca) {
-		this.idProdutoMarca = idProdutoMarca;
+	public void setIdProduto(Long idProduto) {
+		this.idProduto = idProduto;
 	}
 	public Float getQuantidade() {
 		return quantidade;

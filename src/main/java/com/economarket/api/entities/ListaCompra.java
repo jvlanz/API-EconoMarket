@@ -14,12 +14,12 @@ public class ListaCompra {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
-	@JoinColumn(name="idCompra")
+	@JoinColumn(name="idCliente")
 	@JsonBackReference
-	private Compra compra;
+	private Cliente cliente;
 	@ManyToOne
-	@JoinColumn(name="idProdutoMarca")
-	ProdutoMarca produtoMarca;
+	@JoinColumn(name="idProduto")
+	Produto produto;
 	private Float quantidade;
 
 	public Long getId() {
@@ -28,17 +28,17 @@ public class ListaCompra {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Compra getCompra() {
-		return compra;
+	public Cliente getCliente() {
+		return cliente;
 	}
-	public void setCompra(Compra compra) {
-		this.compra = compra;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
-	public ProdutoMarca getProdutoMarca() {
-		return produtoMarca;
+	public Produto getProduto() {
+		return produto;
 	}
-	public void setProdutoMarca(ProdutoMarca produtoMarca) {
-		this.produtoMarca = produtoMarca;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 	public Float getQuantidade() {
 		return quantidade;

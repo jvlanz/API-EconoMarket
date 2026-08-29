@@ -6,46 +6,46 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.economarket.api.entities.Compra;
-import com.economarket.api.entities.ProdutoMarca;
+import com.economarket.api.entities.Cliente;
+import com.economarket.api.entities.Produto;
 import com.economarket.api.entities.ListaCompra;
 import com.economarket.api.repositories.ListaCompraRepository;
-import com.economarket.api.repositories.CompraRepository;
-import com.economarket.api.repositories.ProdutoMarcaRepository;
+import com.economarket.api.repositories.ClienteRepository;
+import com.economarket.api.repositories.ProdutoRepository;
 import com.economarket.api.dto.ListaCompraTransfer;
 
 @Service
 public class ListaCompraService {
 	private final ListaCompraRepository listaCompraRepository;
-	private final CompraRepository compraRepository;
-	private final ProdutoMarcaRepository produtoMarcaRepository;
+	private final ClienteRepository clienteRepository;
+	private final ProdutoRepository produtoRepository;
 
 	@Autowired
 	public ListaCompraService(
 		ListaCompraRepository listaCompraRepository,
-		CompraRepository compraRepository,
-		ProdutoMarcaRepository produtoMarcaRepository
+		ClienteRepository clienteRepository,
+		ProdutoRepository produtoRepository
 	) {
 		this.listaCompraRepository = listaCompraRepository;
-		this.compraRepository = compraRepository;
-		this.produtoMarcaRepository = produtoMarcaRepository;
+		this.clienteRepository = clienteRepository;
+		this.produtoRepository = produtoRepository;
 	}
 
 	public ListaCompra salvar(ListaCompraTransfer listaTransfer) {
-		if (listaTransfer.getIdCompra()==null) {
-			throw new RuntimeException("idCompra deve ser informado");
+		if (listaTransfer.getIdCliente()==null) {
+			throw new RuntimeException("idCliente deve ser informado");
 		}
-		if (listaTransfer.getIdProdutoMarca()==null) {
-			throw new RuntimeException("idProdutoMarca deve ser informado");
+		if (listaTransfer.getIdProduto()==null) {
+			throw new RuntimeException("idProduto deve ser informado");
 		}
 		if (listaTransfer.getQuantidade()==0) { // TODO se quantidade for 0, remover item da lista de compras
 			throw new RuntimeException("A quantidade não pode ser zero");
 		}
-		Compra compra = compraRepository.findById(listaTransfer.getIdCompra()) .orElseThrow(() -> new RuntimeException("Compra não encontrada"));
-		ProdutoMarca produtoMarca = produtoMarcaRepository.findById(listaTransfer.getIdProdutoMarca()) .orElseThrow(() -> new RuntimeException("ProdutoMarca não encontrado"));
+		Cliente cliente = clienteRepository.findById(listaTransfer.getIdCliente()).orElseThrow(() -> new RuntimeException("Cliente não encontrada"));
+		Produto produto = produtoRepository.findById(listaTransfer.getIdProduto()) .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 		ListaCompra listaCompra = new ListaCompra();
-		listaCompra.setCompra(compra);
-		listaCompra.setProdutoMarca(produtoMarca);
+		listaCompra.setCliente(cliente);
+		listaCompra.setProduto(produto);
 		listaCompra.setQuantidade(listaTransfer.getQuantidade());
 		listaCompraRepository.save(listaCompra);
 		return listaCompra;
@@ -61,8 +61,8 @@ public class ListaCompraService {
 	}
 	public ListaCompra alterar(Long id, ListaCompra listaCompra) {
 		ListaCompra lista = consultarUm(id);
-		lista.setCompra(listaCompra.getCompra());
-		lista.setProdutoMarca(listaCompra.getProdutoMarca());
+		lista.setCliente(listaCompra.getCliente());
+		lista.setProduto(listaCompra.getProduto());
 		lista.setQuantidade(listaCompra.getQuantidade());
 		return listaCompraRepository.save(lista);
 	}

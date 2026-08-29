@@ -26,7 +26,7 @@ public class ClienteService {
 	}
 	public Cliente consultarUm(Long id) {
 		Optional<Cliente> opt = repository.findById(id);
-		Cliente cliente= opt.orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+		Cliente cliente = opt.orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 		return cliente;
 	}
 	public Cliente alterar(Long id, Cliente cliente) {
@@ -34,7 +34,7 @@ public class ClienteService {
 		clienteConsultado.setNome(cliente.getNome());
 		clienteConsultado.setEmail(cliente.getEmail());
 		clienteConsultado.setTelefone(cliente.getTelefone());
-		
+		clienteConsultado.setListaCompra(cliente.getListaCompra());
 		return repository.save(clienteConsultado);
 	}
 

@@ -1,14 +1,18 @@
 package com.economarket.api.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Cliente {
@@ -27,8 +31,11 @@ public class Cliente {
 	@Size(min = 6, max = 100, message = "A senha deve ter entre 6 e 100 caracteres")
 	private String senha;
 	@Pattern(regexp = "^[+]?[0-9\\s()\\-]{10,20}$",
-		    message = "O telefone informado é inválido")
+		message = "O telefone informado é inválido")
 	private String telefone;
+	@OneToMany(mappedBy="cliente") // espelhamento de ListaCompra
+	@JsonManagedReference
+	private List<ListaCompra> listaCompra;
 	public Long getId() {
 		return id;
 	}
@@ -56,5 +63,10 @@ public class Cliente {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
+	public List<ListaCompra> getListaCompra() {
+		return listaCompra;
+	}
+	public void setListaCompra(List<ListaCompra> listaCompra) {
+		this.listaCompra = listaCompra;
+	}
 }
