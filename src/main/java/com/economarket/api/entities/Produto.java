@@ -1,9 +1,10 @@
 package com.economarket.api.entities;
 
-//import com.economarket.api.entities.Categoria;
-//import com.economarket.api.entities.Medida;
+import com.economarket.api.Medida;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,10 +20,8 @@ public class Produto {
 	@ManyToOne
 	@JoinColumn(name="idCategoria")
 	private Categoria categoria;
-	@ManyToOne
-	@JoinColumn(name="idMedida")
+	@Enumerated(EnumType.STRING)
 	private Medida medida;
-//	private Long idMedida;      // ex. 'g'
 	private Float valorMedida;  // ex. '300' para '300g'
 	private String figura;
 
