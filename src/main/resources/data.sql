@@ -1,14 +1,6 @@
 -- ==========================================
 -- 1. TABELAS FIXAS (já fornecidas)
 -- ==========================================
---insert into medida (medida) values ('un');
---insert into medida (medida) values ('dúzia');
---insert into medida (medida) values ('g');
---insert into medida (medida) values ('kg');
---insert into medida (medida) values ('mL');
---insert into medida (medida) values ('L');
---insert into medida (medida) values ('pacote');
---insert into medida (medida) values ('sachê');
 
 insert into categoria (categoria) values ('Hortifruti');
 insert into categoria (categoria) values ('Açougue');
@@ -21,10 +13,6 @@ insert into categoria (categoria) values ('Bebidas');
 insert into categoria (categoria) values ('Utilidades');
 insert into categoria (categoria) values ('Padaria');
 insert into categoria (categoria) values ('Pets');
-
--- insert into status (status) values ('aberta');
--- insert into status (status) values ('cancelada');
--- insert into status (status) values ('fechadaa');
 
 
 -- ==========================================
@@ -66,6 +54,7 @@ insert into cliente (nome, email, senha, telefone) values ('Mariana Ribeiro', 'm
 -- ==========================================
 -- 4. MARCAS (Algumas marcas para associar)
 -- ==========================================
+insert into marca (marca) values ('');    -- para produtos sem marca, ex. hortifruti
 insert into marca (marca) values ('Friolac');
 insert into marca (marca) values ('Sadia');
 insert into marca (marca) values ('Nestlé');
@@ -82,7 +71,7 @@ insert into marca (marca) values ('Camil');
 -- 5. PRODUTOS (100 entradas distribuídas)
 -- ==========================================
 -- Exemplo já existente
-insert into produto (descricao, id_categoria, medida, valor_medida, figura) values ('queijo fatiado', 3, 'g', 150, 'queijo.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, figura) values ('Queijo Fatiado', 3, 'g', 150, 'queijo_fatiado.jpg');
 
 -- Hortifruti (Cat 1)
 insert into produto (descricao, id_categoria, medida, valor_medida, figura) values ('Maçã Gala', 1, 'g', 1, 'maca.jpg');
@@ -220,329 +209,52 @@ insert into produto (descricao, id_categoria, medida, valor_medida, figura) valu
 -- ==========================================
 -- 6. RELACIONAMENTO PRODUTO-MARCA (Exemplos)
 -- ==========================================
-insert into produto_marca (id_produto, id_marca) values (1, 1);
-insert into produto_marca (id_produto, id_marca) values (2, 2);
-insert into produto_marca (id_produto, id_marca) values (21, 3);
-insert into produto_marca (id_produto, id_marca) values (41, 10);
-insert into produto_marca (id_produto, id_marca) values (51, 5);
-insert into produto_marca (id_produto, id_marca) values (52, 6);
-insert into produto_marca (id_produto, id_marca) values (71, 7);
-insert into produto_marca (id_produto, id_marca) values (72, 8);
-insert into produto_marca (id_produto, id_marca) values (45, 9);
-insert into produto_marca (id_produto, id_marca) values (11, 4);
+insert into produto_marca (id_produto, id_marca) values (1, 2);
+insert into produto_marca (id_produto, id_marca) values (2, 3);
+insert into produto_marca (id_produto, id_marca) values (21, 4);
+insert into produto_marca (id_produto, id_marca) values (41, 11);
+insert into produto_marca (id_produto, id_marca) values (51, 6);
+insert into produto_marca (id_produto, id_marca) values (52, 7);
+insert into produto_marca (id_produto, id_marca) values (71, 8);
+insert into produto_marca (id_produto, id_marca) values (72, 9);
+insert into produto_marca (id_produto, id_marca) values (45, 10);
+insert into produto_marca (id_produto, id_marca) values (11, 5);
 
 -- Inserções para a tabela 'produto_marca' (300 registros)
 
-insert into produto_marca (id_produto, id_marca) values (1, 1);
-insert into produto_marca (id_produto, id_marca) values (2, 1);
-insert into produto_marca (id_produto, id_marca) values (3, 1);
-insert into produto_marca (id_produto, id_marca) values (4, 2);
-insert into produto_marca (id_produto, id_marca) values (5, 2);
-insert into produto_marca (id_produto, id_marca) values (6, 2);
-insert into produto_marca (id_produto, id_marca) values (7, 3);
-insert into produto_marca (id_produto, id_marca) values (8, 3);
-insert into produto_marca (id_produto, id_marca) values (9, 3);
-insert into produto_marca (id_produto, id_marca) values (10, 4);
-insert into produto_marca (id_produto, id_marca) values (11, 4);
-insert into produto_marca (id_produto, id_marca) values (12, 4);
-insert into produto_marca (id_produto, id_marca) values (13, 5);
-insert into produto_marca (id_produto, id_marca) values (14, 5);
-insert into produto_marca (id_produto, id_marca) values (15, 5);
-insert into produto_marca (id_produto, id_marca) values (16, 6);
-insert into produto_marca (id_produto, id_marca) values (17, 6);
-insert into produto_marca (id_produto, id_marca) values (18, 6);
-insert into produto_marca (id_produto, id_marca) values (19, 7);
-insert into produto_marca (id_produto, id_marca) values (20, 7);
-insert into produto_marca (id_produto, id_marca) values (21, 7);
-insert into produto_marca (id_produto, id_marca) values (22, 8);
-insert into produto_marca (id_produto, id_marca) values (23, 8);
-insert into produto_marca (id_produto, id_marca) values (24, 8);
-insert into produto_marca (id_produto, id_marca) values (25, 9);
-insert into produto_marca (id_produto, id_marca) values (26, 9);
-insert into produto_marca (id_produto, id_marca) values (27, 9);
-insert into produto_marca (id_produto, id_marca) values (28, 10);
-insert into produto_marca (id_produto, id_marca) values (29, 10);
-insert into produto_marca (id_produto, id_marca) values (30, 10);
+insert into produto_marca (id_produto, id_marca) values (1, 4);
+insert into produto_marca (id_produto, id_marca) values (2, 2);
+insert into produto_marca (id_produto, id_marca) values (3, 2);
+insert into produto_marca (id_produto, id_marca) values (4, 3);
+insert into produto_marca (id_produto, id_marca) values (5, 3);
+insert into produto_marca (id_produto, id_marca) values (6, 3);
+insert into produto_marca (id_produto, id_marca) values (7, 4);
+insert into produto_marca (id_produto, id_marca) values (8, 4);
+insert into produto_marca (id_produto, id_marca) values (9, 4);
+insert into produto_marca (id_produto, id_marca) values (10, 5);
+insert into produto_marca (id_produto, id_marca) values (11, 5);
+insert into produto_marca (id_produto, id_marca) values (12, 5);
+insert into produto_marca (id_produto, id_marca) values (13, 6);
+insert into produto_marca (id_produto, id_marca) values (14, 6);
+insert into produto_marca (id_produto, id_marca) values (15, 6);
+insert into produto_marca (id_produto, id_marca) values (16, 7);
+insert into produto_marca (id_produto, id_marca) values (17, 7);
+insert into produto_marca (id_produto, id_marca) values (18, 7);
+insert into produto_marca (id_produto, id_marca) values (19, 8);
+insert into produto_marca (id_produto, id_marca) values (20, 8);
+insert into produto_marca (id_produto, id_marca) values (21, 8);
+insert into produto_marca (id_produto, id_marca) values (22, 9);
+insert into produto_marca (id_produto, id_marca) values (23, 9);
+insert into produto_marca (id_produto, id_marca) values (24, 9);
+insert into produto_marca (id_produto, id_marca) values (25, 10);
+insert into produto_marca (id_produto, id_marca) values (26, 10);
+insert into produto_marca (id_produto, id_marca) values (27, 10);
+insert into produto_marca (id_produto, id_marca) values (28, 11);
+insert into produto_marca (id_produto, id_marca) values (29, 11);
+insert into produto_marca (id_produto, id_marca) values (30, 11);
 
--- Repetição estruturada para atingir o volume total de 300 associações mapeadas
-insert into produto_marca (id_produto, id_marca) values (1, 1);
-insert into produto_marca (id_produto, id_marca) values (2, 1);
-insert into produto_marca (id_produto, id_marca) values (3, 1);
-insert into produto_marca (id_produto, id_marca) values (4, 2);
-insert into produto_marca (id_produto, id_marca) values (5, 2);
-insert into produto_marca (id_produto, id_marca) values (6, 2);
-insert into produto_marca (id_produto, id_marca) values (7, 3);
-insert into produto_marca (id_produto, id_marca) values (8, 3);
-insert into produto_marca (id_produto, id_marca) values (9, 3);
-insert into produto_marca (id_produto, id_marca) values (10, 4);
-insert into produto_marca (id_produto, id_marca) values (11, 4);
-insert into produto_marca (id_produto, id_marca) values (12, 4);
-insert into produto_marca (id_produto, id_marca) values (13, 5);
-insert into produto_marca (id_produto, id_marca) values (14, 5);
-insert into produto_marca (id_produto, id_marca) values (15, 5);
-insert into produto_marca (id_produto, id_marca) values (16, 6);
-insert into produto_marca (id_produto, id_marca) values (17, 6);
-insert into produto_marca (id_produto, id_marca) values (18, 6);
-insert into produto_marca (id_produto, id_marca) values (19, 7);
-insert into produto_marca (id_produto, id_marca) values (20, 7);
-insert into produto_marca (id_produto, id_marca) values (21, 7);
-insert into produto_marca (id_produto, id_marca) values (22, 8);
-insert into produto_marca (id_produto, id_marca) values (23, 8);
-insert into produto_marca (id_produto, id_marca) values (24, 8);
-insert into produto_marca (id_produto, id_marca) values (25, 9);
-insert into produto_marca (id_produto, id_marca) values (26, 9);
-insert into produto_marca (id_produto, id_marca) values (27, 9);
-insert into produto_marca (id_produto, id_marca) values (28, 10);
-insert into produto_marca (id_produto, id_marca) values (29, 10);
-insert into produto_marca (id_produto, id_marca) values (30, 10);
-
-insert into produto_marca (id_produto, id_marca) values (1, 1);
-insert into produto_marca (id_produto, id_marca) values (2, 1);
-insert into produto_marca (id_produto, id_marca) values (3, 1);
-insert into produto_marca (id_produto, id_marca) values (4, 2);
-insert into produto_marca (id_produto, id_marca) values (5, 2);
-insert into produto_marca (id_produto, id_marca) values (6, 2);
-insert into produto_marca (id_produto, id_marca) values (7, 3);
-insert into produto_marca (id_produto, id_marca) values (8, 3);
-insert into produto_marca (id_produto, id_marca) values (9, 3);
-insert into produto_marca (id_produto, id_marca) values (10, 4);
-insert into produto_marca (id_produto, id_marca) values (11, 4);
-insert into produto_marca (id_produto, id_marca) values (12, 4);
-insert into produto_marca (id_produto, id_marca) values (13, 5);
-insert into produto_marca (id_produto, id_marca) values (14, 5);
-insert into produto_marca (id_produto, id_marca) values (15, 5);
-insert into produto_marca (id_produto, id_marca) values (16, 6);
-insert into produto_marca (id_produto, id_marca) values (17, 6);
-insert into produto_marca (id_produto, id_marca) values (18, 6);
-insert into produto_marca (id_produto, id_marca) values (19, 7);
-insert into produto_marca (id_produto, id_marca) values (20, 7);
-insert into produto_marca (id_produto, id_marca) values (21, 7);
-insert into produto_marca (id_produto, id_marca) values (22, 8);
-insert into produto_marca (id_produto, id_marca) values (23, 8);
-insert into produto_marca (id_produto, id_marca) values (24, 8);
-insert into produto_marca (id_produto, id_marca) values (25, 9);
-insert into produto_marca (id_produto, id_marca) values (26, 9);
-insert into produto_marca (id_produto, id_marca) values (27, 9);
-insert into produto_marca (id_produto, id_marca) values (28, 10);
-insert into produto_marca (id_produto, id_marca) values (29, 10);
-insert into produto_marca (id_produto, id_marca) values (30, 10);
-
-insert into produto_marca (id_produto, id_marca) values (1, 1);
-insert into produto_marca (id_produto, id_marca) values (2, 1);
-insert into produto_marca (id_produto, id_marca) values (3, 1);
-insert into produto_marca (id_produto, id_marca) values (4, 2);
-insert into produto_marca (id_produto, id_marca) values (5, 2);
-insert into produto_marca (id_produto, id_marca) values (6, 2);
-insert into produto_marca (id_produto, id_marca) values (7, 3);
-insert into produto_marca (id_produto, id_marca) values (8, 3);
-insert into produto_marca (id_produto, id_marca) values (9, 3);
-insert into produto_marca (id_produto, id_marca) values (10, 4);
-insert into produto_marca (id_produto, id_marca) values (11, 4);
-insert into produto_marca (id_produto, id_marca) values (12, 4);
-insert into produto_marca (id_produto, id_marca) values (13, 5);
-insert into produto_marca (id_produto, id_marca) values (14, 5);
-insert into produto_marca (id_produto, id_marca) values (15, 5);
-insert into produto_marca (id_produto, id_marca) values (16, 6);
-insert into produto_marca (id_produto, id_marca) values (17, 6);
-insert into produto_marca (id_produto, id_marca) values (18, 6);
-insert into produto_marca (id_produto, id_marca) values (19, 7);
-insert into produto_marca (id_produto, id_marca) values (20, 7);
-insert into produto_marca (id_produto, id_marca) values (21, 7);
-insert into produto_marca (id_produto, id_marca) values (22, 8);
-insert into produto_marca (id_produto, id_marca) values (23, 8);
-insert into produto_marca (id_produto, id_marca) values (24, 8);
-insert into produto_marca (id_produto, id_marca) values (25, 9);
-insert into produto_marca (id_produto, id_marca) values (26, 9);
-insert into produto_marca (id_produto, id_marca) values (27, 9);
-insert into produto_marca (id_produto, id_marca) values (28, 10);
-insert into produto_marca (id_produto, id_marca) values (29, 10);
-insert into produto_marca (id_produto, id_marca) values (30, 10);
-
-insert into produto_marca (id_produto, id_marca) values (1, 1);
-insert into produto_marca (id_produto, id_marca) values (2, 1);
-insert into produto_marca (id_produto, id_marca) values (3, 1);
-insert into produto_marca (id_produto, id_marca) values (4, 2);
-insert into produto_marca (id_produto, id_marca) values (5, 2);
-insert into produto_marca (id_produto, id_marca) values (6, 2);
-insert into produto_marca (id_produto, id_marca) values (7, 3);
-insert into produto_marca (id_produto, id_marca) values (8, 3);
-insert into produto_marca (id_produto, id_marca) values (9, 3);
-insert into produto_marca (id_produto, id_marca) values (10, 4);
-insert into produto_marca (id_produto, id_marca) values (11, 4);
-insert into produto_marca (id_produto, id_marca) values (12, 4);
-insert into produto_marca (id_produto, id_marca) values (13, 5);
-insert into produto_marca (id_produto, id_marca) values (14, 5);
-insert into produto_marca (id_produto, id_marca) values (15, 5);
-insert into produto_marca (id_produto, id_marca) values (16, 6);
-insert into produto_marca (id_produto, id_marca) values (17, 6);
-insert into produto_marca (id_produto, id_marca) values (18, 6);
-insert into produto_marca (id_produto, id_marca) values (19, 7);
-insert into produto_marca (id_produto, id_marca) values (20, 7);
-insert into produto_marca (id_produto, id_marca) values (21, 7);
-insert into produto_marca (id_produto, id_marca) values (22, 8);
-insert into produto_marca (id_produto, id_marca) values (23, 8);
-insert into produto_marca (id_produto, id_marca) values (24, 8);
-insert into produto_marca (id_produto, id_marca) values (25, 9);
-insert into produto_marca (id_produto, id_marca) values (26, 9);
-insert into produto_marca (id_produto, id_marca) values (27, 9);
-insert into produto_marca (id_produto, id_marca) values (28, 10);
-insert into produto_marca (id_produto, id_marca) values (29, 10);
-insert into produto_marca (id_produto, id_marca) values (30, 10);
-
-insert into produto_marca (id_produto, id_marca) values (1, 1);
-insert into produto_marca (id_produto, id_marca) values (2, 1);
-insert into produto_marca (id_produto, id_marca) values (3, 1);
-insert into produto_marca (id_produto, id_marca) values (4, 2);
-insert into produto_marca (id_produto, id_marca) values (5, 2);
-insert into produto_marca (id_produto, id_marca) values (6, 2);
-insert into produto_marca (id_produto, id_marca) values (7, 3);
-insert into produto_marca (id_produto, id_marca) values (8, 3);
-insert into produto_marca (id_produto, id_marca) values (9, 3);
-insert into produto_marca (id_produto, id_marca) values (10, 4);
-insert into produto_marca (id_produto, id_marca) values (11, 4);
-insert into produto_marca (id_produto, id_marca) values (12, 4);
-insert into produto_marca (id_produto, id_marca) values (13, 5);
-insert into produto_marca (id_produto, id_marca) values (14, 5);
-insert into produto_marca (id_produto, id_marca) values (15, 5);
-insert into produto_marca (id_produto, id_marca) values (16, 6);
-insert into produto_marca (id_produto, id_marca) values (17, 6);
-insert into produto_marca (id_produto, id_marca) values (18, 6);
-insert into produto_marca (id_produto, id_marca) values (19, 7);
-insert into produto_marca (id_produto, id_marca) values (20, 7);
-insert into produto_marca (id_produto, id_marca) values (21, 7);
-insert into produto_marca (id_produto, id_marca) values (22, 8);
-insert into produto_marca (id_produto, id_marca) values (23, 8);
-insert into produto_marca (id_produto, id_marca) values (24, 8);
-insert into produto_marca (id_produto, id_marca) values (25, 9);
-insert into produto_marca (id_produto, id_marca) values (26, 9);
-insert into produto_marca (id_produto, id_marca) values (27, 9);
-insert into produto_marca (id_produto, id_marca) values (28, 10);
-insert into produto_marca (id_produto, id_marca) values (29, 10);
-insert into produto_marca (id_produto, id_marca) values (30, 10);
-
-insert into produto_marca (id_produto, id_marca) values (1, 1);
-insert into produto_marca (id_produto, id_marca) values (2, 1);
-insert into produto_marca (id_produto, id_marca) values (3, 1);
-insert into produto_marca (id_produto, id_marca) values (4, 2);
-insert into produto_marca (id_produto, id_marca) values (5, 2);
-insert into produto_marca (id_produto, id_marca) values (6, 2);
-insert into produto_marca (id_produto, id_marca) values (7, 3);
-insert into produto_marca (id_produto, id_marca) values (8, 3);
-insert into produto_marca (id_produto, id_marca) values (9, 3);
-insert into produto_marca (id_produto, id_marca) values (10, 4);
-insert into produto_marca (id_produto, id_marca) values (11, 4);
-insert into produto_marca (id_produto, id_marca) values (12, 4);
-insert into produto_marca (id_produto, id_marca) values (13, 5);
-insert into produto_marca (id_produto, id_marca) values (14, 5);
-insert into produto_marca (id_produto, id_marca) values (15, 5);
-insert into produto_marca (id_produto, id_marca) values (16, 6);
-insert into produto_marca (id_produto, id_marca) values (17, 6);
-insert into produto_marca (id_produto, id_marca) values (18, 6);
-insert into produto_marca (id_produto, id_marca) values (19, 7);
-insert into produto_marca (id_produto, id_marca) values (20, 7);
-insert into produto_marca (id_produto, id_marca) values (21, 7);
-insert into produto_marca (id_produto, id_marca) values (22, 8);
-insert into produto_marca (id_produto, id_marca) values (23, 8);
-insert into produto_marca (id_produto, id_marca) values (24, 8);
-insert into produto_marca (id_produto, id_marca) values (25, 9);
-insert into produto_marca (id_produto, id_marca) values (26, 9);
-insert into produto_marca (id_produto, id_marca) values (27, 9);
-insert into produto_marca (id_produto, id_marca) values (28, 10);
-insert into produto_marca (id_produto, id_marca) values (29, 10);
-insert into produto_marca (id_produto, id_marca) values (30, 10);
-
-insert into produto_marca (id_produto, id_marca) values (1, 1);
-insert into produto_marca (id_produto, id_marca) values (2, 1);
-insert into produto_marca (id_produto, id_marca) values (3, 1);
-insert into produto_marca (id_produto, id_marca) values (4, 2);
-insert into produto_marca (id_produto, id_marca) values (5, 2);
-insert into produto_marca (id_produto, id_marca) values (6, 2);
-insert into produto_marca (id_produto, id_marca) values (7, 3);
-insert into produto_marca (id_produto, id_marca) values (8, 3);
-insert into produto_marca (id_produto, id_marca) values (9, 3);
-insert into produto_marca (id_produto, id_marca) values (10, 4);
-insert into produto_marca (id_produto, id_marca) values (11, 4);
-insert into produto_marca (id_produto, id_marca) values (12, 4);
-insert into produto_marca (id_produto, id_marca) values (13, 5);
-insert into produto_marca (id_produto, id_marca) values (14, 5);
-insert into produto_marca (id_produto, id_marca) values (15, 5);
-insert into produto_marca (id_produto, id_marca) values (16, 6);
-insert into produto_marca (id_produto, id_marca) values (17, 6);
-insert into produto_marca (id_produto, id_marca) values (18, 6);
-insert into produto_marca (id_produto, id_marca) values (19, 7);
-insert into produto_marca (id_produto, id_marca) values (20, 7);
-insert into produto_marca (id_produto, id_marca) values (21, 7);
-insert into produto_marca (id_produto, id_marca) values (22, 8);
-insert into produto_marca (id_produto, id_marca) values (23, 8);
-insert into produto_marca (id_produto, id_marca) values (24, 8);
-insert into produto_marca (id_produto, id_marca) values (25, 9);
-insert into produto_marca (id_produto, id_marca) values (26, 9);
-insert into produto_marca (id_produto, id_marca) values (27, 9);
-insert into produto_marca (id_produto, id_marca) values (28, 10);
-insert into produto_marca (id_produto, id_marca) values (29, 10);
-insert into produto_marca (id_produto, id_marca) values (30, 10);
-
-insert into produto_marca (id_produto, id_marca) values (1, 1);
-insert into produto_marca (id_produto, id_marca) values (2, 1);
-insert into produto_marca (id_produto, id_marca) values (3, 1);
-insert into produto_marca (id_produto, id_marca) values (4, 2);
-insert into produto_marca (id_produto, id_marca) values (5, 2);
-insert into produto_marca (id_produto, id_marca) values (6, 2);
-insert into produto_marca (id_produto, id_marca) values (7, 3);
-insert into produto_marca (id_produto, id_marca) values (8, 3);
-insert into produto_marca (id_produto, id_marca) values (9, 3);
-insert into produto_marca (id_produto, id_marca) values (10, 4);
-insert into produto_marca (id_produto, id_marca) values (11, 4);
-insert into produto_marca (id_produto, id_marca) values (12, 4);
-insert into produto_marca (id_produto, id_marca) values (13, 5);
-insert into produto_marca (id_produto, id_marca) values (14, 5);
-insert into produto_marca (id_produto, id_marca) values (15, 5);
-insert into produto_marca (id_produto, id_marca) values (16, 6);
-insert into produto_marca (id_produto, id_marca) values (17, 6);
-insert into produto_marca (id_produto, id_marca) values (18, 6);
-insert into produto_marca (id_produto, id_marca) values (19, 7);
-insert into produto_marca (id_produto, id_marca) values (20, 7);
-insert into produto_marca (id_produto, id_marca) values (21, 7);
-insert into produto_marca (id_produto, id_marca) values (22, 8);
-insert into produto_marca (id_produto, id_marca) values (23, 8);
-insert into produto_marca (id_produto, id_marca) values (24, 8);
-insert into produto_marca (id_produto, id_marca) values (25, 9);
-insert into produto_marca (id_produto, id_marca) values (26, 9);
-insert into produto_marca (id_produto, id_marca) values (27, 9);
-insert into produto_marca (id_produto, id_marca) values (28, 10);
-insert into produto_marca (id_produto, id_marca) values (29, 10);
-insert into produto_marca (id_produto, id_marca) values (30, 10);
-
-insert into produto_marca (id_produto, id_marca) values (1, 1);
-insert into produto_marca (id_produto, id_marca) values (2, 1);
-insert into produto_marca (id_produto, id_marca) values (3, 1);
-insert into produto_marca (id_produto, id_marca) values (4, 2);
-insert into produto_marca (id_produto, id_marca) values (5, 2);
-insert into produto_marca (id_produto, id_marca) values (6, 2);
-insert into produto_marca (id_produto, id_marca) values (7, 3);
-insert into produto_marca (id_produto, id_marca) values (8, 3);
-insert into produto_marca (id_produto, id_marca) values (9, 3);
-insert into produto_marca (id_produto, id_marca) values (10, 4);
-insert into produto_marca (id_produto, id_marca) values (11, 4);
-insert into produto_marca (id_produto, id_marca) values (12, 4);
-insert into produto_marca (id_produto, id_marca) values (13, 5);
-insert into produto_marca (id_produto, id_marca) values (14, 5);
-insert into produto_marca (id_produto, id_marca) values (15, 5);
-insert into produto_marca (id_produto, id_marca) values (16, 6);
-insert into produto_marca (id_produto, id_marca) values (17, 6);
-insert into produto_marca (id_produto, id_marca) values (18, 6);
-insert into produto_marca (id_produto, id_marca) values (19, 7);
-insert into produto_marca (id_produto, id_marca) values (20, 7);
-insert into produto_marca (id_produto, id_marca) values (21, 7);
-insert into produto_marca (id_produto, id_marca) values (22, 8);
-insert into produto_marca (id_produto, id_marca) values (23, 8);
-insert into produto_marca (id_produto, id_marca) values (24, 8);
-insert into produto_marca (id_produto, id_marca) values (25, 9);
-insert into produto_marca (id_produto, id_marca) values (26, 9);
-insert into produto_marca (id_produto, id_marca) values (27, 9);
-insert into produto_marca (id_produto, id_marca) values (28, 10);
-insert into produto_marca (id_produto, id_marca) values (29, 10);
-insert into produto_marca (id_produto, id_marca) values (30, 10);
+insert into produto_marca (id_produto, id_marca) values (1, 3);
+insert into produto_marca (id_produto, id_marca) values (1, 5);
 
 
 -- ==========================================
@@ -619,7 +331,7 @@ insert into preco (id_produto_marca, id_mercado, preco, data) values (18, 5, 33.
 insert into preco (id_produto_marca, id_mercado, preco, data) values (21, 4, 45.31, '2026-07-16');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (10, 4, 14.18, '2026-07-31');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (14, 3, 24.23, '2026-07-23');
-insert into preco (id_produto_marca, id_mercado, preco, data) values (11, 3, 25.30, '2026-08-09');
+insert into preco (id_produto_marca, id_mercado, preco, data) values (31, 3, 25.30, '2026-08-09');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (29, 2, 26.31, '2026-07-01');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (29, 3, 10.36, '2026-07-08');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (8, 4, 21.05, '2026-08-14');
@@ -633,7 +345,7 @@ insert into preco (id_produto_marca, id_mercado, preco, data) values (13, 2, 38.
 insert into preco (id_produto_marca, id_mercado, preco, data) values (2, 2, 36.98, '2026-07-04');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (13, 1, 38.56, '2026-07-14');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (27, 4, 17.56, '2026-08-14');
-insert into preco (id_produto_marca, id_mercado, preco, data) values (11, 4, 16.51, '2026-07-26');
+insert into preco (id_produto_marca, id_mercado, preco, data) values (32, 4, 16.51, '2026-07-26');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (23, 1, 41.65, '2026-07-30');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (9, 2, 23.75, '2026-07-14');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (30, 1, 14.73, '2026-07-02');
@@ -828,14 +540,4 @@ insert into preco (id_produto_marca, id_mercado, preco, data) values (16, 2, 15.
 insert into preco (id_produto_marca, id_mercado, preco, data) values (10, 4, 22.06, '2026-07-10');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (16, 3, 20.91, '2026-08-20');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (3, 2, 43.19, '2026-07-27');
-
-
--- ==========================================
--- 9. COMPRAS
--- ==========================================
--- insert into compra (id_cliente, data, id_status) values (1, '2026-08-24', 1);
--- insert into compra (id_cliente, data, id_status) values (2, '2026-08-24', 1);
--- insert into compra (id_cliente, data, id_status) values (3, '2026-08-25', 1);
--- insert into compra (id_cliente, data, id_status) values (4, '2026-08-25', 1);
--- insert into compra (id_cliente, data, id_status) values (5, '2026-08-25', 1);
 
