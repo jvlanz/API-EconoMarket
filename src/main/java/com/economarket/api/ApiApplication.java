@@ -20,7 +20,7 @@ public class ApiApplication {
 				Executors.newSingleThreadScheduledExecutor();
 		scheduler.scheduleAtFixedRate(
 				precosDia::run,
-				0,      // dekay inicial
+				0,      // delay inicial
 				3600,   // intervalo de repetição (TODO: ajustar para ser todo dia, às 6AM)
 				TimeUnit.SECONDS
 		);

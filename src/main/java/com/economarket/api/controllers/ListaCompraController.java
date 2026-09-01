@@ -53,9 +53,11 @@ public class ListaCompraController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> alterar(@PathVariable long id, @RequestBody ListaCompra lItem) {
+	public ResponseEntity<?> alterar(@PathVariable long id, @RequestBody ListaCompraTransfer itemTransfer) {
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(service.alterar(id, lItem));
+			ListaCompra lItem = service.alterar(id, itemTransfer);
+			return ResponseEntity.status(HttpStatus.CREATED).body(lItem);
+//			return ResponseEntity.status(HttpStatus.OK).body(service.alterar(id, lItem));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 			

@@ -42,7 +42,7 @@ public class ListaCompraService {
 			throw new RuntimeException("A quantidade não pode ser zero");
 		}
 		Cliente cliente = clienteRepository.findById(listaTransfer.getIdCliente()).orElseThrow(() -> new RuntimeException("Cliente não encontrada"));
-		Produto produto = produtoRepository.findById(listaTransfer.getIdProduto()) .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+		Produto produto = produtoRepository.findById(listaTransfer.getIdProduto()).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 		ListaCompra listaCompra = new ListaCompra();
 		listaCompra.setCliente(cliente);
 		listaCompra.setProduto(produto);
@@ -59,12 +59,28 @@ public class ListaCompraService {
 		ListaCompra lista = opt.orElseThrow(() -> new RuntimeException("produto/marca não encontrado"));
 		return lista;
 	}
-	public ListaCompra alterar(Long id, ListaCompra listaCompra) {
-		ListaCompra lista = consultarUm(id);
-		lista.setCliente(listaCompra.getCliente());
-		lista.setProduto(listaCompra.getProduto());
-		lista.setQuantidade(listaCompra.getQuantidade());
-		return listaCompraRepository.save(lista);
+	public ListaCompra alterar(Long id, ListaCompraTransfer listaTransfer) {
+		if (listaTransfer.getIdCliente()==null) {
+			throw new RuntimeException("idCliente deve ser informado");
+		}
+		if (listaTransfer.getIdProduto()==null) {
+			throw new RuntimeException("idProduto deve ser informado");
+		}
+		if (listaTransfer.getQuantidade()==0) { // TODO se quantidade for 0, remover item da lista de compras
+			throw new RuntimeException("A quantidade não pode ser zero");
+		}
+		Cliente cliente = clienteRepository.findById(listaTransfer.getIdCliente()).orElseThrow(() -> new RuntimeException("Cliente não encontrada"));
+		Produto produto = produtoRepository.findById(listaTransfer.getIdProduto()).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+//		ListaCompra lista = consultarUm(id);
+//		lista.setCliente(listaCompra.getCliente());
+//		lista.setProduto(listaCompra.getProduto());
+//		lista.setQuantidade(listaCompra.getQuantidade());
+//		return listaCompraRepository.save(lista);
+		ListaCompra listaCompra = new ListaCompra();
+		listaCompra.setCliente(cliente);
+		listaCompra.setProduto(produto);
+		listaCompra.setQuantidade(listaTransfer.getQuantidade());
+		return listaCompraRepository.save(listaCompra);
 	}
 	public void excluir(Long id) {
 		listaCompraRepository.deleteById(id);
