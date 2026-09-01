@@ -77,6 +77,7 @@ public class ListaCompraService {
 //		lista.setQuantidade(listaCompra.getQuantidade());
 //		return listaCompraRepository.save(lista);
 		ListaCompra listaCompra = new ListaCompra();
+		listaCompra.setId(id);
 		listaCompra.setCliente(cliente);
 		listaCompra.setProduto(produto);
 		listaCompra.setQuantidade(listaTransfer.getQuantidade());
