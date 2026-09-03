@@ -19,6 +19,8 @@ public class ProdutoService {
 // idMedida
 // valorMedida
 // figura
+// precoMin
+// precoMax
 	
 	public Produto salvar(Produto produto) {
 		if (produto.getDescricao().isEmpty()) {
@@ -29,6 +31,12 @@ public class ProdutoService {
 		}
 		if (produto.getValorMedida()<0) {
 			throw new RuntimeException("O valor da medida não pode ser negativa");
+		}
+		if (produto.getPrecoMin()<0) {
+			throw new RuntimeException("O valor do preço mínimo não pode ser negativo");
+		}
+		if (produto.getPrecoMax()<0) {
+			throw new RuntimeException("O valor do preço máximo não pode ser negativo");
 		}
 		repository.save(produto);
 		return produto;
@@ -49,6 +57,8 @@ public class ProdutoService {
 		prod.setMedida(produto.getMedida());
 		prod.setValorMedida(produto.getValorMedida());
 		prod.setFigura(produto.getFigura());
+		prod.setPrecoMin(produto.getPrecoMin());
+		prod.setPrecoMax(produto.getPrecoMax());
 		return repository.save(prod);
 	}
 	public void excluir(Long id) {

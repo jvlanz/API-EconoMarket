@@ -23,6 +23,8 @@ public class Produto {
 	@Enumerated(EnumType.STRING)
 	private Medida medida;
 	private Float valorMedida;  // ex. '300' para '300g'
+	private Float precoMin;
+	private Float precoMax;
 	private String figura;
 
 	public Long getId() {
@@ -60,5 +62,17 @@ public class Produto {
 	}
 	public void setFigura(String figura) {
 		this.figura = figura;
+	}
+	public Float getPrecoMin() {
+		return precoMin;
+	}
+	public void setPrecoMin(Float precoMin) {
+		this.precoMin = precoMin;
+	}
+	public Float getPrecoMax() {
+		return precoMax;
+	}
+	public void setPrecoMax(Float precoMax) {
+		this.precoMax = precoMax;
 	}
 }
