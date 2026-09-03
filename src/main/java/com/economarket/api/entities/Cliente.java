@@ -36,6 +36,7 @@ public class Cliente {
 	@OneToMany(mappedBy="cliente") // espelhamento de ListaCompra
 	@JsonManagedReference
 	private List<ListaCompra> listaCompra;
+	private String role;
 	public Long getId() {
 		return id;
 	}
