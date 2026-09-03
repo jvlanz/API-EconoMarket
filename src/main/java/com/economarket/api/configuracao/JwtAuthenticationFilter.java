@@ -1,7 +1,6 @@
 package com.economarket.api.configuracao;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.security.Autenticacao_avancada.service.JwtService;
+import com.economarket.api.services.JwtService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

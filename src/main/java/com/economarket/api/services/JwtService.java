@@ -13,6 +13,7 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtService {
 	private final String SECRET = "minha-chave-secreta-para-jwt-1234567890";
+	//private final String SECRET = "minha-chave";
 
 	private final long EXPIRATION = 1000 * 60 * 60;
 
@@ -20,8 +21,8 @@ public class JwtService {
 		return Keys.hmacShaKeyFor(SECRET.getBytes());
 	}
 
-	public String gerarToken(String username, String role) {
-		return Jwts.builder().subject(username).claim("role", role).issuedAt(new Date())
+	public String gerarToken(String username, String role, String nome) {
+		return Jwts.builder().subject(username).claim("role", role).claim("", nome).issuedAt(new Date())
 				.expiration(new Date(System.currentTimeMillis() + EXPIRATION)).signWith(getKey()).compact();
 	}
 

@@ -31,7 +31,7 @@ public class AuthController {
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
-		Cliente usuario = clienteRepository.findByUsername(request.getUsername()).orElse(null);
+		Cliente usuario = clienteRepository.findByEmail(request.getUsername()).orElse(null);
 		if (usuario == null) {
 			return ResponseEntity.status(401).body("Usuário inválido");
 		}
@@ -39,8 +39,8 @@ public class AuthController {
 		if (!passwordEncoder.matches(request.getPassword(), usuario.getSenha())) {
 			return ResponseEntity.status(401).body("Usuário ou senha inválidos");
 		}
-
-		String token = jwtService.gerarToken(usuario.getEmail(), usuario.getRole());
+		
+		String token = jwtService.gerarToken(usuario.getEmail(), usuario.getRole(), usuario.getNome());
 
 		return ResponseEntity.ok(Map.of("token", token));
 	}
@@ -48,7 +48,7 @@ public class AuthController {
 	@PostMapping("/cadastro")
 	public ResponseEntity<?> cadastrar(@RequestBody CadastroDTO request) {
 
-		if (clienteRepository.findByUsername(request.getUsername()).isPresent()) {
+		if (clienteRepository.findByEmail(request.getUsername()).isPresent()) {
 
 			return ResponseEntity.badRequest().body("Usuário já existe");
 		}

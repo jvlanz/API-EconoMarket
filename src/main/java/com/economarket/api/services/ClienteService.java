@@ -13,11 +13,10 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repository;
 
-	public Cliente salvar(Cliente cliente) {
-		
-		if (repository.existsByEmail(cliente.getEmail())) {
+	public Cliente salvar(Cliente cliente) {		
+		/*if (repository.existsByEmail(cliente.getEmail())) {
 			throw new RuntimeException("Este e-mail já está cadastrado");
-		}
+		}*/
 		return repository.save(cliente);
 	}
 	public void deletar(Long id) {
