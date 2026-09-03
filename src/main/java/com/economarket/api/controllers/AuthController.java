@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.economarket.api.repositories.ClienteRepository;
 import com.security.Autenticacao_avancada.dto.CadastroDTO;
 import com.security.Autenticacao_avancada.dto.LoginRequest;
 import com.security.Autenticacao_avancada.entidades.Usuario;
@@ -20,7 +21,7 @@ import com.security.Autenticacao_avancada.service.JwtService;
 @RequestMapping("/auth")
 public class AuthController {
 	@Autowired
-	UsuarioRepository usuarioRepository;
+	ClienteRepository clienteRepository;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -31,7 +32,7 @@ public class AuthController {
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
-		Usuario usuario = usuarioRepository.findByUsername(request.getUsername()).orElse(null);
+		Usuario usuario = clienteRepository.findByUsername(request.getUsername()).orElse(null);
 		if (usuario == null) {
 			return ResponseEntity.status(401).body("Usuário inválido");
 		}
