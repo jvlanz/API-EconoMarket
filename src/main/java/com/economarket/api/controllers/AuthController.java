@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.economarket.api.dto.CadastroDTO;
+import com.economarket.api.dto.LoginRequest;
+import com.economarket.api.entities.Cliente;
 import com.economarket.api.repositories.ClienteRepository;
-import com.security.Autenticacao_avancada.dto.CadastroDTO;
-import com.security.Autenticacao_avancada.dto.LoginRequest;
-import com.security.Autenticacao_avancada.entidades.Usuario;
-import com.security.Autenticacao_avancada.repositories.UsuarioRepository;
-import com.security.Autenticacao_avancada.service.JwtService;
+import com.economarket.api.services.JwtService;
 
 @RestController
 @RequestMapping("/auth")
@@ -32,16 +31,16 @@ public class AuthController {
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
-		Usuario usuario = clienteRepository.findByUsername(request.getUsername()).orElse(null);
+		Cliente usuario = clienteRepository.findByUsername(request.getUsername()).orElse(null);
 		if (usuario == null) {
 			return ResponseEntity.status(401).body("Usuário inválido");
 		}
 
-		if (!passwordEncoder.matches(request.getPassword(), usuario.getPassword())) {
+		if (!passwordEncoder.matches(request.getPassword(), usuario.getSenha())) {
 			return ResponseEntity.status(401).body("Usuário ou senha inválidos");
 		}
 
-		String token = jwtService.gerarToken(usuario.getUsername(), usuario.getRole());
+		String token = jwtService.gerarToken(usuario.getEmail(), usuario.getRole());
 
 		return ResponseEntity.ok(Map.of("token", token));
 	}
@@ -49,21 +48,21 @@ public class AuthController {
 	@PostMapping("/cadastro")
 	public ResponseEntity<?> cadastrar(@RequestBody CadastroDTO request) {
 
-		if (usuarioRepository.findByUsername(request.getUsername()).isPresent()) {
+		if (clienteRepository.findByUsername(request.getUsername()).isPresent()) {
 
 			return ResponseEntity.badRequest().body("Usuário já existe");
 		}
 
-		Usuario usuario = new Usuario();
+		Cliente usuario = new Cliente();
 
 		usuario.setNome(request.getNome());
-		usuario.setUsername(request.getUsername());
+		usuario.setEmail(request.getUsername());
 
-		usuario.setPassword(passwordEncoder.encode(request.getPassword()));
+		usuario.setSenha(passwordEncoder.encode(request.getPassword()));
 
 		usuario.setRole("USER");
 
-		usuarioRepository.save(usuario);
+		clienteRepository.save(usuario);
 
 		return ResponseEntity.ok("Usuário cadastrado com sucesso");
 	}

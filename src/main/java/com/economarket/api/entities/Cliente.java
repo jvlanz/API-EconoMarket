@@ -70,4 +70,11 @@ public class Cliente {
 	public void setListaCompra(List<ListaCompra> listaCompra) {
 		this.listaCompra = listaCompra;
 	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
 }
