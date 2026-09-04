@@ -4,7 +4,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,5 +67,13 @@ public class AuthController {
 		clienteRepository.save(usuario);
 
 		return ResponseEntity.ok("Usuário cadastrado com sucesso");
+	}
+
+	@GetMapping("/status")
+	public ResponseEntity<?> status(@AuthenticationPrincipal Cliente cliente) {
+		if (cliente == null) {
+			return ResponseEntity.ok(-1L);
+		}
+		return ResponseEntity.ok(cliente.getId());
 	}
 }

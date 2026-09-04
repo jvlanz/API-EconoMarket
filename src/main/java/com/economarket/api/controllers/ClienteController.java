@@ -49,7 +49,7 @@ public class ClienteController {
 	public ResponseEntity<?> salvar(@RequestBody Cliente cliente) {
 		try {
 		cliente = service.salvar(cliente);
-		return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
+			return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
 		}
 		catch(Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
