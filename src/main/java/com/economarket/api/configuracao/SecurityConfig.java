@@ -12,20 +12,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 public class SecurityConfig {
-	
+
 	@Autowired
 	private JwtAuthenticationFilter jwtFilter;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
-	    	.csrf(csrf -> csrf.disable())
-			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-			.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/clientes/**").authenticated()
-						.requestMatchers("/listaCompra/**").authenticated()
-						.requestMatchers("/admin/**").hasRole("ADMIN")
-						.anyRequest().permitAll())
+		http.csrf(csrf -> csrf.disable())
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authorizeHttpRequests(
+						auth -> auth.requestMatchers("/clientes/**").authenticated().requestMatchers("/listaCompra/**")
+								.authenticated().requestMatchers("/admin/**").hasRole("ADMIN").anyRequest().permitAll())
+				.headers(headers -> headers.frameOptions(frame -> frame.disable())) //desabilitar quando for para a main
 				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();
