@@ -35,10 +35,10 @@ public class JwtService {
 		return claims.get("role", String.class);
 	}
 
-//	public String extrairId(String token) {
-//		Claims claims = getClaims(token);
-//		return claims.get("id", Long.class);
-//	}
+	public Long extrairId(String token) {
+		Claims claims = getClaims(token);
+		return claims.get("id", Long.class);
+	}
 
 	private Claims getClaims(String token) {
 

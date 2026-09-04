@@ -40,7 +40,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		try {
 			String username = jwtService.extrairEmail(token);
 			String role = jwtService.extractRole(token);
-			String id = jwtService.extrairId(token);
+			Long id = jwtService.extrairId(token);
 
 			System.out.println("=================================");
 			System.out.println("JWT FILTER");
