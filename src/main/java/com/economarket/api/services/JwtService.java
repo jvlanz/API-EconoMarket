@@ -21,12 +21,12 @@ public class JwtService {
 		return Keys.hmacShaKeyFor(SECRET.getBytes());
 	}
 
-	public String gerarToken(String username, String role, String nome) {
-		return Jwts.builder().subject(username).claim("role", role).claim("nome", nome).issuedAt(new Date())
+	public String gerarToken(String email, String role, String nome) {
+		return Jwts.builder().subject(email).claim("role", role).claim("nome", nome).issuedAt(new Date())
 				.expiration(new Date(System.currentTimeMillis() + EXPIRATION)).signWith(getKey()).compact();
 	}
 
-	public String extrairUsername(String token) {
+	public String extrairEmail(String token) {
 		return Jwts.parser().verifyWith(getKey()).build().parseSignedClaims(token).getPayload().getSubject();
 	}
 
