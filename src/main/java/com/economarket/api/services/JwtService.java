@@ -21,8 +21,8 @@ public class JwtService {
 		return Keys.hmacShaKeyFor(SECRET.getBytes());
 	}
 
-	public String gerarToken(String email, String role, String nome) {
-		return Jwts.builder().subject(email).claim("role", role).claim("nome", nome).issuedAt(new Date())
+	public String gerarToken(String email, String role, String nome, Long id) {
+		return Jwts.builder().subject(email).claim("role", role).claim("nome", nome).claim("id", id).issuedAt(new Date())
 				.expiration(new Date(System.currentTimeMillis() + EXPIRATION)).signWith(getKey()).compact();
 	}
 
@@ -34,6 +34,11 @@ public class JwtService {
 		Claims claims = getClaims(token);
 		return claims.get("role", String.class);
 	}
+
+//	public String extrairId(String token) {
+//		Claims claims = getClaims(token);
+//		return claims.get("id", Long.class);
+//	}
 
 	private Claims getClaims(String token) {
 

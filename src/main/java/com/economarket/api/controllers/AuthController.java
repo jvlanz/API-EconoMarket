@@ -44,7 +44,7 @@ public class AuthController {
 			return ResponseEntity.status(401).body("Usuário ou senha inválidos");
 		}
 
-		String token = jwtService.gerarToken(usuario.getEmail(), usuario.getRole(), usuario.getNome());
+		String token = jwtService.gerarToken(usuario.getEmail(), usuario.getRole(), usuario.getNome(), usuario.getId());
 
 		return ResponseEntity.ok(Map.of("token", token));
 	}
@@ -73,10 +73,10 @@ public class AuthController {
 	}
 
 	@GetMapping("/status")
-	public ResponseEntity<?> status(@AuthenticationPrincipal String username) {
-		if (username == null) {
+	public ResponseEntity<?> status(@AuthenticationPrincipal Long id) {
+		if (id == null) {
 			return ResponseEntity.ok(-1L);
 		}
-		return ResponseEntity.ok(username);
+		return ResponseEntity.ok(id);
 	}
 }
