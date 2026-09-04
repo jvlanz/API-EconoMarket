@@ -73,10 +73,10 @@ public class AuthController {
 	}
 
 	@GetMapping("/status")
-	public ResponseEntity<?> status(@AuthenticationPrincipal Cliente cliente) {
-		if (cliente == null) {
+	public ResponseEntity<?> status(@AuthenticationPrincipal String username) {
+		if (username == null) {
 			return ResponseEntity.ok(-1L);
 		}
-		return ResponseEntity.ok(cliente.getId());
+		return ResponseEntity.ok(username);
 	}
 }
