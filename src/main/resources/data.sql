@@ -28,27 +28,27 @@ insert into mercado (nome, link) values ('Mercado Bom Preço', 'https://www.bomp
 -- ==========================================
 -- 3. CLIENTES (20 entradas)
 -- ==========================================
-insert into cliente (nome, email, senha, telefone) values ('Anônimo', 'anon@email.com', '1234', '00 0000-0000');
-insert into cliente (nome, email, senha, telefone) values ('João', 'joao@gmail.com', '1234', '47 9912-3456');
-insert into cliente (nome, email, senha, telefone) values ('Maria Silva', 'maria.silva@gmail.com', 'abcd', '47 98877-1122');
-insert into cliente (nome, email, senha, telefone) values ('Carlos Souza', 'carlos.souza@outlook.com', 'senha123', '48 99655-4433');
-insert into cliente (nome, email, senha, telefone) values ('Ana Paula', 'anapaula@yahoo.com.br', 'ana2026', '47 99111-2233');
-insert into cliente (nome, email, senha, telefone) values ('Lucas Oliveira', 'lucas.oli@gmail.com', 'lucas99', '11 98333-5566');
-insert into cliente (nome, email, senha, telefone) values ('Beatriz Lima', 'bia.lima@gmail.com', 'beatriz1', '21 97788-9900');
-insert into cliente (nome, email, senha, telefone) values ('Marcos Vinicius', 'marcos.v@hotmail.com', 'marcos00', '47 98444-1100');
-insert into cliente (nome, email, senha, telefone) values ('Juliana Costa', 'ju.costa@gmail.com', 'jujuba', '41 99222-3344');
-insert into cliente (nome, email, senha, telefone) values ('Roberto Dias', 'roberto.dias@bol.com.br', 'dias777', '47 99555-6677');
-insert into cliente (nome, email, senha, telefone) values ('Fernanda Rocha', 'fe.rocha@gmail.com', 'rochafer', '51 98111-2233');
-insert into cliente (nome, email, senha, telefone) values ('Gabriel Santos', 'gabriel.santos@gmail.com', 'gab123', '31 98822-4455');
-insert into cliente (nome, email, senha, telefone) values ('Larissa Mendes', 'larissa.m@outlook.com', 'mendes10', '47 99333-7788');
-insert into cliente (nome, email, senha, telefone) values ('Bruno Cardoso', 'bruno.cardoso@gmail.com', 'brunao', '61 98444-5566');
-insert into cliente (nome, email, senha, telefone) values ('Camila Martins', 'camila.m@gmail.com', 'camilinha', '47 98999-0011');
-insert into cliente (nome, email, senha, telefone) values ('Eduardo Ramos', 'edu.ramos@hotmail.com', 'dudu2026', '85 99111-8899');
-insert into cliente (nome, email, senha, telefone) values ('Patrícia Alves', 'paty.alves@gmail.com', 'alvespat', '47 98222-3344');
-insert into cliente (nome, email, senha, telefone) values ('Rodrigo Barbosa', 'rodrigo.b@gmail.com', 'digodigo', '41 99666-1122');
-insert into cliente (nome, email, senha, telefone) values ('Vanessa Duarte', 'van.duarte@outlook.com', 'vanessa1', '47 98777-4455');
-insert into cliente (nome, email, senha, telefone) values ('Thiago Farias', 'thiago.f@gmail.com', 'farias99', '11 99555-2211');
-insert into cliente (nome, email, senha, telefone) values ('Mariana Ribeiro', 'mari.ribeiro@gmail.com', 'ribeiro88', '47 98123-4567');
+-- insert into cliente (nome, email, senha, telefone) values ('Anônimo', 'anon@email.com', '1234', '00 0000-0000');
+-- insert into cliente (nome, email, senha, telefone) values ('João', 'joao@gmail.com', '1234', '47 9912-3456');
+-- insert into cliente (nome, email, senha, telefone) values ('Maria Silva', 'maria.silva@gmail.com', 'abcd', '47 98877-1122');
+-- insert into cliente (nome, email, senha, telefone) values ('Carlos Souza', 'carlos.souza@outlook.com', 'senha123', '48 99655-4433');
+-- insert into cliente (nome, email, senha, telefone) values ('Ana Paula', 'anapaula@yahoo.com.br', 'ana2026', '47 99111-2233');
+-- insert into cliente (nome, email, senha, telefone) values ('Lucas Oliveira', 'lucas.oli@gmail.com', 'lucas99', '11 98333-5566');
+-- insert into cliente (nome, email, senha, telefone) values ('Beatriz Lima', 'bia.lima@gmail.com', 'beatriz1', '21 97788-9900');
+-- insert into cliente (nome, email, senha, telefone) values ('Marcos Vinicius', 'marcos.v@hotmail.com', 'marcos00', '47 98444-1100');
+-- insert into cliente (nome, email, senha, telefone) values ('Juliana Costa', 'ju.costa@gmail.com', 'jujuba', '41 99222-3344');
+-- insert into cliente (nome, email, senha, telefone) values ('Roberto Dias', 'roberto.dias@bol.com.br', 'dias777', '47 99555-6677');
+-- insert into cliente (nome, email, senha, telefone) values ('Fernanda Rocha', 'fe.rocha@gmail.com', 'rochafer', '51 98111-2233');
+-- insert into cliente (nome, email, senha, telefone) values ('Gabriel Santos', 'gabriel.santos@gmail.com', 'gab123', '31 98822-4455');
+-- insert into cliente (nome, email, senha, telefone) values ('Larissa Mendes', 'larissa.m@outlook.com', 'mendes10', '47 99333-7788');
+-- insert into cliente (nome, email, senha, telefone) values ('Bruno Cardoso', 'bruno.cardoso@gmail.com', 'brunao', '61 98444-5566');
+-- insert into cliente (nome, email, senha, telefone) values ('Camila Martins', 'camila.m@gmail.com', 'camilinha', '47 98999-0011');
+-- insert into cliente (nome, email, senha, telefone) values ('Eduardo Ramos', 'edu.ramos@hotmail.com', 'dudu2026', '85 99111-8899');
+-- insert into cliente (nome, email, senha, telefone) values ('Patrícia Alves', 'paty.alves@gmail.com', 'alvespat', '47 98222-3344');
+-- insert into cliente (nome, email, senha, telefone) values ('Rodrigo Barbosa', 'rodrigo.b@gmail.com', 'digodigo', '41 99666-1122');
+-- insert into cliente (nome, email, senha, telefone) values ('Vanessa Duarte', 'van.duarte@outlook.com', 'vanessa1', '47 98777-4455');
+-- insert into cliente (nome, email, senha, telefone) values ('Thiago Farias', 'thiago.f@gmail.com', 'farias99', '11 99555-2211');
+-- insert into cliente (nome, email, senha, telefone) values ('Mariana Ribeiro', 'mari.ribeiro@gmail.com', 'ribeiro88', '47 98123-4567');
 
 
 -- ==========================================
@@ -261,15 +261,15 @@ insert into produto_marca (id_produto, id_marca) values (1, 5);
 -- ==========================================
 -- 7. LISTA DE COMPRAS
 -- ==========================================
-insert into lista_compra (id_cliente, id_produto, quantidade) values (1, 1, 1);
-insert into lista_compra (id_cliente, id_produto, quantidade) values (1, 2, 10);
-insert into lista_compra (id_cliente, id_produto, quantidade) values (1, 3, 3);
-insert into lista_compra (id_cliente, id_produto, quantidade) values (1, 4, 1);
-insert into lista_compra (id_cliente, id_produto, quantidade) values (1, 5, 2);
-insert into lista_compra (id_cliente, id_produto, quantidade) values (1, 6, 1);
-insert into lista_compra (id_cliente, id_produto, quantidade) values (2, 3, 1);
-insert into lista_compra (id_cliente, id_produto, quantidade) values (3, 4, 1);
-insert into lista_compra (id_cliente, id_produto, quantidade) values (4, 5, 1);
+-- insert into lista_compra (id_cliente, id_produto, quantidade) values (1, 1, 1);
+-- insert into lista_compra (id_cliente, id_produto, quantidade) values (1, 2, 10);
+-- insert into lista_compra (id_cliente, id_produto, quantidade) values (1, 3, 3);
+-- insert into lista_compra (id_cliente, id_produto, quantidade) values (1, 4, 1);
+-- insert into lista_compra (id_cliente, id_produto, quantidade) values (1, 5, 2);
+-- insert into lista_compra (id_cliente, id_produto, quantidade) values (1, 6, 1);
+-- insert into lista_compra (id_cliente, id_produto, quantidade) values (2, 3, 1);
+-- insert into lista_compra (id_cliente, id_produto, quantidade) values (3, 4, 1);
+-- insert into lista_compra (id_cliente, id_produto, quantidade) values (4, 5, 1);
 
 
 -- ==========================================
