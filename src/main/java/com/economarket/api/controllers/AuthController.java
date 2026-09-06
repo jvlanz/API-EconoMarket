@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.economarket.api.dto.CadastroDTO;
+import com.economarket.api.dto.CadastroRequest;
 import com.economarket.api.dto.LoginRequest;
 import com.economarket.api.entities.Cliente;
 import com.economarket.api.repositories.ClienteRepository;
@@ -50,7 +50,7 @@ public class AuthController {
 	}
 
 	@PostMapping("/cadastro")
-	public ResponseEntity<?> cadastrar(@RequestBody CadastroDTO request) {
+	public ResponseEntity<?> cadastrar(@RequestBody CadastroRequest request) {
 
 		if (clienteRepository.findByEmail(request.getEmail()).isPresent()) {
 

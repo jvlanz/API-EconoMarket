@@ -12,7 +12,7 @@ import com.economarket.api.entities.ListaCompra;
 import com.economarket.api.repositories.ListaCompraRepository;
 import com.economarket.api.repositories.ClienteRepository;
 import com.economarket.api.repositories.ProdutoRepository;
-import com.economarket.api.dto.ListaCompraTransfer;
+import com.economarket.api.dto.ListaCompraRequest;
 
 @Service
 public class ListaCompraService {
@@ -31,22 +31,22 @@ public class ListaCompraService {
 		this.produtoRepository = produtoRepository;
 	}
 
-	public ListaCompra salvar(ListaCompraTransfer listaTransfer) {
-		if (listaTransfer.getIdCliente()==null) {
+	public ListaCompra salvar(ListaCompraRequest request) {
+		if (request.getIdCliente()==null) {
 			throw new RuntimeException("idCliente deve ser informado");
 		}
-		if (listaTransfer.getIdProduto()==null) {
+		if (request.getIdProduto()==null) {
 			throw new RuntimeException("idProduto deve ser informado");
 		}
-		if (listaTransfer.getQuantidade()==0) { // TODO se quantidade for 0, remover item da lista de compras
+		if (request.getQuantidade()==0) { // TODO se quantidade for 0, remover item da lista de compras
 			throw new RuntimeException("A quantidade não pode ser zero");
 		}
-		Cliente cliente = clienteRepository.findById(listaTransfer.getIdCliente()).orElseThrow(() -> new RuntimeException("Cliente não encontrada"));
-		Produto produto = produtoRepository.findById(listaTransfer.getIdProduto()).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+		Cliente cliente = clienteRepository.findById(request.getIdCliente()).orElseThrow(() -> new RuntimeException("Cliente não encontrada"));
+		Produto produto = produtoRepository.findById(request.getIdProduto()).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 		ListaCompra listaCompra = new ListaCompra();
 		listaCompra.setCliente(cliente);
 		listaCompra.setProduto(produto);
-		listaCompra.setQuantidade(listaTransfer.getQuantidade());
+		listaCompra.setQuantidade(request.getQuantidade());
 		listaCompraRepository.save(listaCompra);
 		return listaCompra;
 	}
@@ -59,18 +59,18 @@ public class ListaCompraService {
 		ListaCompra lista = opt.orElseThrow(() -> new RuntimeException("produto/marca não encontrado"));
 		return lista;
 	}
-	public ListaCompra alterar(Long id, ListaCompraTransfer listaTransfer) {
-		if (listaTransfer.getIdCliente()==null) {
+	public ListaCompra alterar(Long id, ListaCompraRequest request) {
+		if (request.getIdCliente()==null) {
 			throw new RuntimeException("idCliente deve ser informado");
 		}
-		if (listaTransfer.getIdProduto()==null) {
+		if (request.getIdProduto()==null) {
 			throw new RuntimeException("idProduto deve ser informado");
 		}
-		if (listaTransfer.getQuantidade()==0) { // TODO se quantidade for 0, remover item da lista de compras
+		if (request.getQuantidade()==0) { // TODO se quantidade for 0, remover item da lista de compras
 			throw new RuntimeException("A quantidade não pode ser zero");
 		}
-		Cliente cliente = clienteRepository.findById(listaTransfer.getIdCliente()).orElseThrow(() -> new RuntimeException("Cliente não encontrada"));
-		Produto produto = produtoRepository.findById(listaTransfer.getIdProduto()).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+		Cliente cliente = clienteRepository.findById(request.getIdCliente()).orElseThrow(() -> new RuntimeException("Cliente não encontrada"));
+		Produto produto = produtoRepository.findById(request.getIdProduto()).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 //		ListaCompra lista = consultarUm(id);
 //		lista.setCliente(listaCompra.getCliente());
 //		lista.setProduto(listaCompra.getProduto());
@@ -80,7 +80,7 @@ public class ListaCompraService {
 		listaCompra.setId(id);
 		listaCompra.setCliente(cliente);
 		listaCompra.setProduto(produto);
-		listaCompra.setQuantidade(listaTransfer.getQuantidade());
+		listaCompra.setQuantidade(request.getQuantidade());
 		return listaCompraRepository.save(listaCompra);
 	}
 	public void excluir(Long id) {

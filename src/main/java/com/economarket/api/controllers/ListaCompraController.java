@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.economarket.api.entities.ListaCompra;
 import com.economarket.api.services.ListaCompraService;
-import com.economarket.api.dto.ListaCompraTransfer;
+import com.economarket.api.dto.ListaCompraRequest;
 
 @RestController
 @RequestMapping("listaCompra")
@@ -43,9 +43,9 @@ public class ListaCompraController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> salvar(@RequestBody ListaCompraTransfer itemTransfer) {
+	public ResponseEntity<?> salvar(@RequestBody ListaCompraRequest request) {
 		try {
-			ListaCompra lItem = service.salvar(itemTransfer);
+			ListaCompra lItem = service.salvar(request);
 			return ResponseEntity.status(HttpStatus.CREATED).body(lItem);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -53,9 +53,9 @@ public class ListaCompraController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> alterar(@PathVariable long id, @RequestBody ListaCompraTransfer itemTransfer) {
+	public ResponseEntity<?> alterar(@PathVariable long id, @RequestBody ListaCompraRequest request) {
 		try {
-			ListaCompra lItem = service.alterar(id, itemTransfer);
+			ListaCompra lItem = service.alterar(id, request);
 			return ResponseEntity.status(HttpStatus.CREATED).body(lItem);
 //			return ResponseEntity.status(HttpStatus.OK).body(service.alterar(id, lItem));
 		} catch (Exception e) {

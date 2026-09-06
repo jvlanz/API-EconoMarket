@@ -1,4 +1,4 @@
-package com.economarket.api.configuracao;
+package com.economarket.api.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

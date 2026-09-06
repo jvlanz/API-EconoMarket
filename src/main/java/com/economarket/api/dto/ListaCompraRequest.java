@@ -1,6 +1,6 @@
 package com.economarket.api.dto;
 
-public class ListaCompraTransfer {
+public class ListaCompraRequest {
 	private Long id;
 	private Long idCliente;
 	private Long idProduto;

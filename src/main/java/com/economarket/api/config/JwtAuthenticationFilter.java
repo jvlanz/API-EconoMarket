@@ -1,4 +1,4 @@
-package com.economarket.api.configuracao;
+package com.economarket.api.config;
 
 import java.io.IOException;
 import java.util.List;

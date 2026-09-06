@@ -1,6 +1,6 @@
 package com.economarket.api.dto;
 
-public class CadastroDTO {
+public class CadastroRequest {
 	private String nome;
 	private String email;
 	private String password;
