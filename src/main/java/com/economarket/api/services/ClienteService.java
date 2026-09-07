@@ -24,7 +24,7 @@ public class ClienteService {
 	}
 	public Cliente consultarUm(Long id) {
 		Optional<Cliente> opt = repository.findById(id);
-		Cliente cliente = opt.orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+		Cliente cliente = opt.orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 		return cliente;
 	}
 	public Cliente alterar(Long id, Cliente cliente) {

@@ -17,6 +17,7 @@ import com.economarket.api.dto.CadastroRequest;
 import com.economarket.api.dto.LoginRequest;
 import com.economarket.api.entities.Cliente;
 import com.economarket.api.repositories.ClienteRepository;
+import com.economarket.api.services.ClienteService;
 import com.economarket.api.services.JwtService;
 
 @RestController
@@ -25,6 +26,9 @@ import com.economarket.api.services.JwtService;
 public class AuthController {
 	@Autowired
 	ClienteRepository clienteRepository;
+
+	@Autowired
+	ClienteService clienteService;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -78,5 +82,14 @@ public class AuthController {
 			return ResponseEntity.ok(-1L);
 		}
 		return ResponseEntity.ok(id);
+	}
+
+	@GetMapping("/cliente")
+	public Cliente cliente(@AuthenticationPrincipal Long id) {
+		Cliente cliente = clienteService.consultarUm(id); // não deveria chamar clienteService??
+		if (cliente!=null)
+			return cliente;
+		else
+			return clienteService.consultarUm(0L);
 	}
 }
