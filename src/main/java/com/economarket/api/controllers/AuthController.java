@@ -73,7 +73,8 @@ public class AuthController {
 
 		clienteRepository.save(usuario);
 
-		return ResponseEntity.ok("Usuário cadastrado com sucesso");
+		String token = jwtService.gerarToken(usuario.getEmail(), usuario.getRole(), usuario.getNome(), usuario.getId());
+		return ResponseEntity.ok(Map.of("token", token));
 	}
 
 	@GetMapping("/status")
