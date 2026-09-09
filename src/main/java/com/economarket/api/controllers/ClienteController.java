@@ -35,16 +35,6 @@ public class ClienteController {
 		}
 	}
 
-	@GetMapping("/{id}/size")
-	public ResponseEntity<?> obterTamanho(@PathVariable long id) {
-		try {
-			Cliente cliente = service.consultarUm(id);
-			return ResponseEntity.status(HttpStatus.OK).body(cliente.getListaCompra().size());
-		} catch(Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cliente não encontrado");
-		}
-	}
-
 	@PostMapping
 	public ResponseEntity<?> salvar(@RequestBody Cliente cliente) {
 		try {

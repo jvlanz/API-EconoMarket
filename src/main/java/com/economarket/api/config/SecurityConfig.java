@@ -24,8 +24,8 @@ public class SecurityConfig {
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests( auth -> auth
 						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // autorizar "browser’s CORS preflight request"
-						.requestMatchers("/clientes/**").authenticated()
 						.requestMatchers("/listaCompra/**").authenticated()
+						.requestMatchers("/clientes/**").hasRole("ADMIN")
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						.anyRequest().permitAll())
 				.headers(headers -> headers.frameOptions(frame -> frame.disable())) //desabilitar quando for para a main

@@ -5,6 +5,7 @@ entity clientes {
 	email: string
 	senha: string
 	telefone: string
+	role: string
 }
 entity mercados {
 	id: int
