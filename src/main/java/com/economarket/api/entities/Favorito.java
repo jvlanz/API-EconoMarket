@@ -19,8 +19,8 @@ public class Favorito {
 	@JsonBackReference
 	private Cliente cliente;
 	@ManyToOne
-	@JoinColumn(name="idProdutoMarca")
-	private ProdutoMarca produtoMarca;
+	@JoinColumn(name="idProduto")
+	private Produto produto;
 
 	public Long getId() {
 		return id;
@@ -34,10 +34,10 @@ public class Favorito {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public ProdutoMarca getProdutoMarca() {
-		return produtoMarca;
+	public Produto getProduto() {
+		return produto;
 	}
-	public void setProdutoMarca(ProdutoMarca produtoMarca) {
-		this.produtoMarca = produtoMarca;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 }

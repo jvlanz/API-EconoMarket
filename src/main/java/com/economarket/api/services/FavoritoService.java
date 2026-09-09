@@ -9,26 +9,26 @@ import org.springframework.stereotype.Service;
 import com.economarket.api.dto.FavoritoRequest;
 import com.economarket.api.entities.Cliente;
 import com.economarket.api.entities.Favorito;
-import com.economarket.api.entities.ProdutoMarca;
+import com.economarket.api.entities.Produto;
 import com.economarket.api.repositories.ClienteRepository;
 import com.economarket.api.repositories.FavoritoRepository;
-import com.economarket.api.repositories.ProdutoMarcaRepository;
+import com.economarket.api.repositories.ProdutoRepository;
 
 @Service
 public class FavoritoService {
 	private final FavoritoRepository favoritoRepository;
 	private final ClienteRepository clienteRepository;
-	private final ProdutoMarcaRepository produtoMarcaRepository;
+	private final ProdutoRepository produtoRepository;
 
 	@Autowired
 	public FavoritoService(
 		FavoritoRepository favoritoRepository,
 		ClienteRepository clienteRepository,
-		ProdutoMarcaRepository produtoMarcaRepository
+		ProdutoRepository produtoRepository
 	) {
 		this.favoritoRepository = favoritoRepository;
 		this.clienteRepository = clienteRepository;
-		this.produtoMarcaRepository = produtoMarcaRepository;
+		this.produtoRepository = produtoRepository;
 	}
 // id
 // idCliente
@@ -38,14 +38,14 @@ public class FavoritoService {
 		if (request.getIdCliente()==null) {
 			throw new RuntimeException("O cliente deve ser informado");
 		}
-		if (request.getIdProdutoMarca()==null) {
-			throw new RuntimeException("O produto/marca deve ser informado");
+		if (request.getIdProduto()==null) {
+			throw new RuntimeException("O produto deve ser informado");
 		}
 		Cliente cliente = clienteRepository.findById(request.getIdCliente()).orElseThrow(() -> new RuntimeException("Cliente não encontrada"));
-		ProdutoMarca produtoMarca = produtoMarcaRepository.findById(request.getIdProdutoMarca()).orElseThrow(() -> new RuntimeException("ProdutoMarca não encontrado"));
+		Produto produto = produtoRepository.findById(request.getIdProduto()).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 		Favorito favorito = new Favorito();
 		favorito.setCliente(cliente);
-		favorito.setProdutoMarca(produtoMarca);
+		favorito.setProduto(produto);
 		favoritoRepository.save(favorito);
 
 		favoritoRepository.save(favorito);
@@ -63,7 +63,7 @@ public class FavoritoService {
 	public Favorito alterar(Long id, Favorito favorito) {
 		Favorito fav = consultarUm(id);
 		fav.setCliente(favorito.getCliente());
-		fav.setProdutoMarca(favorito.getProdutoMarca());
+		fav.setProduto(favorito.getProduto());
 		return favoritoRepository.save(fav);
 	}
 	public void excluir(Long id) {
