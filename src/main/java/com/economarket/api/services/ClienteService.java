@@ -36,6 +36,8 @@ public class ClienteService {
 		clienteConsultado.setEmail(cliente.getEmail());
 		clienteConsultado.setTelefone(cliente.getTelefone());
 		clienteConsultado.setListaCompra(cliente.getListaCompra());
+		clienteConsultado.setFavoritos(cliente.getFavoritos());
+		clienteConsultado.setRole(cliente.getRole());
 		return repository.save(clienteConsultado);
 	}
 

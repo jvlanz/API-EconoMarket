@@ -36,6 +36,9 @@ public class Cliente {
 	@OneToMany(mappedBy="cliente") // espelhamento de ListaCompra
 	@JsonManagedReference
 	private List<ListaCompra> listaCompra;
+	@OneToMany(mappedBy="cliente") // espelhamento de ListaCompra
+	@JsonManagedReference
+	private List<Favorito> favoritos;
 	private String role;
 	public Long getId() {
 		return id;
@@ -69,6 +72,12 @@ public class Cliente {
 	}
 	public void setListaCompra(List<ListaCompra> listaCompra) {
 		this.listaCompra = listaCompra;
+	}
+	public List<Favorito> getFavoritos() {
+		return favoritos;
+	}
+	public void setFavoritos(List<Favorito> favoritos) {
+		this.favoritos = favoritos;
 	}
 	public String getRole() {
 		return role;

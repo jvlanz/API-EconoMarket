@@ -82,10 +82,14 @@ public class AuthController {
 
 	@GetMapping("/cliente")
 	public Cliente cliente(@AuthenticationPrincipal Long id) {
-		Cliente cliente = clienteService.consultarUm(id); // não deveria chamar clienteService??
-		if (cliente!=null)
-			return cliente;
-		else
-			return clienteService.consultarUm(0L);
+		Cliente cliente = new Cliente();
+		if (id!=null) {
+			cliente = clienteService.consultarUm(id);
+//			if (cliente!=null)
+//				return cliente;
+//			else
+//				return clienteService.consultarUm(0L);
+		}
+		return cliente;
 	}
 }
