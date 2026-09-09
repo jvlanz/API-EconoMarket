@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.economarket.api.dto.CadastroRequest;
 import com.economarket.api.dto.LoginRequest;
 import com.economarket.api.entities.Cliente;
-import com.economarket.api.repositories.ClienteRepository;
 import com.economarket.api.services.ClienteService;
 import com.economarket.api.services.JwtService;
 
@@ -24,9 +23,6 @@ import com.economarket.api.services.JwtService;
 @RequestMapping("/auth")
 @CrossOrigin(origins = "*")
 public class AuthController {
-	@Autowired
-	ClienteRepository clienteRepository;
-
 	@Autowired
 	ClienteService clienteService;
 
@@ -39,7 +35,7 @@ public class AuthController {
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
-		Cliente usuario = clienteRepository.findByEmail(request.getEmail()).orElse(null);
+		Cliente usuario = clienteService.consultarEmail(request.getEmail());
 		if (usuario == null) {
 			return ResponseEntity.status(401).body("Usuário inválido");
 		}
@@ -56,8 +52,7 @@ public class AuthController {
 	@PostMapping("/cadastro")
 	public ResponseEntity<?> cadastrar(@RequestBody CadastroRequest request) {
 
-		if (clienteRepository.findByEmail(request.getEmail()).isPresent()) {
-
+		if (clienteService.consultarEmail(request.getEmail())!=null) {
 			return ResponseEntity.badRequest().body("Usuário já existe");
 		}
 
@@ -71,7 +66,7 @@ public class AuthController {
 
 		usuario.setRole("USER");
 
-		clienteRepository.save(usuario);
+		clienteService.salvar(usuario);
 
 		String token = jwtService.gerarToken(usuario.getEmail(), usuario.getRole(), usuario.getNome(), usuario.getId());
 		return ResponseEntity.ok(Map.of("token", token));

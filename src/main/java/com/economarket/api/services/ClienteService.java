@@ -27,6 +27,9 @@ public class ClienteService {
 		Cliente cliente = opt.orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 		return cliente;
 	}
+	public Cliente consultarEmail(String email) {
+		return repository.findByEmail(email).orElse(null);
+	}
 	public Cliente alterar(Long id, Cliente cliente) {
 		Cliente clienteConsultado = consultarUm(id);
 		clienteConsultado.setNome(cliente.getNome());
