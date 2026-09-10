@@ -58,7 +58,7 @@ entity favoritos {
 	id_cliente: int
 }
 clientes-->favoritos
-produtos_marcas-->favoritos
+produtos-->favoritos
 
 'entity status {
 '	id: int
