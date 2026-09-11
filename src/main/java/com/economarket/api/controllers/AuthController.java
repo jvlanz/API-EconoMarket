@@ -82,14 +82,9 @@ public class AuthController {
 
 	@GetMapping("/cliente")
 	public Cliente cliente(@AuthenticationPrincipal Long id) {
-		Cliente cliente = new Cliente();
-		if (id!=null) {
+		Cliente cliente = null;
+		if (id!=null)
 			cliente = clienteService.consultarUm(id);
-//			if (cliente!=null)
-//				return cliente;
-//			else
-//				return clienteService.consultarUm(0L);
-		}
 		return cliente;
 	}
 }

@@ -30,7 +30,7 @@ public class JwtService {
 		return Jwts.parser().verifyWith(getKey()).build().parseSignedClaims(token).getPayload().getSubject();
 	}
 
-	public String extractRole(String token) {
+	public String extrairRole(String token) {
 		Claims claims = getClaims(token);
 		return claims.get("role", String.class);
 	}
