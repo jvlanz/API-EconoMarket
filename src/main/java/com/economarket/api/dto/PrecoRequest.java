@@ -27,4 +27,16 @@ public class PrecoRequest {
 	public void setIdMercado(Long idMercado) {
 		this.idMercado = idMercado;
 	}
+	public Float getPreco() {
+		return preco;
+	}
+	public void setPreco(Float preco) {
+		this.preco = preco;
+	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
 }
