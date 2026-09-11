@@ -70,11 +70,11 @@ public class UploadController {
 	}
 	
 	public void parseCSV(String csvFile) {
-		Long idMercado = 0L;
-		Long idProduto = 0L;
-		Long idCategoria = 0L;
-		Long idMarca = 0L;
-		Long idProdutoMarca = 0L;
+		Long idMercado = 1L;
+		Long idProduto = 1L;
+		Long idCategoria = 1L;
+		Long idMarca = 1L;
+		Long idProdutoMarca = 1L;
 		Date data = new Date();
 		String descricao;
 		Medida medida;
@@ -92,15 +92,15 @@ public class UploadController {
 					marca = line.split(",")[1].strip();
 					categoria = line.split(",")[2].strip();
 					medida = Medida.valueOf(line.split(",")[3].strip());
-					valorMedida = Float.parseFloat(csvFile.split(",")[4]);
+					valorMedida = Float.parseFloat(line.split(",")[4]);
 					preco = Float.parseFloat(line.split(",")[5]);
-					System.out.println(descricao+marca+medida+valorMedida+preco+idMercado+data); // remover alertas do compilador
+					System.out.println("ADICIONAR PRODUTO: "+descricao+" "+marca+" "+medida+" "+valorMedida+" "+preco+" "+idMercado+" "+data); // remover alertas do compilador
 // checar se categoria existe; senão criar uma; obter idCategoria
 					Categoria novaCategoria = new Categoria();
 					novaCategoria.setCategoria(categoria);
 					List<Categoria> categorias = categoriaService.consultar();
 					for (Categoria categoriaDB : categorias) {
-						if (categoriaDB.getCategoria()==categoria) {
+						if (categoriaDB.getCategoria().equals(categoria)) {
 							novaCategoria.setId(categoriaDB.getId());
 							break;
 						}
@@ -117,7 +117,7 @@ public class UploadController {
 					produtoRequest.setFigura(descricao.split(" ")[0].toLowerCase()+".jpg");
 					List<Produto> produtos = produtoService.consultar();
 					for (Produto produtoDB : produtos) {
-						if (produtoDB.getDescricao()==descricao) {
+						if (produtoDB.getDescricao().equals(descricao)) {
 							produtoRequest.setId(produtoDB.getId());
 							produtoRequest.setIdCategoria(idCategoria); // para quando a categoria não for informada
 							produtoRequest.setFigura(produtoDB.getFigura());
@@ -134,7 +134,7 @@ public class UploadController {
 					novaMarca.setMarca(marca);
 					List<Marca> marcas = marcaService.consultar();
 					for (Marca marcaDB : marcas) {
-						if (marcaDB.getMarca()==marca) {
+						if (marcaDB.getMarca().equals(marca)) {
 							novaMarca.setId(marcaDB.getId());
 							break;
 						}
