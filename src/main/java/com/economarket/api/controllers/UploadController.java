@@ -92,10 +92,12 @@ public class UploadController {
 					novoProduto.setDescricao(descricao);
 					novoProduto.setMedida(medida);
 					novoProduto.setValorMedida(valorMedida);
+					novoProduto.setFigura(descricao.split(" ")[0].toLowerCase()+".jpg");
 					List<Produto> produtos = produtoService.consultar();
 					for (Produto produtoDB : produtos) {
 						if (produtoDB.getDescricao()==descricao) {
 							novoProduto.setId(produtoDB.getId());
+							novoProduto.setFigura(produtoDB.getFigura());
 							break;
 						}
 					}
