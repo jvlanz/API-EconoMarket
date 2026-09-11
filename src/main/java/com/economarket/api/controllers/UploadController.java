@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.economarket.api.Medida;
+import com.economarket.api.entities.Marca;
 import com.economarket.api.entities.Preco;
 import com.economarket.api.entities.Produto;
 import com.economarket.api.entities.ProdutoMarca;
+import com.economarket.api.services.MarcaService;
 import com.economarket.api.services.PrecoService;
 import com.economarket.api.services.ProdutoService;
 import com.economarket.api.services.ProdutoMarcaService;
@@ -33,6 +35,8 @@ import com.economarket.api.services.ProdutoMarcaService;
 public class UploadController {
 	@Autowired
 	ProdutoService produtoService;
+	@Autowired
+	MarcaService marcaService;
 	@Autowired
 	ProdutoMarcaService produtoMarcaService;
 	@Autowired
@@ -90,6 +94,15 @@ public class UploadController {
 						break;
 					}
 					produtoService.salvar(novoProduto);
+// checar se marca existe; senão criar uma; obter marcaId
+					Marca novaMarca = new Marca();
+					novaMarca.setMarca(marca);
+					List<Marca> marcas = marcaService.consultar();
+					for (Marca marcaDB : marcas) {
+						novaMarca.setId(marcaDB.getId());
+						break;
+					}
+					marcaService.salvar(novaMarca);
 // checar se produtoMarca existe; senão criar um; obter produtoMarcaId; precisa DTO
 // checar se produtoMarca existe em mercado; senão criar um; obter precoId; precisa DTO
 					Preco novoPreco = new Preco();
