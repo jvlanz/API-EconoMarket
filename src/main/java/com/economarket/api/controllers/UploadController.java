@@ -21,10 +21,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.economarket.api.Medida;
 import com.economarket.api.dto.PrecoRequest;
 import com.economarket.api.dto.ProdutoMarcaRequest;
+import com.economarket.api.dto.ProdutoRequest;
+import com.economarket.api.entities.Categoria;
 import com.economarket.api.entities.Marca;
 import com.economarket.api.entities.Preco;
 import com.economarket.api.entities.Produto;
 import com.economarket.api.entities.ProdutoMarca;
+import com.economarket.api.services.CategoriaService;
 import com.economarket.api.services.MarcaService;
 import com.economarket.api.services.PrecoService;
 import com.economarket.api.services.ProdutoMarcaService;
@@ -38,6 +41,8 @@ public class UploadController {
 	ProdutoService produtoService;
 	@Autowired
 	MarcaService marcaService;
+	@Autowired
+	CategoriaService categoriaService;
 	@Autowired
 	ProdutoMarcaService produtoMarcaService;
 	@Autowired
@@ -67,6 +72,7 @@ public class UploadController {
 	public void parseCSV(String csvFile) {
 		Long idMercado = 0L;
 		Long idProduto = 0L;
+		Long idCategoria = 0L;
 		Long idMarca = 0L;
 		Long idProdutoMarca = 0L;
 		Date data = new Date();
@@ -74,35 +80,56 @@ public class UploadController {
 		Medida medida;
 		Float valorMedida;
 		String marca;
+		String categoria;
 		Float preco;
 		String line;
 		try (BufferedReader reader = new BufferedReader(
 			new FileReader(csvFile, StandardCharsets.UTF_8))) {
 			while ((line = reader.readLine()) != null) {
-// produto , marca , medida , valorMedida , preço
-				if (line.split(",").length==5) {
+// produto , marca , categoria, medida , valorMedida , preço
+				if (line.split(",").length==6) {
 					descricao = line.split(",")[0].strip();
-					medida = Medida.valueOf(line.split(",")[2].strip());
-					valorMedida = Float.parseFloat(csvFile.split(",")[3]);
 					marca = line.split(",")[1].strip();
-					preco = Float.parseFloat(line.split(",")[4]);
+					categoria = line.split(",")[2].strip();
+					medida = Medida.valueOf(line.split(",")[3].strip());
+					valorMedida = Float.parseFloat(csvFile.split(",")[4]);
+					preco = Float.parseFloat(line.split(",")[5]);
 					System.out.println(descricao+marca+medida+valorMedida+preco+idMercado+data); // remover alertas do compilador
-// checar se produto existe; senão criar um; obter produtoId
-					Produto novoProduto = new Produto();
-					novoProduto.setDescricao(descricao);
-					novoProduto.setMedida(medida);
-					novoProduto.setValorMedida(valorMedida);
-					novoProduto.setFigura(descricao.split(" ")[0].toLowerCase()+".jpg");
-					List<Produto> produtos = produtoService.consultar();
-					for (Produto produtoDB : produtos) {
-						if (produtoDB.getDescricao()==descricao) {
-							novoProduto.setId(produtoDB.getId());
-							novoProduto.setFigura(produtoDB.getFigura());
+// checar se categoria existe; senão criar uma; obter idCategoria
+					Categoria novaCategoria = new Categoria();
+					novaCategoria.setCategoria(categoria);
+					List<Categoria> categorias = categoriaService.consultar();
+					for (Categoria categoriaDB : categorias) {
+						if (categoriaDB.getCategoria()==categoria) {
+							novaCategoria.setId(categoriaDB.getId());
 							break;
 						}
 					}
-					idProduto = produtoService.salvar(novoProduto).getId();
-// checar se marca existe; senão criar uma; obter marcaId
+					idCategoria = categoriaService.salvar(novaCategoria).getId();
+// checar se produto existe; senão criar um; obter idProduto; precisa DTO
+					ProdutoRequest produtoRequest = new ProdutoRequest();
+					produtoRequest.setDescricao(descricao);
+					produtoRequest.setIdCategoria(idCategoria);
+					produtoRequest.setMedida(medida);
+					produtoRequest.setValorMedida(valorMedida);
+					produtoRequest.setPrecoMin(preco); // FIXME
+					produtoRequest.setPrecoMax(preco); // FIXME
+					produtoRequest.setFigura(descricao.split(" ")[0].toLowerCase()+".jpg");
+					List<Produto> produtos = produtoService.consultar();
+					for (Produto produtoDB : produtos) {
+						if (produtoDB.getDescricao()==descricao) {
+							produtoRequest.setId(produtoDB.getId());
+							produtoRequest.setIdCategoria(idCategoria); // para quando a categoria não for informada
+							produtoRequest.setFigura(produtoDB.getFigura());
+							produtoRequest.setPrecoMin(produtoDB.getPrecoMin());
+							produtoRequest.setPrecoMax(produtoDB.getPrecoMax());
+							if (preco<produtoDB.getPrecoMin()) produtoRequest.setPrecoMin(preco);
+							if (preco>produtoDB.getPrecoMax()) produtoRequest.setPrecoMax(preco);
+							break;
+						}
+					}
+					idProduto = produtoService.salvar(produtoRequest).getId();
+// checar se marca existe; senão criar uma; obter idMarca
 					Marca novaMarca = new Marca();
 					novaMarca.setMarca(marca);
 					List<Marca> marcas = marcaService.consultar();
@@ -113,7 +140,7 @@ public class UploadController {
 						}
 					}
 					idMarca = marcaService.salvar(novaMarca).getId();
-// checar se produtoMarca existe; senão criar um; obter produtoMarcaId; precisa DTO
+// checar se produtoMarca existe; senão criar um; obter idProdutoMarca; precisa DTO
 					ProdutoMarcaRequest produtoMarcaRequest = new ProdutoMarcaRequest();
 					produtoMarcaRequest.setIdProduto(idProduto);
 					produtoMarcaRequest.setIdMarca(idMarca);
@@ -126,7 +153,7 @@ public class UploadController {
 						}
 					}
 					idProdutoMarca = produtoMarcaService.salvar(produtoMarcaRequest).getId();
-// checar se produtoMarca existe em mercado; senão criar um; obter precoId; precisa DTO
+// checar se produtoMarca existe em mercado; senão criar um; obter idPreco; precisa DTO
 					PrecoRequest precoRequest = new PrecoRequest();
 					precoRequest.setIdProdutoMarca(idProdutoMarca);
 					precoRequest.setIdMercado(idMercado);
