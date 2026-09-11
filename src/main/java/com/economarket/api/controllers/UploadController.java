@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -47,6 +48,7 @@ public class UploadController {
 	ProdutoMarcaService produtoMarcaService;
 	@Autowired
 	PrecoService precoService;
+	public Date data = new Date();
 
 	@PostMapping("/upload")
 	public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
@@ -60,7 +62,9 @@ public class UploadController {
 			String uploadDir = System.getProperty("user.dir") + "/uploads";
 			File dir = new File(uploadDir);
 			if (!dir.exists()) dir.mkdirs();
-			File savedFile = new File(dir, file.getOriginalFilename()); // TODO salvar como idMercado+data.csv
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String dateString = formatter.format(data);
+			File savedFile = new File(dir, dateString+ " Koch.csv"); //file.getOriginalFilename()); // TODO salvar como idMercado+data.csv
 			file.transferTo(savedFile);
 			parseCSV(savedFile.getAbsolutePath());
 			return ResponseEntity.ok("Arquivo enviado com sucesso: " + savedFile.getAbsolutePath());
@@ -75,7 +79,6 @@ public class UploadController {
 		Long idCategoria = 1L;
 		Long idMarca = 1L;
 		Long idProdutoMarca = 1L;
-		Date data = new Date();
 		String descricao;
 		Medida medida;
 		Float valorMedida;
