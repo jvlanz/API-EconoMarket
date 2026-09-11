@@ -6,16 +6,16 @@ public class ListaCompraRequest {
 	private Long idProduto;
 	private Float quantidade;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Long getIdCliente() {
 		return idCliente;
 	}
-	public void setIdCliente(long idCliente) {
+	public void setIdCliente(Long idCliente) {
 		this.idCliente = idCliente;
 	}
 	public Long getIdProduto() {
