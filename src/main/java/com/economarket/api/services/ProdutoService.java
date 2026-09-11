@@ -6,13 +6,26 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.economarket.api.dto.ProdutoRequest;
+import com.economarket.api.entities.Categoria;
 import com.economarket.api.entities.Produto;
+import com.economarket.api.repositories.CategoriaRepository;
 import com.economarket.api.repositories.ProdutoRepository;
 
 @Service
 public class ProdutoService {
+	private final ProdutoRepository produtoRepository;
+	private final CategoriaRepository categoriaRepository;
+
 	@Autowired
-	private ProdutoRepository repository;
+	private ProdutoService(
+		ProdutoRepository produtoRepository,
+		CategoriaRepository categoriaRepository
+	) {
+		this.produtoRepository = produtoRepository;
+		this.categoriaRepository = categoriaRepository;
+	}
+	
 // id
 // descricao
 // marca
@@ -22,47 +35,73 @@ public class ProdutoService {
 // precoMin
 // precoMax
 	
-	public Produto salvar(Produto produto) {
-		if (produto.getDescricao().isEmpty()) {
+	public Produto salvar(ProdutoRequest request) {
+		if (request.getDescricao().isEmpty()) {
 			throw new RuntimeException("A descrição deve ser informada");
 		}
-		if (produto.getMedida()==null) {
+		if (request.getMedida()==null) {
 			throw new RuntimeException("A medida deve ser informada");
 		}
-		if (produto.getValorMedida()<0) {
+		if (request.getValorMedida()<0) {
 			throw new RuntimeException("O valor da medida não pode ser negativa");
 		}
-		if (produto.getPrecoMin()<0) {
+		if (request.getPrecoMin()<0) {
 			throw new RuntimeException("O valor do preço mínimo não pode ser negativo");
 		}
-		if (produto.getPrecoMax()<0) {
+		if (request.getPrecoMax()<0) {
 			throw new RuntimeException("O valor do preço máximo não pode ser negativo");
 		}
-		repository.save(produto);
+		Categoria categoria = categoriaRepository.findById(request.getIdCategoria()).orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+		Produto produto = new Produto();
+		produto.setDescricao(request.getDescricao());
+		produto.setCategoria(categoria);
+		produto.setMedida(request.getMedida());
+		produto.setValorMedida(request.getValorMedida());
+		produto.setPrecoMin(request.getPrecoMin());
+		produto.setPrecoMax(request.getPrecoMax());
+		produto.setFigura(request.getFigura());
+		produtoRepository.save(produto);
 		return produto;
 	}
 
 	public List<Produto> consultar() {
-		return repository.findAll();
+		return produtoRepository.findAll();
 	}
 	public Produto consultarUm(Long id) {
-		Optional<Produto> opt = repository.findById(id);
+		Optional<Produto> opt = produtoRepository.findById(id);
 		Produto prod = opt.orElseThrow(() -> new RuntimeException("produto não encontrado"));
 		return prod;
 	}
-	public Produto alterar(Long id, Produto produto) {
-		Produto prod = consultarUm(id);
-		prod.setDescricao(produto.getDescricao());
-		prod.setCategoria(produto.getCategoria());
-		prod.setMedida(produto.getMedida());
-		prod.setValorMedida(produto.getValorMedida());
-		prod.setFigura(produto.getFigura());
-		prod.setPrecoMin(produto.getPrecoMin());
-		prod.setPrecoMax(produto.getPrecoMax());
-		return repository.save(prod);
+	public Produto alterar(Long id, ProdutoRequest request) {
+		if (request.getDescricao().isEmpty()) {
+			throw new RuntimeException("A descrição deve ser informada");
+		}
+		if (request.getMedida()==null) {
+			throw new RuntimeException("A medida deve ser informada");
+		}
+		if (request.getValorMedida()<0) {
+			throw new RuntimeException("O valor da medida não pode ser negativa");
+		}
+		if (request.getPrecoMin()<0) {
+			throw new RuntimeException("O valor do preço mínimo não pode ser negativo");
+		}
+		if (request.getPrecoMax()<0) {
+			throw new RuntimeException("O valor do preço máximo não pode ser negativo");
+		}
+		Categoria categoria = categoriaRepository.findById(request.getIdCategoria()).orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+		Produto produto = new Produto();
+		produto.setDescricao(request.getDescricao());
+		produto.setCategoria(categoria);
+		produto.setMedida(request.getMedida());
+		produto.setValorMedida(request.getValorMedida());
+		produto.setPrecoMin(request.getPrecoMin());
+		produto.setPrecoMax(request.getPrecoMax());
+		produto.setFigura(request.getFigura());
+		produto.setId(id);
+		return produtoRepository.save(produto);
 	}
 	public void excluir(Long id) {
-		repository.deleteById(id);
+		produtoRepository.deleteById(id);
 	}
 }
 
