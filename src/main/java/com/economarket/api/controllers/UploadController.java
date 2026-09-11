@@ -1,13 +1,12 @@
 package com.economarket.api.controllers;
 
-import java.util.List;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,14 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.economarket.api.Medida;
+import com.economarket.api.dto.PrecoRequest;
+import com.economarket.api.dto.ProdutoMarcaRequest;
 import com.economarket.api.entities.Marca;
 import com.economarket.api.entities.Preco;
 import com.economarket.api.entities.Produto;
 import com.economarket.api.entities.ProdutoMarca;
 import com.economarket.api.services.MarcaService;
 import com.economarket.api.services.PrecoService;
-import com.economarket.api.services.ProdutoService;
 import com.economarket.api.services.ProdutoMarcaService;
+import com.economarket.api.services.ProdutoService;
 
 @RestController
 @RequestMapping("/files")
@@ -54,7 +55,7 @@ public class UploadController {
 			String uploadDir = System.getProperty("user.dir") + "/uploads";
 			File dir = new File(uploadDir);
 			if (!dir.exists()) dir.mkdirs();
-			File savedFile = new File(dir, file.getOriginalFilename());
+			File savedFile = new File(dir, file.getOriginalFilename()); // TODO salvar como idMercado+data.csv
 			file.transferTo(savedFile);
 			parseCSV(savedFile.getAbsolutePath());
 			return ResponseEntity.ok("Arquivo enviado com sucesso: " + savedFile.getAbsolutePath());
@@ -64,7 +65,10 @@ public class UploadController {
 	}
 	
 	public void parseCSV(String csvFile) {
-		Long mercadoId = 0L;
+		Long idMercado = 0L;
+		Long idProduto = 0L;
+		Long idMarca = 0L;
+		Long idProdutoMarca = 0L;
 		Date data = new Date();
 		String descricao;
 		Medida medida;
@@ -82,7 +86,7 @@ public class UploadController {
 					valorMedida = Float.parseFloat(csvFile.split(",")[3]);
 					marca = line.split(",")[1].strip();
 					preco = Float.parseFloat(line.split(",")[4]);
-					System.out.println(descricao+marca+medida+valorMedida+preco+mercadoId+data); // remover alertas do compilador
+					System.out.println(descricao+marca+medida+valorMedida+preco+idMercado+data); // remover alertas do compilador
 // checar se produto existe; senão criar um; obter produtoId
 					Produto novoProduto = new Produto();
 					novoProduto.setDescricao(descricao);
@@ -90,33 +94,51 @@ public class UploadController {
 					novoProduto.setValorMedida(valorMedida);
 					List<Produto> produtos = produtoService.consultar();
 					for (Produto produtoDB : produtos) {
-						novoProduto.setId(produtoDB.getId());
-						break;
+						if (produtoDB.getDescricao()==descricao) {
+							novoProduto.setId(produtoDB.getId());
+							break;
+						}
 					}
-					produtoService.salvar(novoProduto);
+					idProduto = produtoService.salvar(novoProduto).getId();
 // checar se marca existe; senão criar uma; obter marcaId
 					Marca novaMarca = new Marca();
 					novaMarca.setMarca(marca);
 					List<Marca> marcas = marcaService.consultar();
 					for (Marca marcaDB : marcas) {
-						novaMarca.setId(marcaDB.getId());
-						break;
+						if (marcaDB.getMarca()==marca) {
+							novaMarca.setId(marcaDB.getId());
+							break;
+						}
 					}
-					marcaService.salvar(novaMarca);
+					idMarca = marcaService.salvar(novaMarca).getId();
 // checar se produtoMarca existe; senão criar um; obter produtoMarcaId; precisa DTO
+					ProdutoMarcaRequest produtoMarcaRequest = new ProdutoMarcaRequest();
+					produtoMarcaRequest.setIdProduto(idProduto);
+					produtoMarcaRequest.setIdMarca(idMarca);
+					List<ProdutoMarca> produtoMarcas = produtoMarcaService.consultar();
+					for (ProdutoMarca produtoMarcaDB : produtoMarcas) {
+						if (produtoMarcaDB.getProduto().getId()==idProduto
+								&& produtoMarcaDB.getMarca().getId()==idMarca) {
+							produtoMarcaRequest.setId(produtoMarcaDB.getId());
+							break;
+						}
+					}
+					idProdutoMarca = produtoMarcaService.salvar(produtoMarcaRequest).getId();
 // checar se produtoMarca existe em mercado; senão criar um; obter precoId; precisa DTO
-					Preco novoPreco = new Preco();
+					PrecoRequest precoRequest = new PrecoRequest();
+					precoRequest.setIdProdutoMarca(idProdutoMarca);
+					precoRequest.setIdMercado(idMercado);
+					precoRequest.setPreco(preco);
+					precoRequest.setData(data);
 					List<Preco> precos = precoService.consultar();
-					Boolean existe = false;
 					for (Preco precoDB : precos) {
-						continue;
+						if(precoDB.getProdutoMarca().getId()==idProdutoMarca
+								&& precoDB.getMercado().getId()==idMercado) {
+							precoRequest.setId(precoDB.getId());
+							break;
+						}
 					}
-					if (existe) {
-						System.out.println("editar produto existente");
-					} else {
-						System.out.println("cadastrar novo produto"); // deve requerer mais um DTO...
-					}
-//					precoService.salvar(novoPreco);
+					precoService.salvar(precoRequest);
 				} else {
 					System.out.println("Erro ao ler valores na linha: " + line);
 				}
