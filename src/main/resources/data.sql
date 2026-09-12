@@ -542,3 +542,6 @@ insert into preco (id_produto_marca, id_mercado, preco, data) values (10, 4, 22.
 insert into preco (id_produto_marca, id_mercado, preco, data) values (16, 3, 20.91, '2026-08-20');
 insert into preco (id_produto_marca, id_mercado, preco, data) values (3, 2, 43.19, '2026-07-27');
 
+insert into promocao (id_preco) values (1);
+insert into promocao (id_preco) values (10);
+insert into promocao (id_preco) values (20);

@@ -19,6 +19,7 @@ entity produtos {
 '	id_medida: int
 	valor_medida: float
 	figura: string
+	request()
 }
 'entity medidas {
 '	id: int
@@ -28,6 +29,7 @@ entity produtos_marcas {
 	id: int
 	id_produto: int
 	id_marca: int
+	request()
 }
 entity marcas {
 	id: int
@@ -48,6 +50,7 @@ entity precos {
 	id_mercado: int
 	preco: float
 	data: date
+	request()
 }
 produtos_marcas-->precos
 mercados-->precos
@@ -56,9 +59,17 @@ entity favoritos {
 	id: int
 	id_produto_marca: int
 	id_cliente: int
+	request()
 }
 clientes-->favoritos
 produtos-->favoritos
+
+entity promocoes {
+	id: int
+	id_preco: int
+	request()
+}
+precos-->promocoes
 
 'entity status {
 '	id: int
@@ -77,6 +88,7 @@ entity lista_compras {
 '	id_mercado: int
 	id_cliente: int
 	quantidade: float
+	request()
 }
 'status-->compras
 produtos-->lista_compras
