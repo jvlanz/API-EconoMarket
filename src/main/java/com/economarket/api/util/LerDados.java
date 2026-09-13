@@ -10,6 +10,7 @@ import com.economarket.api.Medida;
 import com.economarket.api.dto.PrecoRequest;
 import com.economarket.api.dto.ProdutoMarcaRequest;
 import com.economarket.api.dto.ProdutoRequest;
+import com.economarket.api.dto.PromocaoRequest;
 import com.economarket.api.entities.Categoria;
 import com.economarket.api.entities.Marca;
 import com.economarket.api.entities.Preco;
@@ -20,6 +21,7 @@ import com.economarket.api.services.MarcaService;
 import com.economarket.api.services.PrecoService;
 import com.economarket.api.services.ProdutoMarcaService;
 import com.economarket.api.services.ProdutoService;
+import com.economarket.api.services.PromocaoService;
 
 @Component
 public class LerDados {
@@ -33,6 +35,8 @@ public class LerDados {
 	ProdutoMarcaService produtoMarcaService;
 	@Autowired
 	PrecoService precoService;
+	@Autowired
+	PromocaoService promocaoService;
 	public Date data = new Date();
 
 	public void lerDados(String descricao, String marca, String categoria, String medida, Float valorMedida, Float preco, String mercado) {
@@ -41,7 +45,8 @@ public class LerDados {
 		Long idMarca = 1L;
 		Long idProdutoMarca = 1L;
 		Long idMercado = 1L;
-		System.out.println("ADICIONAR PRODUTO: "+descricao+" "+marca+" "+medida+" "+valorMedida+" "+preco+" "+idMercado+" "+data); // remover alertas do compilador
+		System.out.println("ADICIONAR PRODUTO: "+descricao+", "+marca+", "+categoria+", "+medida+", "+valorMedida+", "+preco+", "+idMercado+", "+data);
+
 // checar se categoria existe; senão criar uma; obter idCategoria
 		Categoria novaCategoria = new Categoria();
 		novaCategoria.setCategoria(categoria);
@@ -53,6 +58,7 @@ public class LerDados {
 			}
 		}
 		idCategoria = categoriaService.salvar(novaCategoria).getId();
+
 // checar se produto existe; senão criar um; obter idProduto; precisa DTO
 		ProdutoRequest produtoRequest = new ProdutoRequest();
 		produtoRequest.setDescricao(descricao);
@@ -76,6 +82,7 @@ public class LerDados {
 			}
 		}
 		idProduto = produtoService.salvar(produtoRequest).getId();
+
 // checar se marca existe; senão criar uma; obter idMarca
 		Marca novaMarca = new Marca();
 		novaMarca.setMarca(marca);
@@ -87,6 +94,7 @@ public class LerDados {
 			}
 		}
 		idMarca = marcaService.salvar(novaMarca).getId();
+
 // checar se produtoMarca existe; senão criar um; obter idProdutoMarca; precisa DTO
 		ProdutoMarcaRequest produtoMarcaRequest = new ProdutoMarcaRequest();
 		produtoMarcaRequest.setIdProduto(idProduto);
@@ -100,6 +108,7 @@ public class LerDados {
 			}
 		}
 		idProdutoMarca = produtoMarcaService.salvar(produtoMarcaRequest).getId();
+
 // checar se produtoMarca existe em mercado; senão criar um; obter idPreco; precisa DTO
 		PrecoRequest precoRequest = new PrecoRequest();
 		precoRequest.setIdProdutoMarca(idProdutoMarca);
@@ -108,9 +117,14 @@ public class LerDados {
 		precoRequest.setData(data);
 		List<Preco> precos = precoService.consultar();
 		for (Preco precoDB : precos) {
-			if(precoDB.getProdutoMarca().getId()==idProdutoMarca
-					&& precoDB.getMercado().getId()==idMercado) {
+			if (precoDB.getProdutoMarca().getId()==idProdutoMarca && precoDB.getMercado().getId()==idMercado) {
+				if (preco<precoDB.getPreco()) {
+					PromocaoRequest promocaoRequest = new PromocaoRequest();
+					promocaoRequest.setIdPreco(precoDB.getId());
+					promocaoService.salvar(promocaoRequest);   // TODO limpar promoções antes de ler valores diários
+				}
 				precoRequest.setId(precoDB.getId());
+// se preco<precoDB.getPreco() (-5%?), cadastrar promocao
 				break;
 			}
 		}
