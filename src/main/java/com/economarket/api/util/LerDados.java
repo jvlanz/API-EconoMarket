@@ -118,7 +118,7 @@ public class LerDados {
 		List<Preco> precos = precoService.consultar();
 		for (Preco precoDB : precos) {
 			if (precoDB.getProdutoMarca().getId()==idProdutoMarca && precoDB.getMercado().getId()==idMercado) {
-				if (preco<precoDB.getPreco()) {
+				if (preco<precoDB.getPreco()*0.95) { // preço ao menos 5% menor = promoção
 					PromocaoRequest promocaoRequest = new PromocaoRequest();
 					promocaoRequest.setIdPreco(precoDB.getId());
 					promocaoService.salvar(promocaoRequest);   // TODO limpar promoções antes de ler valores diários
