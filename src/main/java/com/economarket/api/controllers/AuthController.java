@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,10 +50,38 @@ public class AuthController {
 		return ResponseEntity.ok(Map.of("token", token));
 	}
 
+	@PutMapping("/editar")
+	public ResponseEntity<?> editar(@AuthenticationPrincipal Long id, @RequestBody CadastroRequest request) {
+
+		if (id == null) {
+			return ResponseEntity.status(401).body("Usuário não autenticado");
+		}
+
+		Cliente cliente = clienteService.consultarUm(id);
+
+		if (cliente == null) {
+			return ResponseEntity.notFound().build();
+		}
+
+		cliente.setNome(request.getNome());
+		cliente.setEmail(request.getEmail());
+
+		// Só altera a senha se o usuário preencher
+		if (request.getPassword() != null && !request.getPassword().isBlank()) {
+			cliente.setSenha(passwordEncoder.encode(request.getPassword()));
+		}
+
+		clienteService.alterar(id, cliente);
+
+		String token = jwtService.gerarToken(cliente.getEmail(), cliente.getRole(), cliente.getNome(), cliente.getId());
+
+		return ResponseEntity.ok(Map.of("token", token));
+	}
+
 	@PostMapping("/cadastro")
 	public ResponseEntity<?> cadastrar(@RequestBody CadastroRequest request) {
 
-		if (clienteService.consultarEmail(request.getEmail())!=null) {
+		if (clienteService.consultarEmail(request.getEmail()) != null) {
 			return ResponseEntity.badRequest().body("Usuário já existe");
 		}
 
@@ -83,7 +112,7 @@ public class AuthController {
 	@GetMapping("/cliente")
 	public Cliente cliente(@AuthenticationPrincipal Long id) {
 		Cliente cliente = null;
-		if (id!=null)
+		if (id != null)
 			cliente = clienteService.consultarUm(id);
 		return cliente;
 	}
