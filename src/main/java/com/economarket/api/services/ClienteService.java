@@ -1,5 +1,6 @@
 package com.economarket.api.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class ClienteService {
 	}
 	public void deletar(Long id) {
 		repository.deleteById(id);
+	}
+	public List<Cliente> consultar() {
+		return repository.findAll();
 	}
 	public Cliente consultarUm(Long id) {
 		Optional<Cliente> opt = repository.findById(id);
