@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.economarket.api.util.LerDados;
+import com.economarket.api.scrapers.LerDados;
 
 @RestController
 @RequestMapping("/files")

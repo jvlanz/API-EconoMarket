@@ -1,4 +1,4 @@
-package com.economarket.api.util;
+package com.economarket.api.scrapers;
 
 import java.util.Date;
 import java.util.List;
@@ -65,8 +65,8 @@ public class LerDados {
 		produtoRequest.setIdCategoria(idCategoria);
 		produtoRequest.setMedida(Medida.valueOf(medida));
 		produtoRequest.setValorMedida(valorMedida);
-		produtoRequest.setPrecoMin(preco); // FIXME precisa resetar a faixa de valores a cada dia, antes de ler dados
-		produtoRequest.setPrecoMax(preco); // FIXME precisa resetar a faixa de valores a cada dia, antes de ler dados
+		produtoRequest.setPrecoMin(preco);
+		produtoRequest.setPrecoMax(preco);
 		produtoRequest.setFigura(descricao.split(" ")[0].toLowerCase()+".jpg");
 		List<Produto> produtos = produtoService.consultar();
 		for (Produto produtoDB : produtos) {
