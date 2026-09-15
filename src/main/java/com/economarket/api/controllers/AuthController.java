@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.economarket.api.dto.CadastroRequest;
+import com.economarket.api.dto.EditarRequest;
 import com.economarket.api.dto.LoginRequest;
 import com.economarket.api.entities.Cliente;
 import com.economarket.api.services.ClienteService;
@@ -50,8 +51,8 @@ public class AuthController {
 		return ResponseEntity.ok(Map.of("token", token));
 	}
 
-	@PutMapping("/editar")
-	public ResponseEntity<?> editar(@AuthenticationPrincipal Long id, @RequestBody CadastroRequest request) {
+	@PutMapping("/editar") //alterar para fetch
+	public ResponseEntity<?> editar(@AuthenticationPrincipal Long id, @RequestBody EditarRequest request) {
 
 		if (id == null) {
 			return ResponseEntity.status(401).body("Usuário não autenticado");
@@ -62,11 +63,14 @@ public class AuthController {
 		if (cliente == null) {
 			return ResponseEntity.notFound().build();
 		}
+		if (!passwordEncoder.matches(request.getSenhaAtual(), cliente.getSenha())) {
+	        return ResponseEntity.status(400).body("Senha atual incorreta");
+	    }
 
 		cliente.setNome(request.getNome());
 		cliente.setEmail(request.getEmail());
 
-		// Só altera a senha se o usuário preencher
+		// Só altera a senha se o usuario preencher
 		if (request.getPassword() != null && !request.getPassword().isBlank()) {
 			cliente.setSenha(passwordEncoder.encode(request.getPassword()));
 		}
