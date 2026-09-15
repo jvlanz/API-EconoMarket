@@ -18,9 +18,7 @@ public class ObterPrecos {
 	ProdutoService produtoService;
 
 	public void run() {
-
 /*
-
 // 1x ao dia:
 // para cada produto, resetar faixa de preços: precoMin=Float.POSITIVE_INFINITY, precoMax=0
 		List<Produto> produtos = produtoService.consultar();
@@ -33,15 +31,14 @@ public class ObterPrecos {
 			produtoRequest.setFigura(produtoDB.getFigura());
 			produtoService.salvar(produtoRequest).getId();
 		}
+
 // limpar tabela 'precos'
 		List<Preco> precos = precoService.consultar();
 		for (Preco precoDB : precos) {
 			precoService.excluir(precoDB.getId());
 		}
-// buscar valores para cada mercado
-
 */
-
+// buscar valores para cada mercado
 		System.out.println("'ObterPrecos()' rodando periodicamente");
 	}
 }
