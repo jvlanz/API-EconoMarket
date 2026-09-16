@@ -28,7 +28,7 @@ insert into mercado (nome, link) values ('Mercado Bom Preço', 'https://www.bomp
 -- ==========================================
 -- 3. CLIENTES (20 entradas)
 -- ==========================================
-insert into cliente (nome, email, senha, telefone, role) values ('admin', 'admin@economarket', '$2a$10$By15wuMJUs6/Qbcf73UvDu0G.n7QVVxfEzM1j4M.lvUUkVDw2YV3S', '00 0000-0000', 'admin');
+insert into cliente (nome, email, senha, telefone, role) values ('admin', 'admin@economarket', '$2a$10$By15wuMJUs6/Qbcf73UvDu0G.n7QVVxfEzM1j4M.lvUUkVDw2YV3S', '00 0000-0000', 'ADMIN');
 -- insert into cliente (nome, email, senha, telefone) values ('Anônimo', 'anon@email.com', '1234', '00 0000-0000');
 -- insert into cliente (nome, email, senha, telefone) values ('João', 'joao@gmail.com', '1234', '47 9912-3456');
 -- insert into cliente (nome, email, senha, telefone) values ('Maria Silva', 'maria.silva@gmail.com', 'abcd', '47 98877-1122');
