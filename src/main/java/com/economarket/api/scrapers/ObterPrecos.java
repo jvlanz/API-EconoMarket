@@ -8,8 +8,10 @@ import org.springframework.stereotype.Component;
 import com.economarket.api.dto.ProdutoRequest;
 import com.economarket.api.entities.Preco;
 import com.economarket.api.entities.Produto;
+import com.economarket.api.entities.Promocao;
 import com.economarket.api.services.PrecoService;
 import com.economarket.api.services.ProdutoService;
+import com.economarket.api.services.PromocaoService;
 
 @Component
 public class ObterPrecos {
@@ -36,6 +38,12 @@ public class ObterPrecos {
 		List<Preco> precos = precoService.consultar();
 		for (Preco precoDB : precos) {
 			precoService.excluir(precoDB.getId());
+		}
+
+// limpar tabela 'promocoes'
+		List<Promocao> promocoes = proomocaoService.consultar();
+		for (Promocao promocaoDB : promocoes) {
+			promocaoService.excluir(promocaoDB.getId());
 		}
 */
 // buscar valores para cada mercado
