@@ -336,14 +336,12 @@ async function getPageWithFallback(
                 cookie
             )
 
-
         return [
             ...firstHalf,
             ...secondHalf
         ]
     }
 }
-
 
 /**
  * Prepara valores para CSV.
@@ -355,7 +353,6 @@ function csv(value) {
             value === undefined
             ? ''
             : String(value)
-
 
     return `"${text.replaceAll('"', '""')}"`
 }
@@ -384,49 +381,29 @@ function rowsFromProducts(products) {
                 item.sellers?.find(
                     seller => seller.sellerDefault
                 )?.commertialOffer
-
                 ?? item.sellers?.[0]?.commertialOffer
-
                 ?? {}
-
 
             rows.push({
 
-                /*
-                 * ID único do SKU no Giassi/VTEX.
-                 */
                 sku_id: item.itemId,
 
-                /*
-                 * Nome do produto.
-                 */
                 nome:
                     item.nameComplete ||
                     item.name ||
                     product.productName,
 
-                /*
-                 * Preço atual.
-                 */
                 preco:
                     offer.Price ?? '',
 
-                /*
-                 * Unidade de medida.
-                 */
                 unidade:
                     item.measurementUnit ?? '',
 
-                /*
-                 * Multiplicador.
-                 */
                 multiplicador:
                     item.unitMultiplier ?? ''
             })
         }
     }
-
-
     return rows
 }
 
@@ -441,14 +418,11 @@ const columns = [
     'unidade',
     'multiplicador'
 ]
-
-
 /**
  * Função principal.
  */
 async function main() {
     await mkdir("dados", { recursive: true });
-
     const temporaryPath = `${config.output}.partial`;
 
     let totalExportados = 0;
@@ -470,13 +444,10 @@ async function main() {
                 to,
                 config.cookie
             );
-
             if (products.length === 0) {
                 break;
             }
-
             const rows = rowsFromProducts(products);
-
             const novasRows = rows.filter(
                 row => !seenSkus.has(row.sku_id)
             );
@@ -489,41 +460,33 @@ async function main() {
                 const csv = novasRows
                     .map(row => rowToCsv(row))
                     .join("\n");
-
                 await appendFile(
                     temporaryPath,
                     csv + "\n",
                     "utf8"
                 );
             }
-
             totalExportados += novasRows.length;
-
             console.log(
                 `Página ${from}-${to}: ${products.length} produtos; ${novasRows.length} SKUs exportados.`
             );
 
             from += DEFAULT_BATCH_SIZE;
-
             await sleep(config.pause);
         }
-
+		
         // Terminou normalmente
         await rename(temporaryPath, config.output);
 
         console.log(`\nConcluído!`);
         console.log(`CSV salvo em: ${config.output}`);
         console.log(`Total exportado: ${totalExportados}`);
-
     } catch (error) {
-
         console.error("\n❌ O scraper encontrou um erro:");
         console.error(error.message);
-
         // Mesmo com erro, transforma o partial em CSV
         try {
             await copyFile(temporaryPath, config.output);
-
             console.log(`\n⚠️ O CSV foi salvo mesmo com erro!`);
             console.log(`CSV: ${config.output}`);
             console.log(`Produtos/SKUs salvos: ${totalExportados}`);
@@ -535,19 +498,15 @@ async function main() {
                 saveError.message
             );
         }
-
         process.exitCode = 1;
     }
 }
-
 /*
  * Executa o programa.
  */
 main().catch(error => {
-
     console.error(
         `Erro: ${error.message}`
     )
-
     process.exitCode = 1
 })
