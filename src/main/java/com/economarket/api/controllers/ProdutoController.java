@@ -27,6 +27,7 @@ public class ProdutoController {
 		return ResponseEntity.status(HttpStatus.OK).body(service.consultar());
 	}
 
+/*
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getUmProduto(@PathVariable long id) {
 		try {
@@ -36,8 +37,6 @@ public class ProdutoController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Produto não encontrado");
 		}
 	}
-
-// não será necessário alterar/remover produtos via API
-
+*/
 }
 

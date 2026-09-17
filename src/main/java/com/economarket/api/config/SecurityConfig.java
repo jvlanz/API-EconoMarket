@@ -29,6 +29,7 @@ public class SecurityConfig {
 						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // autorizar "browser’s CORS preflight request"
 						.requestMatchers("/listaCompra/**").authenticated()
 						.requestMatchers("/clientes/**").hasRole("ADMIN")
+						.requestMatchers("/produto/**").hasRole("ADMIN") // não confundir com '/produtos', que é público
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						.anyRequest().permitAll())
 				.headers(headers -> headers.frameOptions(frame -> frame.disable())) //desabilitar quando for para a main
