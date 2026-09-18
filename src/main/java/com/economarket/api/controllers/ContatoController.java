@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.economarket.api.dto.ContatoRequest;
+import com.economarket.api.services.ContatoService;
 
 @RestController
 @RequestMapping("/contato")
