@@ -26,11 +26,17 @@ with open('data.sql') as fileID:
 			precoMin = float(line.split(',')[10].strip(','))
 			precoMax = float(line.split(',')[11].strip(','))
 			faixa = precoMax-precoMin
-			for n in range(3): # escolher 3 marcas por produto
-				idProdutoMarca += 1
+			idsMarca = []
+			while len(idsMarca)<3: # escolher 3 marcas por produto
 				idMarca = random.randint(1,len(marcas))
+				if idMarca in idsMarca:
+					continue # não repetir marca
+				idsMarca.append(idMarca)
+				idProdutoMarca += 1
 				print('insert into produto_marca (id_produto, id_marca) values ('+str(idProduto)+', '+str(idMarca)+');')
 				for idMercado in range(len(mercados)):
+					if random.randint(1,len(mercados))==idMercado:
+						continue # algum mercado, aleatoriamente, não terá o produto disponível
 					preco = '%.2f' % (precoMin + faixa*random.random())
 					print('insert into preco (id_produto_marca, id_mercado, preco, data) values ('+str(idProdutoMarca)+', '+str(idMercado+1)+', '+preco+', \'2026-09-18\');')
 
