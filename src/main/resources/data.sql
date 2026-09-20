@@ -19,10 +19,10 @@ insert into categoria (categoria) values ('Pets');
 -- 2. MERCADOS (5 entradas)
 -- ==========================================
 insert into mercado (nome, link) values ('Koch', 'https://www.koch.com.br');
-insert into mercado (nome, link) values ('Supermercado Central', 'https://www.central.com.br');
-insert into mercado (nome, link) values ('Compre Bem', 'https://www.comprebem.com.br');
-insert into mercado (nome, link) values ('Atacadão Mais', 'https://www.atacadaomais.com.br');
-insert into mercado (nome, link) values ('Mercado Bom Preço', 'https://www.bompreco.com.br');
+insert into mercado (nome, link) values ('Angeloni', 'https://www.angeloni.com.br');
+insert into mercado (nome, link) values ('Giassi', 'https://www.giassi.com.br');
+insert into mercado (nome, link) values ('Cooper', 'https://www.cooper.coop.br');
+insert into mercado (nome, link) values ('Atacadão', 'https://www.atacadao.com.br');
 
 
 -- ==========================================
