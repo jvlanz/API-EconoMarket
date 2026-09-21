@@ -31,8 +31,9 @@ public class SecurityConfig {
 						.requestMatchers("/clientes/**").hasRole("ADMIN")
 						.requestMatchers("/produto/**").hasRole("ADMIN") // não confundir com '/produtos', que é público
 						.requestMatchers("/admin/**").hasRole("ADMIN")
+						.requestMatchers("/contato/**").authenticated()
 						.anyRequest().permitAll())
-				.headers(headers -> headers.frameOptions(frame -> frame.disable())) //desabilitar quando for para a main
+				.headers(headers -> headers.frameOptions(frame -> frame.disable())) //TODO desabilitar quando for para a main
 				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();
