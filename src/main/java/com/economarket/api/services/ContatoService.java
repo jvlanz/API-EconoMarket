@@ -16,7 +16,7 @@ public class ContatoService {
 	public void enviarEmail(ContatoRequest contato) {
 		SimpleMailMessage email = new SimpleMailMessage();
 
-        email.setTo("oficialeconomarket@gmail.com");
+        email.setTo("economarketofc@gmail.com");
 
         email.setSubject(contato.getTitulo());
 
