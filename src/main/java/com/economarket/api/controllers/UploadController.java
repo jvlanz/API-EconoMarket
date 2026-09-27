@@ -65,13 +65,13 @@ public class UploadController {
 			new FileReader(csvFile, StandardCharsets.UTF_8))) {
 			while ((linha = reader.readLine()) != null) {
 // produto , marca , categoria, medida , valorMedida , preço
-				if (linha.split(",").length==6) {
-					descricao = linha.split(",")[0].strip();
-					marca = linha.split(",")[1].strip();
-					categoria = linha.split(",")[2].strip();
-					medida = linha.split(",")[3].strip();
-					valorMedida = Float.parseFloat(linha.split(",")[4]);
-					preco = Float.parseFloat(linha.split(",")[5]);
+				if (linha.split("\",\"").length==6) {
+					descricao = linha.split("\",\"")[0].strip().replace("^\"","");
+					marca = linha.split("\",\"")[1].strip();
+					categoria = linha.split("\",\"")[2].strip();
+					medida = linha.split("\",\"")[3].strip();
+					valorMedida = Float.parseFloat(linha.split("\",\"")[4]);
+					preco = Float.parseFloat(linha.split("\",\"")[5].strip().replace("\"$","");
 					lerDados.lerDados(descricao, marca, categoria, medida, valorMedida, preco, mercado);
 				} else {
 					System.out.println("Erro ao ler valores na linha: " + linha);
