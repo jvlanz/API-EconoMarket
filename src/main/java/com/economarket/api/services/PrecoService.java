@@ -67,7 +67,9 @@ public class PrecoService {
 		return pre;
 	}
 	public List<Preco> consultarPrecos(Long id) {
+//		LocalDate hoje = new LocalDate();
 		List<Preco> precos = new ArrayList<Preco>();
+//		for(Preco pre : precoRepository.findByData(hoje)) {
 		for(Preco pre : precoRepository.findAll()) {
 			if (pre.getProdutoMarca().getProduto().getId()==id) {
 				precos.add(pre);

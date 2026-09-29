@@ -64,8 +64,9 @@ public class UploadController {
 		List<String> medidas = new ArrayList<>(Arrays.asList("ml", "l", "kg", "g", "un", "unidades"));
 		List<String> marcas = new ArrayList<>();
 		try {
-			if (Files.exists(Path.of("marcas.txt"))) {
-				String linha = Files.readString(Path.of("marcas.txt"));
+			String marcasFile = System.getProperty("user.dir") + "/src/main/resources/marcas.txt";
+			if (Files.exists(Path.of(marcasFile))) {
+				String linha = Files.readString(Path.of(marcasFile));
 				for (String marca : linha.toLowerCase().split(", ")) {
 					if (!marcas.contains(marca)) {
 						marcas.add(marca);
@@ -145,18 +146,8 @@ public class UploadController {
 				produto = produto.replace(" pacote", "").replace(" frasco", "").replace(" squeeze", "")
 								.replace(" cada", "").replace(" caixa", "").replace(" bandeja", "");
 
-// Title case approximation
-				if (!produto.isEmpty()) {
-					String[] words = produto.split(" ");
-					StringBuilder sb = new StringBuilder();
-					for (String w : words) {
-						if (!w.isEmpty()) {
-							sb.append(Character.toUpperCase(w.charAt(0))).append(w.substring(1)).append(" ");
-						}
-					}
-					produto = sb.toString().trim();
-				}
-
+				marca = titleCase(marca);
+				produto = titleCase(produto);
 				produto = produto.replace(" E ", " e ").replace(" De ", " de ");
 				medida = medida.replace('l', 'L');
 				valorMedida = valorMedida.replace(',', '.');
@@ -166,6 +157,20 @@ public class UploadController {
 		} catch (IOException e) {
 			System.err.println("Error ao ler arquivo: " + e.getMessage());
 		}
+	}
+
+	public String titleCase(String text) {
+		if (!text.isEmpty()) {
+			String[] words = text.split(" ");
+			StringBuilder sb = new StringBuilder();
+			for (String w : words) {
+				if (!w.isEmpty()) {
+					sb.append(Character.toUpperCase(w.charAt(0))).append(w.substring(1)).append(" ");
+				}
+			}
+			text = sb.toString().trim();
+		}
+		return text;
 	}
 }
 

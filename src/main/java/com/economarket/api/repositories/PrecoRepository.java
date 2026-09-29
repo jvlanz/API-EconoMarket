@@ -7,5 +7,6 @@ import com.economarket.api.entities.Preco;
 
 @Repository
 public interface PrecoRepository extends JpaRepository<Preco, Long> {
+//	List<Preco> findByData(LocalDate date);
 
 }
