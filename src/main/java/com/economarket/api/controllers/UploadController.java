@@ -13,7 +13,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +72,7 @@ public class UploadController {
 					}
 				}
 			}
+			System.out.println(marcas);
 		} catch (IOException e) {
 			System.err.println("Error ao ler " + Path.of("marcas.txt"));
 		}
