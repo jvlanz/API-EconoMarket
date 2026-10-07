@@ -9,27 +9,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.economarket.api.entities.Produto;
-import com.economarket.api.dto.ProdutoRequest;
-import com.economarket.api.services.ProdutoService;
+import com.economarket.api.entities.ProdutoMarca;
+import com.economarket.api.dto.ProdutoMarcaRequest;
+import com.economarket.api.services.ProdutoMarcaService;
 
 @RestController
-@RequestMapping("produto")
+@RequestMapping("produtoMarca")
 @CrossOrigin(origins = "*")
-public class ProdutoIdController {
+public class ProdutoMarcaSetController {
 	@Autowired
-	private ProdutoService service;
+	private ProdutoMarcaService service;
 
 	@PostMapping("/{id}")
-	public ResponseEntity<?> salvar(@RequestBody ProdutoRequest request) {
+	public ResponseEntity<?> salvar(@RequestBody ProdutoMarcaRequest request) {
 		try {
-			Produto produto = service.alterar(request.getId(), request);
-			return ResponseEntity.status(HttpStatus.CREATED).body(produto);
+			ProdutoMarca produtoMarca = service.alterar(request.getId(), request);
+			return ResponseEntity.status(HttpStatus.CREATED).body(produtoMarca);
 		}
 		catch(Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
-		
 	}
 }
 
