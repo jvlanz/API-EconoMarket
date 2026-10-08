@@ -53,23 +53,26 @@ public class LerDados {
 
 	public void lerDados(String descricao, String marca, String categoria, String medida, Float valorMedida, Float preco, String mercado) {
 		Long idProduto = 1L;
-		Long idCategoria = 1L;
+		Long idCategoria = 1L; // id=1 para categoria=""
 		Long idMarca = 1L;
 		Long idProdutoMarca = 1L;
 		Long idMercado = 1L;
 		System.out.println("ADICIONAR PRODUTO: "+descricao+", "+marca+", "+categoria+", "+medida+", "+valorMedida+", "+preco+", "+idMercado+", "+data);
 
-// checar se categoria existe; senão atribuir categoria ""
+// checar se categoria existe; senão manter categoria ""
 		Categoria novaCategoria = new Categoria();
 		novaCategoria.setCategoria(categoria);
 		List<Categoria> categorias = categoriaService.consultar();
 		for (Categoria categoriaDB : categorias) {
 			if (categoriaDB.getCategoria().equals(categoria)) {
-				novaCategoria.setId(categoriaDB.getId());
+//				novaCategoria.setId(categoriaDB.getId());
+				idCategoria = categoriaDB.getId(); // se encontrar 'categoria', usar seu id; senão, ficará nula
 				break;
 			}
 		}
-		idCategoria = categoriaService.salvar(novaCategoria).getId();
+//		idCategoria = categoriaService.salvar(novaCategoria).getId();
+		if (idCategoria==1L) // se categoria não for reconhecida
+			categoria = "";
 
 // checar se produto existe; senão criar um; obter idProduto; precisa DTO
 		ProdutoRequest produtoRequest = new ProdutoRequest();
@@ -84,7 +87,8 @@ public class LerDados {
 		for (Produto produtoDB : produtos) {
 			if (produtoDB.getDescricao().equals(descricao)) {
 				produtoRequest.setId(produtoDB.getId());
-				produtoRequest.setIdCategoria(idCategoria); // para quando a categoria não for informada
+				produtoRequest.setIdCategoria(produtoDB.getCategoria().getId());
+				categoria = produtoDB.getCategoria().getCategoria();
 				produtoRequest.setFigura(produtoDB.getFigura());
 				produtoRequest.setPrecoMin(produtoDB.getPrecoMin());
 				produtoRequest.setPrecoMax(produtoDB.getPrecoMax());
@@ -119,6 +123,19 @@ public class LerDados {
 				break;
 			}
 		}
+// usar marca=categoria para marcar novos produtos (sem marca) que requerem revisão
+		if (marca.equals("") && produtoMarcaRequest.getId()==null) {
+			Marca tempMarca = new Marca();
+			tempMarca.setMarca(marca);
+			for (Marca marcaDB : marcas) { // marcas já foram lidas acima
+				if (marcaDB.getMarca().equals(marca)) {
+					tempMarca.setId(marcaDB.getId());
+					break;
+				}
+			}
+			produtoMarcaRequest.setIdMarca(marcaService.salvar(tempMarca).getId());
+		}
+// enfim, gravar novo produtoMarca
 		idProdutoMarca = produtoMarcaService.salvar(produtoMarcaRequest).getId();
 
 // checar se produtoMarca existe em mercado; senão criar um; obter idPreco; precisa DTO
