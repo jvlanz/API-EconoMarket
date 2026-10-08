@@ -1,0 +1,102 @@
+ pacote| 
+ frasco|
+ squeeze|
+ cada|
+ caixa|
+ bandeja|
+ pc|
+ embalagem|
+ pote|
+ sachê|
+ vidro|
+ pet | 
+ garrafa|
+ copo|
+ galão|
+ meia lua|
+ meia-lua|
+ em pedaço|
+ fracionado|
+ cunha|
+ pague|
+ leve|
+sabão barra|sabão em barra
+refri |refrigerante 
+refresco em pó|refresco
+refresco sabor|refresco
+mozzarella|mussarela
+mozzarela|mussarela
+grão de bico|grão-de-bico
+lava roupas|lava-roupas
+lava louça|lava-louca
+hot dog|hot-dog
+moveis|móveis
+lustra móveis|lustra-móveis
+capim limão|capim-limão
+laranja pera|laranja-pera
+oleo |óleo 
+noz moscada|noz-moscada
+uva-passa|uva passa
+spaghetto|spaghetti
+espqguete|spaghetti
+macarrão de |massa 
+macarrão|massa
+macarrao|massa
+saborizada|aromatizada
+sabores|
+tipo1|tipo 1
+ tipo 1|
+cafe |café 
+ moid| moíd
+ suin| suín
+coxao|coxão
+chardonay|chardonnay
+sangiovesi|sangiovese
+familia carmenere|carmenere
+brut rose|brut rosé
+moscatel rose|moscatel rosé
+demi sec|demi-sec
+demisec|demi-sec
+crocrantes|crocantes
+reservaerva|reserva
+ tudao | tudão 
+descartável para |de 
+prestobarba3|prestobarba 3
+ao molho de tomate|tomate
+ao natural|natural
+com molho de tomate|tomate
+em óleo|óleo
+óregano|orégano
+hamburguer|hambúrguer
+nortuno|noturno
+norturno|noturno
+com sucralose|sucralose
+vermelhases|vermelhas
+águaizada com gás tangerina e capim-limãoes|água com gás tangerina e capim-limão
+hambúrguer bovino|hambúrguer de carne bovina
+hambúrguer frango|hambúrguer de frango
+nhoque batata|nhoque de batata
+leav-in|leave-in
+leave in|leave-in
+leavi-in|leave-in
+rsqueadeira|rasqueadeira
+ garo | gato 
+ absorve mais molho|
+zero açúcar|sem açúcar
+ sabor | 
+ blend | 
+ sérum | 
+ thermo | 
+ retornável|
+ argentino|
+ brasileiro|
+ chileno|
+ espanhol|
+ francês|
+ italiano|
+ português|
+ uruguaio|
+ sulafricano|
+ original|
+
+plus cobertura suave|cobertura suave plus

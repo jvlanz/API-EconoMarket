@@ -1,18 +1,25 @@
 #! /usr/bin/python
 
-import re
+import re, sys
 
-medidas = ['ml', 'l', 'kg', 'g', 'un', 'unidades']
+medidas = ['ml', 'l', 'kg', 'gr', 'g', 'un', 'unidades', 'unidade']
 produtos = {}
 pmarca = {}
+traducoes = {}
+
+def eprint(arg): print(arg, file=sys.stderr)
 
 marcas = []
 with open('marcas.txt') as fileID:
-	line = fileID.readline()
-	for marca in line.lower().split(','):
-		marca = marca.strip()
-		if marca not in marcas:
+	for marca in fileID.readlines():
+		marca = marca.strip().lower()
+		if marca and marca not in marcas:
 			marcas.append(marca)
+
+with open('traducoes.txt') as fileID:
+	for line in fileID.readlines():
+		if line.strip() and line[0]!='#':
+			traducoes[line.split('|')[0].lower()] = line.split('|')[1].strip('\n').lower()
 
 fileID1 = open('produtos-koch2309.csv')
 fileID2 = open('produtos-giassi1709.csv')
@@ -44,7 +51,7 @@ for line in fileID1.readlines()[1:] + fileID2.readlines()[1:]:
 	descricao = descricao.replace('130g', ' 130g').replace('450ml', ' 450ml').replace('700ml', ' 700ml').replace('c/', '').replace('vidro', 'vidro ').replace(' pó', ' pó ').replace('  ', ' ')
 	descricao = descricao.replace(' com1', ' 1').replace(' com 1', ' 1').replace(' com 2', ' 2').replace(' com 3', ' 3').replace(' com 4', ' 4').replace(' com 5', ' 5').replace(' com 6', ' 6').replace(' com 7', ' 7').replace(' com 8', ' 8').replace(' com 9', ' 9')
 	if 'leve' in descricao and 'pague' in descricao:
-		descricao = re.sub(' leve (.*) pague.*', ' \\1', descricao)
+		descricao = re.sub(' leve (.*) pague [^ ]+', ' \\1', descricao)
 	for medida in medidas:
 		if re.match('.*?[0-9,\\.]+'+medida+r'\b.*', descricao): # para casos como 310ml
 			produto = re.sub('(.*?) [0-9,\\.]+'+medida+r'\b.*', '\\1', descricao)
@@ -64,35 +71,30 @@ for line in fileID1.readlines()[1:] + fileID2.readlines()[1:]:
 			valorMedida = re.sub('.* ([0-9,\\.]+) .*', '\\1', descricao)
 			medida = re.sub('.* [0-9,\\.]+ ([^ ]*).*', '\\1', descricao)
 			medidas.append(medida)
-	produto = produto.replace(' pacote', '').replace(' frasco', '').replace(' squeeze', '').replace(' cada', '').replace(' caixa', '').replace(' bandeja', '').replace(' pc', '').replace(' embalagem', '').replace(' pote', '').replace(' pague', '').replace(' sachê', '').replace(' vidro', '').replace(' pet ', ' ')
-	produto = produto.replace('sabão barra', 'sabão em barra').replace('refri ', 'refrigerante ').replace('refresco em pó', 'refresco').replace('refresco sabor', 'refresco')
-	produto = produto.replace('mozzarella', 'mussarela').replace('mozzarela', 'mussarela').replace('oleo ', 'óleo ')
-	produto = produto.replace('lava roupas', 'lava-roupas').replace('lava louça', 'lava-louca').replace('grão de bico', 'grão-de-bico').replace('noz moscada', 'noz-moscada')
-	produto = produto.replace('spaghetto', 'spaghetti').replace('espqguete', 'spaghetti').replace('macarrão de ', 'massa ').replace('macarrão', 'massa').replace('macarrao', 'massa')
-	produto = produto.replace(' garrafa', '').replace('tipo1', 'tipo 1').replace(' copo', '').replace(' galão', '').replace('uva-passa', 'uva passa').replace('hot dog', 'hot-dog').replace('moveis', 'móveis').replace('lustra móveis', 'lustra-móveis').replace('capim limão', 'capim-limão').replace('laranja pera', 'laranja-pera')
-	produto = produto.replace('cafe ', 'café ').replace(' moid', ' moíd').replace(' suin', ' suín').replace('coxao', 'coxão')
-	produto = produto.replace('hamburguer', 'hambúrguer').replace('hambúrguer bovino', 'hambúrguer de carne bovina').replace('hambúrguer frango', 'hambúrguer de frango').replace('nhoque batata', 'nhoque de batata')
-	produto = produto.replace(' meia lua', '').replace(' meia-lua', '').replace(' em pedaço', '').replace(' fracionado', '').replace(' cunha', '')
-	produto = produto.replace('leav-in', 'leave-in').replace('leave in', 'leave-in').replace('leavi-in', 'leave-in')
-	produto = produto.replace(' tipo 1', '').replace(' absorve mais molho', '').replace('zero açúcar', 'sem açúcar').replace(' sabor', '')
-	if 'vinho' in produto:
-		produto = produto.replace('chardonay', 'chardonnay')
-		produto = produto.replace(' argentino', '').replace(' brasileiro', '').replace(' chileno', '').replace(' espanhol', '').replace(' francês', '').replace(' italiano', '').replace(' português', '').replace(' uruguaio', '').replace(' sulafricano', '')
+		else:
+			produto = descricao
+			valorMedida = '1'
+			medida = 'un'
+
+	produto = produto+' '
+	for key in traducoes:
+		produto = produto.replace(key, traducoes[key])
+	produto = produto.strip()
 	produto = produto.title().replace(' E ', ' e ').replace(' De ', ' de ').replace(' Em ', ' em ').replace(' Com ', ' com ').replace(' Sem ', ' sem ').replace(' Para ', ' para ')
-	medida = medida.replace('l', 'L')
+
+	medida = medida.replace('l', 'L').replace('gr','g').replace('unidades', 'un').replace('unidade', 'un')
 	valorMedida = valorMedida.replace(',', '.')
 	n += 1
-#	if 'santa rita' in line.lower():
-#		print(line, marca, produto)
-#		print('\n'+line.strip())
-#		print('%.2f%%' % (n/25.47), descricao, ' ## ', produto, '#', valorMedida, '#', medida, '#', marca)
 	if produto not in produtos:
 		produtos[produto] = 0
 		pmarca[produto] = marca
 	produtos[produto] += 1
 
+	if not produto.strip():
+		eprint(produto + ' | ' + line.strip())
+
 #exit()
 #print(medidas)
 for prod in sorted(produtos):
 	print(produtos[prod], prod, '||', pmarca[prod])
-print(n, len(produtos))
+eprint('%d %d' % (n, len(produtos)))
