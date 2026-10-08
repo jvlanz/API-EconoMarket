@@ -2,6 +2,7 @@
 -- 1. TABELAS FIXAS (já fornecidas)
 -- ==========================================
 
+insert into categoria (categoria) values ('');
 insert into categoria (categoria) values ('Hortifruti');
 insert into categoria (categoria) values ('Açougue');
 insert into categoria (categoria) values ('Frios e Laticínios');
@@ -60,156 +61,156 @@ insert into cliente (nome, email, senha, telefone, role) values ('admin', 'admin
 -- 4. MARCAS (Algumas marcas para associar)
 -- ==========================================
 insert into marca (marca) values ('');    -- para produtos sem marca, ex. hortifruti
-insert into marca (marca) values ('Friolac');
-insert into marca (marca) values ('Sadia');
-insert into marca (marca) values ('Nestlé');
-insert into marca (marca) values ('Perdigão');
-insert into marca (marca) values ('Ypê');
-insert into marca (marca) values ('Omo');
-insert into marca (marca) values ('Coca-Cola');
-insert into marca (marca) values ('Amstel');
-insert into marca (marca) values ('Pilão');
-insert into marca (marca) values ('Camil');
+insert into marca (marca) values ('Marca 1');
+insert into marca (marca) values ('Marca 2');
+insert into marca (marca) values ('Marca 3');
+insert into marca (marca) values ('Marca 4');
+insert into marca (marca) values ('Marca 5');
+insert into marca (marca) values ('Marca 6');
+insert into marca (marca) values ('Marca 7');
+insert into marca (marca) values ('Marca 8');
+insert into marca (marca) values ('Marca 9');
+insert into marca (marca) values ('Marca 10');
 
 
 -- ==========================================
 -- 5. PRODUTOS (100 entradas distribuídas)
 -- ==========================================
 -- Exemplo já existente
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Queijo Fatiado', 3, 'g', 150, 10.99, 16.99, 'queijo_fatiado.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Queijo Fatiado', 4, 'g', 150, 10.99, 16.99, 'queijo_fatiado.jpg');
 
 -- Hortifruti (Cat 1)
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Maçã Gala', 1, 'kg', 1, 7.99, 12.99, 'maca.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Banana Nanica', 1, 'kg', 1, 3.99, 5.99, 'banana.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Tomate Ítala', 1, 'kg', 1, 6.99, 12.99, 'tomate.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Batata Inglesa', 1, 'kg', 1, 3.99, 6.99, 'batata.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Cebola Branca', 1, 'kg', 1, 5.99, 8.99, 'cebola.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Alface Crespa', 1, 'un', 1, 4.99, 6.99, 'alface.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Cenoura', 1, 'kg', 1, 4.99, 6.99, 'cenoura.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Mamão Formosa', 1, 'kg', 1, 3.99, 5.99, 'mamao.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Abacaxi Pérola', 1, 'kg', 1, 6.99, 9.99, 'abacaxi.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Limão Tahiti', 1, 'kg', 1, 2.99, 4.99, 'limao.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Maçã Gala', 2, 'kg', 1, 7.99, 12.99, 'maca.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Banana Nanica', 2, 'kg', 1, 3.99, 5.99, 'banana.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Tomate Ítala', 2, 'kg', 1, 6.99, 12.99, 'tomate.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Batata Inglesa', 2, 'kg', 1, 3.99, 6.99, 'batata.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Cebola Branca', 2, 'kg', 1, 5.99, 8.99, 'cebola.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Alface Crespa', 2, 'un', 1, 4.99, 6.99, 'alface.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Cenoura', 2, 'kg', 1, 4.99, 6.99, 'cenoura.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Mamão Formosa', 2, 'kg', 1, 3.99, 5.99, 'mamao.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Abacaxi Pérola', 2, 'kg', 1, 6.99, 9.99, 'abacaxi.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Limão Tahiti', 2, 'kg', 1, 2.99, 4.99, 'limao.jpg');
 
 -- Açougue (Cat 2)
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Carne Bovina Alcatra', 2, 'kg', 1, 39.99, 59.99, 'alcatra.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Peito de Frango', 2, 'kg', 1, 29.99, 39.99, 'frango.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Carne Moída Bovina', 2, 'kg', 1, 29.99, 39.99, 'carne_moida.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Linguiça Toscana', 2, 'kg', 1, 19.99, 39.99, 'linguica.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Costelinha Suína', 2, 'kg', 1, 29.99, 39.99, 'costelinha.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Filé Mignon', 2, 'kg', 1, 49.99, 89.99, 'file_mignon.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Coxa e Sobrecoxa', 2, 'kg', 1, 29.99, 39.99, 'coxa_sobrecoxa.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Picanha Bovina', 2, 'kg', 1, 49.99, 79.99, 'picanha.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Bisteca Suína', 2, 'kg', 1, 29.99, 59.99, 'bisteca.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Coração de Frango', 2, 'g', 500, 9.99, 19.99, 'coracao.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Carne Bovina Alcatra', 3, 'kg', 1, 39.99, 59.99, 'alcatra.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Peito de Frango', 3, 'kg', 1, 29.99, 39.99, 'frango.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Carne Moída Bovina', 3, 'kg', 1, 29.99, 39.99, 'carne_moida.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Linguiça Toscana', 3, 'kg', 1, 19.99, 39.99, 'linguica.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Costelinha Suína', 3, 'kg', 1, 29.99, 39.99, 'costelinha.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Filé Mignon', 3, 'kg', 1, 49.99, 89.99, 'file_mignon.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Coxa e Sobrecoxa', 3, 'kg', 1, 29.99, 39.99, 'coxa_sobrecoxa.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Picanha Bovina', 3, 'kg', 1, 49.99, 79.99, 'picanha.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Bisteca Suína', 3, 'kg', 1, 29.99, 59.99, 'bisteca.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Coração de Frango', 3, 'g', 500, 9.99, 19.99, 'coracao.jpg');
 
 -- Frios e Laticínios (Cat 3)
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Leite Integral', 3, 'L', 1, 3.99, 5.99, 'leite.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Mussarela Peça', 3, 'g', 500, 24.99, 34.99, 'mussarela.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Presunto Cozido', 3, 'g', 200, 22.99, 29.99, 'presunto.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Iogurte Natural', 3, 'g', 170, 2.99, 3.45, 'iogurte.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Manteiga com Sal', 3, 'g', 200, 4.99, 9.99, 'manteiga.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Requeijão Cremoso', 3, 'mL', 250, 4.99, 9.99, 'requeijao.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Queijo Prato', 3, 'g', 150, 5.99, 8.99, 'queijo_prato.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Leite Condensado', 3, 'mL', 395, 4.99, 8.99, 'leite_condensado.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Creme de Leite', 3, 'mL', 200, 4.59, 6.89, 'creme_leite.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Parmesão Ralado', 3, 'g', 150, 5.89, 9.87, 'parmesao.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Leite Integral', 4, 'L', 1, 3.99, 5.99, 'leite.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Mussarela Peça', 4, 'g', 500, 24.99, 34.99, 'mussarela.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Presunto Cozido', 4, 'g', 200, 22.99, 29.99, 'presunto.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Iogurte Natural', 4, 'g', 170, 2.99, 3.45, 'iogurte.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Manteiga com Sal', 4, 'g', 200, 4.99, 9.99, 'manteiga.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Requeijão Cremoso', 4, 'mL', 250, 4.99, 9.99, 'requeijao.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Queijo Prato', 4, 'g', 150, 5.99, 8.99, 'queijo_prato.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Leite Condensado', 4, 'mL', 395, 4.99, 8.99, 'leite_condensado.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Creme de Leite', 4, 'mL', 200, 4.59, 6.89, 'creme_leite.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Parmesão Ralado', 4, 'g', 150, 5.89, 9.87, 'parmesao.jpg');
 
 -- Congelados (Cat 4)
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pizza de Frango', 4, 'un', 1, 12.99, 16.99, 'pizza.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Lasanha à Bolonhesa', 4, 'un', 1, 8.99, 15.99, 'lasanha.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pão de Queijo', 4, 'g', 50, 6.99, 8.99, 'pao_queijo.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Batata Frita Congelada', 4, 'kg', 1, 8.99, 15.99, 'batata_frita.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Hamburguer Bovino', 4, 'g', 100, 4.99, 6.99, 'hamburguer.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Nuggets de Frango', 4, 'kg', 1, 8.99, 16.99, 'nuggets.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Seleta de Legumes', 4, 'g', 250, 3.99, 5.99, 'seleta.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Ervilha Congelada', 4, 'g', 500, 4.99, 6.99, 'ervilha.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Torta de Palmito', 4, 'un', 1, 9.99, 17.99, 'torta.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Prato Feito Congelado', 4, 'g', 400, 18.99, 28.98, 'prato_feito.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pizza de Frango', 5, 'un', 1, 12.99, 16.99, 'pizza.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Lasanha à Bolonhesa', 5, 'un', 1, 8.99, 15.99, 'lasanha.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pão de Queijo', 5, 'g', 50, 6.99, 8.99, 'pao_queijo.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Batata Frita Congelada', 5, 'kg', 1, 8.99, 15.99, 'batata_frita.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Hamburguer Bovino', 5, 'g', 100, 4.99, 6.99, 'hamburguer.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Nuggets de Frango', 5, 'kg', 1, 8.99, 16.99, 'nuggets.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Seleta de Legumes', 5, 'g', 250, 3.99, 5.99, 'seleta.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Ervilha Congelada', 5, 'g', 500, 4.99, 6.99, 'ervilha.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Torta de Palmito', 5, 'un', 1, 9.99, 17.99, 'torta.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Prato Feito Congelado', 5, 'g', 400, 18.99, 28.98, 'prato_feito.jpg');
 
 -- Mercearia (Cat 5)
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Arroz Branco 5kg', 5, 'kg', 5, 12.99, 16.99, 'arroz.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Feijão Preto 1kg', 5, 'kg', 1, 7.99, 9.99, 'feijao.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Óleo de Soja', 5, 'mL', 900, 6.99, 10.99, 'oleo.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Açúcar Cristal', 5, 'kg', 1, 5.99, 7.99, 'acucar.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Café em Pó', 5, 'g', 500, 49.99, 78.99, 'cafe.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Macarrão Espaguete', 5, 'g', 500, 3.99, 6.99, 'macarrao.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Farinha de Trigo', 5, 'kg', 1, 2.99, 4.99, 'farinha.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Sal Refinado', 5, 'kg', 1, 1.99, 2.49, 'sal.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Molho de Tomate', 5, 'mL', 340, 2.99, 3.99, 'molho.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Atum em Lata', 5, 'g', 170, 4.99, 7.99, 'atum.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Arroz Branco 5kg', 6, 'kg', 5, 12.99, 16.99, 'arroz.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Feijão Preto 1kg', 6, 'kg', 1, 7.99, 9.99, 'feijao.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Óleo de Soja', 6, 'mL', 900, 6.99, 10.99, 'oleo.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Açúcar Cristal', 6, 'kg', 1, 5.99, 7.99, 'acucar.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Café em Pó', 6, 'g', 500, 49.99, 78.99, 'cafe.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Macarrão Espaguete', 6, 'g', 500, 3.99, 6.99, 'macarrao.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Farinha de Trigo', 6, 'kg', 1, 2.99, 4.99, 'farinha.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Sal Refinado', 6, 'kg', 1, 1.99, 2.49, 'sal.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Molho de Tomate', 6, 'mL', 340, 2.99, 3.99, 'molho.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Atum em Lata', 6, 'g', 170, 4.99, 7.99, 'atum.jpg');
 
 -- Limpeza (Cat 6)
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Sabão em Pó', 6, 'kg', 1, 8.99, 12.99, 'sabao_po.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Amaciante de Roupas', 6, 'L', 2, 24.99, 32.99, 'amaciante.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Detergente Líquido', 6, 'mL', 500, 2.99, 3.45, 'detergente.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Desinfetante', 6, 'mL', 200, 4.99, 8.99, 'desinfetante.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Água Sanitária', 6, 'L', 2, 1.99, 2.49, 'agua_sanitaria.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Esponja de Aço', 6, 'un', 1, 1.49, 1.99, 'esponja_aco.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Limpador Multiuso', 6, 'mL', 500, 1.99, 3.99, 'desinfetante.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Saco de Lixo 50L', 6, 'un', 20, 2.99, 4.98, 'saco_lixo.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Flanela de Limpeza', 6, 'un', 3, 4.99, 5.99, 'flanela.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Papel Toalha', 6, 'un', 2, 6.99, 8.99, 'papel_toalha.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Sabão em Pó', 7, 'kg', 1, 8.99, 12.99, 'sabao_po.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Amaciante de Roupas', 7, 'L', 2, 24.99, 32.99, 'amaciante.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Detergente Líquido', 7, 'mL', 500, 2.99, 3.45, 'detergente.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Desinfetante', 7, 'mL', 200, 4.99, 8.99, 'desinfetante.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Água Sanitária', 7, 'L', 2, 1.99, 2.49, 'agua_sanitaria.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Esponja de Aço', 7, 'un', 1, 1.49, 1.99, 'esponja_aco.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Limpador Multiuso', 7, 'mL', 500, 1.99, 3.99, 'desinfetante.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Saco de Lixo 50L', 7, 'un', 20, 2.99, 4.98, 'saco_lixo.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Flanela de Limpeza', 7, 'un', 3, 4.99, 5.99, 'flanela.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Papel Toalha', 7, 'un', 2, 6.99, 8.99, 'papel_toalha.jpg');
 
 -- Higiene e Beleza (Cat 7)
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Papel Higiênico 12un', 7, 'un', 12, 16.99, 18.99, 'papel_higienico.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pasta de Dente', 7, 'g', 90, 2.99, 3.02, 'pasta_dente.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Sabonete em Barra', 7, 'g', 90, 2.45, 3.21, 'sabonete.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Shampoo', 7, 'mL', 350, 13.99, 25.99, 'shampoo.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Condicionador', 7, 'mL', 350, 10.99, 34.98, 'condicionador.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Desodorante Aerosol', 7, 'mL', 150, 8.99, 14.99, 'desodorante.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Aparelho de Barbear', 7, 'un', 2, 25.99, 32.99, 'navalha.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Fio Dental', 7, 'm', 50, 2.99, 4.99, 'fio_dental.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Absorvente Íntimo', 7, 'un', 8, 7.99, 14.99, 'absorvente.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Algodão Bola', 7, 'pacote', 1, 8.99, 10.99, 'algodao.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Papel Higiênico 12un', 8, 'un', 12, 16.99, 18.99, 'papel_higienico.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pasta de Dente', 8, 'g', 90, 2.99, 3.02, 'pasta_dente.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Sabonete em Barra', 8, 'g', 90, 2.45, 3.21, 'sabonete.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Shampoo', 8, 'mL', 350, 13.99, 25.99, 'shampoo.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Condicionador', 8, 'mL', 350, 10.99, 34.98, 'condicionador.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Desodorante Aerosol', 8, 'mL', 150, 8.99, 14.99, 'desodorante.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Aparelho de Barbear', 8, 'un', 2, 25.99, 32.99, 'navalha.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Fio Dental', 8, 'm', 50, 2.99, 4.99, 'fio_dental.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Absorvente Íntimo', 8, 'un', 8, 7.99, 14.99, 'absorvente.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Algodão Bola', 8, 'pacote', 1, 8.99, 10.99, 'algodao.jpg');
 
 -- Bebidas (Cat 8)
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Refrigerante Cola 2L', 8, 'L', 2, 13.99, 25.99, 'refri_lata.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Cerveja Lata', 8, 'mL', 350, 3.99, 8.99, 'cerveja.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Água Mineral sem Gás', 8, 'mL', 500, 1.49, 1.89, 'agua.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Suco de Laranja Caixinha', 8, 'L', 1, 5.99, 8.99, 'suco.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Energético', 8, 'mL', 473, 12.99, 17.99, 'energetico.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Vinho Tinto Seco', 8, 'mL', 750, 17.50, 99.99, 'vinho.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Água Tônica', 8, 'mL', 350, 3.99, 5.99, 'tonica.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Chá Gelado', 8, 'L', 1, 13.99, 18.99, 'cha.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Refrigerante Guaraná', 8, 'mL', 350, 2.99, 4.50, 'refri_lata.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Isotônico', 8, 'mL', 500, 4.99, 7.65, 'isotonico.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Refrigerante Cola 2L', 9, 'L', 2, 13.99, 25.99, 'refri_lata.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Cerveja Lata', 9, 'mL', 350, 3.99, 8.99, 'cerveja.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Água Mineral sem Gás', 9, 'mL', 500, 1.49, 1.89, 'agua.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Suco de Laranja Caixinha', 9, 'L', 1, 5.99, 8.99, 'suco.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Energético', 9, 'mL', 473, 12.99, 17.99, 'energetico.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Vinho Tinto Seco', 9, 'mL', 750, 17.50, 99.99, 'vinho.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Água Tônica', 9, 'mL', 350, 3.99, 5.99, 'tonica.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Chá Gelado', 9, 'L', 1, 13.99, 18.99, 'cha.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Refrigerante Guaraná', 9, 'mL', 350, 2.99, 4.50, 'refri_lata.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Isotônico', 9, 'mL', 500, 4.99, 7.65, 'isotonico.jpg');
 
 -- Utilidades (Cat 9)
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pilhas AA', 9, 'un', 4, 14.99, 19.99, 'pilha.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Lâmpada LED', 9, 'un', 1, 24.99, 28.99, 'lampada.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Fita Isolante', 9, 'un', 1, 1.99, 2.99, 'fita.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Fósforos de Segurança', 9, 'un', 10, 2.99, 5.43, 'fosforo.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Vela Branca', 9, 'un', 8, 1.89, 2.45, 'vela.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pano de Chão', 9, 'un', 1, 2.99, 3.45, 'pano_chao.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pregador de Roupas', 9, 'un', 12, 0.89, 1.99, 'pregador.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Saco Plástico Zip', 9, 'un', 20, 3.99, 6.55, 'saco_zip.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Papel Alumínio', 9, 'un', 1, 6.99, 12.21, 'aluminio.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Filme Plástico', 9, 'un', 1, 4.99, 6.54, 'filme.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pilhas AA', 10, 'un', 4, 14.99, 19.99, 'pilha.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Lâmpada LED', 10, 'un', 1, 24.99, 28.99, 'lampada.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Fita Isolante', 10, 'un', 1, 1.99, 2.99, 'fita.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Fósforos de Segurança', 10, 'un', 10, 2.99, 5.43, 'fosforo.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Vela Branca', 10, 'un', 8, 1.89, 2.45, 'vela.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pano de Chão', 10, 'un', 1, 2.99, 3.45, 'pano_chao.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pregador de Roupas', 10, 'un', 12, 0.89, 1.99, 'pregador.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Saco Plástico Zip', 10, 'un', 20, 3.99, 6.55, 'saco_zip.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Papel Alumínio', 10, 'un', 1, 6.99, 12.21, 'aluminio.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Filme Plástico', 10, 'un', 1, 4.99, 6.54, 'filme.jpg');
 
 -- Padaria (Cat 10)
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pão Francês', 10, 'g', 50, 6.99, 7.99, 'pao_frances.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pão de Forma', 10, 'g', 450, 7.99, 9.99, 'pao_forma.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Bolo de Chocolate', 10, 'kg', 1, 32.99, 45.99, 'bolo.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Rosquinha Doce', 10, 'g', 50, 5.99, 8.77, 'rosquinha.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pão Integral', 10, 'g', 100, 8.99, 15.99, 'pao_integral.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Sonho de Creme', 10, 'g', 50, 5.99, 8.79, 'sonho.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Broa de Milho', 10, 'g', 100, 6.99, 10.99, 'broa.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Torrada Integral', 10, 'g', 100, 10.99, 13.99, 'torrada.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Cuca de Banana', 10, 'g', 500, 17.99, 24.99, 'cuca.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pão de Hamburguer', 10, 'g', 100, 10.99, 13.99, 'pao_hamburguer.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pão Francês', 11, 'g', 50, 6.99, 7.99, 'pao_frances.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pão de Forma', 11, 'g', 450, 7.99, 9.99, 'pao_forma.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Bolo de Chocolate', 11, 'kg', 1, 32.99, 45.99, 'bolo.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Rosquinha Doce', 11, 'g', 50, 5.99, 8.77, 'rosquinha.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pão Integral', 11, 'g', 100, 8.99, 15.99, 'pao_integral.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Sonho de Creme', 11, 'g', 50, 5.99, 8.79, 'sonho.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Broa de Milho', 11, 'g', 100, 6.99, 10.99, 'broa.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Torrada Integral', 11, 'g', 100, 10.99, 13.99, 'torrada.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Cuca de Banana', 11, 'g', 500, 17.99, 24.99, 'cuca.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Pão de Hamburguer', 11, 'g', 100, 10.99, 13.99, 'pao_hamburguer.jpg');
 
 -- Pets (Cat 11)
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Ração Cão Adulto', 11, 'kg', 1, 45.99, 99.99, 'racao_cao.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Ração Gato Filhote', 11, 'kg', 1, 49.99, 120.99, 'racao_gato.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Sachê para Gato', 11, 'sache', 1, 4.99, 6.99, 'sache_gato.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Tapete Higiênico', 11, 'un', 30, 20.99, 29.99, 'tapete_higi.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Areia para Gato', 11, 'kg', 4, 10.99, 14.99, 'areia_gato.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Biscoito para Cão', 11, 'un', 1, 2.99, 4.99, 'biscoito_pet.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Shampoo Pet', 11, 'mL', 500, 15.99, 20.99, 'shampoo_pet.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Osso de Brinquedo', 11, 'un', 1, 3.99, 6.99, 'osso.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Antipulgas', 11, 'mL', 100, 15.99, 19.99, 'antipulgas.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Ossinho para Cães', 11, 'un', 1, 7.99, 13.99, 'ossinho.jpg');
-insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Ração Cão Filhote', 11, 'kg', 1, 45.99, 99.99, 'racao_cao.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Ração Cão Adulto', 12, 'kg', 1, 45.99, 99.99, 'racao_cao.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Ração Gato Filhote', 12, 'kg', 1, 49.99, 120.99, 'racao_gato.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Sachê para Gato', 12, 'sache', 1, 4.99, 6.99, 'sache_gato.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Tapete Higiênico', 12, 'un', 30, 20.99, 29.99, 'tapete_higi.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Areia para Gato', 12, 'kg', 4, 10.99, 14.99, 'areia_gato.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Biscoito para Cão', 12, 'un', 1, 2.99, 4.99, 'biscoito_pet.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Shampoo Pet', 12, 'mL', 500, 15.99, 20.99, 'shampoo_pet.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Osso de Brinquedo', 12, 'un', 1, 3.99, 6.99, 'osso.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Antipulgas', 12, 'mL', 100, 15.99, 19.99, 'antipulgas.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Ossinho para Cães', 12, 'un', 1, 7.99, 13.99, 'ossinho.jpg');
+insert into produto (descricao, id_categoria, medida, valor_medida, preco_min, preco_max, figura) values ('Ração Cão Filhote', 12, 'kg', 1, 45.99, 99.99, 'racao_cao.jpg');
 
 
 -- ==========================================
