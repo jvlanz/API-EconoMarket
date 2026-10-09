@@ -17,9 +17,9 @@ public class MarcaService {
 // marca
 
 	public Marca salvar(Marca marca) {
-		if (marca.getMarca().isEmpty()) {
-			throw new RuntimeException("A marca deve ser informada");
-		}
+//		if (marca.getMarca().isEmpty()) {
+//			throw new RuntimeException("A marca deve ser informada");
+//		}
 		repository.save(marca);
 		return marca;
 	}
