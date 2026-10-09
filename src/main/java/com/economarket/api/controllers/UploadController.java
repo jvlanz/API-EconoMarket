@@ -43,7 +43,7 @@ public class UploadController {
 			String dateString = formatter.format(data);
 			File savedFile = new File(dir, dateString+ " " + mercado + ".csv"); //file.getOriginalFilename()); // TODO salvar como idMercado+data.csv
 			file.transferTo(savedFile);
-			lerDados.lerCSV(savedFile.getAbsolutePath());
+			lerDados.lerCSV(mercado, savedFile.getAbsolutePath());
 			return ResponseEntity.ok("Arquivo enviado com sucesso: " + savedFile.getAbsolutePath());
 		} catch (IOException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro salvando arquivo: " + e.getMessage());

@@ -51,6 +51,8 @@ public class LerDados {
 	PromocaoService promocaoService;
 	public Date data = new Date();
 
+
+
 	public void lerDados(String descricao, String marca, String categoria, String medida, Float valorMedida, Float preco, String mercado) {
 		Long idProduto = 1L;
 		Long idCategoria = 1L; // id=1 para categoria=""
@@ -85,7 +87,7 @@ public class LerDados {
 		produtoRequest.setFigura(descricao.split(" ")[0].toLowerCase()+".jpg");
 		List<Produto> produtos = produtoService.consultar();
 		for (Produto produtoDB : produtos) {
-			if (produtoDB.getDescricao().equals(descricao)) {
+			if (produtoDB.getDescricao().toLowerCase().equals(descricao.toLowerCase())) {
 				produtoRequest.setId(produtoDB.getId());
 				produtoRequest.setIdCategoria(produtoDB.getCategoria().getId());
 				categoria = produtoDB.getCategoria().getCategoria();
@@ -104,7 +106,7 @@ public class LerDados {
 		novaMarca.setMarca(marca);
 		List<Marca> marcas = marcaService.consultar();
 		for (Marca marcaDB : marcas) {
-			if (marcaDB.getMarca().equals(marca)) {
+			if (marcaDB.getMarca().toLowerCase().equals(marca.toLowerCase())) {
 				novaMarca.setId(marcaDB.getId());
 				break;
 			}
@@ -124,17 +126,17 @@ public class LerDados {
 			}
 		}
 // usar marca=categoria para marcar novos produtos (sem marca) que requerem revisão
-		if (marca.equals("") && produtoMarcaRequest.getId()==null) {
-			Marca tempMarca = new Marca();
-			tempMarca.setMarca(marca);
-			for (Marca marcaDB : marcas) { // marcas já foram lidas acima
-				if (marcaDB.getMarca().equals(marca)) {
-					tempMarca.setId(marcaDB.getId());
-					break;
-				}
-			}
-			produtoMarcaRequest.setIdMarca(marcaService.salvar(tempMarca).getId());
-		}
+	//	if (marca.equals("") && produtoMarcaRequest.getId()==null) {
+	//		Marca tempMarca = new Marca();
+	//		tempMarca.setMarca(marca);
+	//		for (Marca marcaDB : marcas) { // marcas já foram lidas acima
+	//			if (marcaDB.getMarca().toLowerCase().equals(marca.toLowerCase())) {
+	//				tempMarca.setId(marcaDB.getId());
+	//				break;
+	//			}
+	//		}
+	//		produtoMarcaRequest.setIdMarca(marcaService.salvar(tempMarca).getId());
+	//	}
 // enfim, gravar novo produtoMarca
 		idProdutoMarca = produtoMarcaService.salvar(produtoMarcaRequest).getId();
 
@@ -159,25 +161,23 @@ public class LerDados {
 		precoService.salvar(precoRequest);
 	}
 
-	public void lerCSV(String csvFile) {
-		List<String> medidas = new ArrayList<>(Arrays.asList("ml", "l", "kg", "g", "un", "unidades"));
-		List<String> marcas = new ArrayList<>();
+
+
+	public void lerCSV(String mercado, String csvFile) {
+		List<String> medidas = new ArrayList<>(Arrays.asList("ml", "l", "kg", "gr", "g", "unidades", "unidade", "un"));
+		List<String[]> traducoes = new ArrayList<>();
+		List<Marca> marcas = marcaService.consultar();
+
 		try {
-			String marcasFile = System.getProperty("user.dir") + "/src/main/resources/marcas.txt";
-			if (Files.exists(Path.of(marcasFile))) {
-				String linha = Files.readString(Path.of(marcasFile));
-				for (String marca : linha.toLowerCase().split(", ")) {
-					if (!marcas.contains(marca)) {
-						marcas.add(marca);
-					}
-				}
+			String tradFile = System.getProperty("user.dir") + "/src/main/resources/traducoes.txt";
+			if (Files.exists(Path.of(tradFile))) {
+				String linha = Files.readString(Path.of(tradFile));
+				traducoes.add(linha.replace("\n", "").split("|"));
 			}
-			System.out.println(marcas);
 		} catch (IOException e) {
-			System.err.println("Error ao ler " + Path.of("marcas.txt"));
+			System.err.println("Error ao ler " + Path.of("traducoes.txt"));
 		}
 
-		String mercado = "Koch";
 		String linha;
 		try (BufferedReader reader = new BufferedReader(
 				new FileReader(csvFile, StandardCharsets.UTF_8))) {
@@ -193,37 +193,38 @@ public class LerDados {
 // id, descricao, preco, ...
 				if (parts.length < 3) continue;
 				float preco = Float.parseFloat(parts[2].replace("\"", ""));
-				String descricao = parts[1].replace("\"", "").toLowerCase();
+				String descricao = parts[1].replace("\"", "").replaceAll("  ", " ").toLowerCase()+" ";
 				String medida = "";
 				String valorMedida = "";
 				String produto = "";
 				String marca = "";
+				String categoria = "";
+				if (parts.length < 5)
+					categoria = parts[5].split(" >")[0].replace("\"", "");
 
-				for (String m : marcas) {
-					if (descricao.contains(" " + m)) {
-						marca = m;
-						descricao = descricao.replaceAll(" " + marca + "\\b", "");
+				if (descricao.contains("leve") && descricao.contains("pague"))
+					descricao = descricao.replaceAll(" leve (.*) pague [^ ]*", "$1");
+				for (String[] trad : traducoes)
+					descricao = descricao.replaceAll(trad[0], trad[1]);
+				descricao = descricao.replaceAll("  ", " ");
+
+				for (Marca mar : marcas) {
+					if (descricao.contains(mar.getMarca().toLowerCase())) {
+						marca = mar.getMarca().toLowerCase();
+						descricao = descricao.replaceAll("\\b" + marca + "\\b", "");
 						break;
 					}
 				}
 
-				if (marca.equals("unidades"))
-					marca = "un";
-				marca = marca.replace('´', '\'').replace('`', '\'');
-				descricao = descricao.replace(" leve mais pague menos", "");
-
-				if (descricao.contains("leve") && descricao.contains("pague"))
-					descricao = descricao.replaceAll(" leve (.*) pague.*", "$1");
-
 				for (String m : medidas) {
-					if (Pattern.matches(".*?[0-9,]+" + m + "\\b.*", descricao)) {
-						produto = descricao.replaceAll("(.*?) [0-9,]+" + m + "\\b.*", "$1");
-						valorMedida = descricao.replaceAll(".*? ([0-9,]+)" + m + "\\b.*", "$1");
+					if (Pattern.matches(".*?[0-9,\\.]+" + m + "\\b.*", descricao)) {
+						produto = descricao.replaceAll("(.*?) [0-9,\\.]+" + m + "\\b.*", "$1");
+						valorMedida = descricao.replaceAll(".*? ([0-9,\\.]+)" + m + "\\b.*", "$1");
 						medida = m;
 						break;
-					} else if (Pattern.matches(".*?[0-9,]+ " + m + "\\b.*", descricao)) {
-						produto = descricao.replaceAll("(.*?) [0-9,]+ " + m + "\\b.*", "$1");
-						valorMedida = descricao.replaceAll(".*? ([0-9,]+) " + m + "\\b.*", "$1");
+					} else if (Pattern.matches(".*?[0-9,\\.]+ " + m + "\\b.*", descricao)) {
+						produto = descricao.replaceAll("(.*?) [0-9,\\.]+ " + m + "\\b.*", "$1");
+						valorMedida = descricao.replaceAll(".*? ([0-9,\\.]+) " + m + "\\b.*", "$1");
 						medida = m;
 						break;
 					} else if (Pattern.matches(".*? " + m + "\\b.*", descricao)) {
@@ -240,24 +241,26 @@ public class LerDados {
 						valorMedida = descricao.replaceAll(".* ([0-9]+) .*", "$1");
 						medida = descricao.replaceAll(".* [0-9]+ ([^ ]*).*", "$1");
 						medidas.add(medida);
+					} else {
+						produto = descricao;
+						valorMedida = "1";
+						medida = "un";
 					}
 				}
 
-				produto = produto.replace(" pacote", "").replace(" frasco", "").replace(" squeeze", "")
-								.replace(" cada", "").replace(" caixa", "").replace(" bandeja", "");
-
 				marca = titleCase(marca);
 				produto = titleCase(produto);
-				produto = produto.replace(" E ", " e ").replace(" De ", " de ");
-				medida = medida.replace('l', 'L');
+				medida = medida.replace('l', 'L').replace("gr", "g").replace("unidades", "un").replace("unidade", "un");
 				valorMedida = valorMedida.replace(',', '.');
 
-				lerDados(descricao, marca, "", medida, Float.parseFloat(valorMedida), preco, mercado);
+				lerDados(descricao, marca, categoria, medida, Float.parseFloat(valorMedida), preco, mercado);
 			}
 		} catch (IOException e) {
 			System.err.println("Error ao ler arquivo: " + e.getMessage());
 		}
 	}
+
+
 
 	public String titleCase(String text) {
 		if (!text.isEmpty()) {
@@ -269,6 +272,7 @@ public class LerDados {
 				}
 			}
 			text = sb.toString().trim();
+			text = text.replace(" E ", " e ").replace(" Da ", " da ").replace(" De ", " de ").replace(" Do ", " do ").replace(" Em ", " em ").replace(" Com ", " com ").replace(" Sem ", " sem ").replace(" para ", " para ");
 		}
 		return text;
 	}

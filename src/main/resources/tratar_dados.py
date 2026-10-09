@@ -10,11 +10,20 @@ traducoes = {}
 def eprint(arg): print(arg, file=sys.stderr)
 
 marcas = []
+#maxlen = 0
 with open('marcas.txt') as fileID:
 	for marca in fileID.readlines():
 		marca = marca.strip().lower()
 		if marca and marca not in marcas:
 			marcas.append(marca)
+#			if len(marca)>maxlen: maxlen = len(marca)
+#marcas = sorted(marcas)
+#while maxlen>0:
+#	for marca in marcas:
+#		if len(marca)==maxlen:
+#			print(marca)
+#	maxlen -= 1
+#exit()
 
 with open('traducoes.txt') as fileID:
 	for line in fileID.readlines():
@@ -33,6 +42,12 @@ for line in fileID1.readlines()[1:] + fileID2.readlines()[1:]:
 	valorMedida = ''
 	produto = ''
 	marca = ''
+	if 'leve' in descricao and 'pague' in descricao:
+		descricao = re.sub(' leve (.*) pague [^ ]+', ' \\1', descricao)
+	descricao = descricao.replace('  ', ' ')+' '
+	for key in traducoes:
+		descricao = descricao.replace(key, traducoes[key])
+	descricao = descricao.strip().replace('  ', ' ')
 	for m in marcas:
 		if m in descricao: # teste rápido para agilizar o processamento
 			if re.match(r'.*\b'+m+r'\b.*', descricao):
@@ -44,14 +59,6 @@ for line in fileID1.readlines()[1:] + fileID2.readlines()[1:]:
 #		if marca:
 #			marcas.append(marca)
 #		print(len(marcas), sorted(marcas))
-	if medida=='unidades':
-		medida = 'un'
-	if 'leve' in descricao and 'pague' in descricao:
-		descricao = re.sub(' leve (.*) pague [^ ]+', ' \\1', descricao)
-	descricao = descricao.replace('  ', ' ')+' '
-	for key in traducoes:
-		descricao = descricao.replace(key, traducoes[key])
-	descricao = descricao.strip().replace('  ', ' ')
 	for medida in medidas:
 		if re.match('.*?[0-9,\\.]+'+medida+r'\b.*', descricao): # para casos como 310ml
 			produto = re.sub('(.*?) [0-9,\\.]+'+medida+r'\b.*', '\\1', descricao)
@@ -76,7 +83,7 @@ for line in fileID1.readlines()[1:] + fileID2.readlines()[1:]:
 			valorMedida = '1'
 			medida = 'un'
 
-	produto = produto.title().replace(' E ', ' e ').replace(' De ', ' de ').replace(' Em ', ' em ').replace(' Com ', ' com ').replace(' Sem ', ' sem ').replace(' Para ', ' para ')
+	produto = produto.title().replace(' E ', ' e ').replace(' Da ', ' da ').replace(' De ', ' de ').replace(' Do ', ' do ').replace(' Em ', ' em ').replace(' Com ', ' com ').replace(' Sem ', ' sem ').replace(' Para ', ' para ')
 
 	medida = medida.replace('l', 'L').replace('gr','g').replace('unidades', 'un').replace('unidade', 'un')
 	valorMedida = valorMedida.replace(',', '.')
