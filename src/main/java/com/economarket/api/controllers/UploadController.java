@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,15 +20,15 @@ import org.springframework.web.multipart.MultipartFile;
 import com.economarket.api.scrapers.LerDados;
 
 @RestController
-@RequestMapping("/files")
+@RequestMapping("/upload")
 @CrossOrigin(origins = "*")
 public class UploadController {
 	@Autowired
 	LerDados lerDados;
 	public Date data = new Date();
 
-	@PostMapping("/upload")
-	public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
+	@PostMapping("/{mercado}")
+	public ResponseEntity<String> uploadFile(@PathVariable String mercado, @RequestParam("file") MultipartFile file) {
 // Validar arquivo
 		if (file.isEmpty()) {
 			return ResponseEntity.badRequest().body("Nenhum arquivo informado");
@@ -40,7 +41,7 @@ public class UploadController {
 			if (!dir.exists()) dir.mkdirs();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			String dateString = formatter.format(data);
-			File savedFile = new File(dir, dateString+ " Koch.csv"); //file.getOriginalFilename()); // TODO salvar como idMercado+data.csv
+			File savedFile = new File(dir, dateString+ " " + mercado + ".csv"); //file.getOriginalFilename()); // TODO salvar como idMercado+data.csv
 			file.transferTo(savedFile);
 			lerDados.lerCSV(savedFile.getAbsolutePath());
 			return ResponseEntity.ok("Arquivo enviado com sucesso: " + savedFile.getAbsolutePath());
