@@ -72,6 +72,7 @@ la linda
 portillo
 toro centenário
 anima thera
+thera
 joaquim
 villa francioni
 lagar
@@ -86,7 +87,6 @@ alamos
 nederburg
 cobos felino
 acquasantiera
-thera
 bodega re
 casaletto
 don luciano
@@ -114,7 +114,6 @@ kislla
 ciroc
 grey goose
 orloff
-presidente
 rajska
 skyy
 ballantines
@@ -149,8 +148,7 @@ panizzon
 mitto
 seu divino
 tralala
-head shoulders
-head e shoulders
+head 7 shoulders
 de marchi
 oceani
 pioneiro
@@ -212,7 +210,6 @@ frimesa
 ki carvão
 nugget
 afetto
-floção
 flocão
 rosa branca
 sudoeste
@@ -250,29 +247,22 @@ drebys
 nadir
 polli brilho
 beautycolor
-beauty color
 beauty
 biocolor
 garnier
 imedia excellence
 darling
-risque
 risqué
-eudora siage
 eudora siàge
 siàge
 charming
 karina
 kolene
 niely gold
-mr musculo
 mr músculo
 mencare
-nivea
 nívea
-tresemme
 tresemmé
-loreal
 loréal paris
 loréal
 patagonia
@@ -300,7 +290,6 @@ vieira
 rei da brasa
 pacal
 são francisco de assis
-sao franscisco de assis
 aquafast
 pettiz
 maiscerta
@@ -312,14 +301,12 @@ rosana
 diana
 predilecta
 soeto
-elege
 glade
 fruki
 frisco
 ipiranga
 bel lar
 juréia
-jureia
 dog chow
 dtalia
 bompack
@@ -333,9 +320,9 @@ são vicente
 lasaroli
 tirolez
 el maestro
-president
+presidente
+président
 br spices
-br spice
 mastroiani
 purilev
 alecrim
@@ -343,10 +330,8 @@ sadia
 sadia speciale
 sadia bio
 duçula
-président
 heinig
 coamo
-coca cola
 coca-cola
 sprite
 giassi
@@ -354,7 +339,6 @@ tio jõao
 tio urbano
 urbano
 caldo bom
-caldao
 caldão
 kiarroz
 camil
@@ -373,17 +357,13 @@ parati
 germani
 nordeste
 fleischmann
-dr oetker
 dr. oetker
 oetker
 royal
 quaker
-nestle
 nestlé
 união
 melitta
-pilao
-pilâo
 pilão
 3 corações
 caboclo
@@ -456,8 +436,6 @@ duetto
 !waaw!
 7 belo
 7 montes
-8 galo
-8galo
 a tal da castanha
 adidas
 adocyl
@@ -485,7 +463,6 @@ barion
 barista
 becel
 becker
-beija flor
 beija-flor
 beijubom
 bellacotton
@@ -514,7 +491,6 @@ butter toffees
 búfalo dourado
 calisul
 campanini
-canlção
 canção
 carbonell
 carefree
@@ -526,7 +502,6 @@ chambinho
 chamex
 chamyto
 chandelle
-chandele
 cheetos
 cheez-it
 chelli
@@ -535,7 +510,6 @@ choco leite
 chocolícia
 chácara turnes
 cica
-cif
 cisne
 claybom
 clear
@@ -562,10 +536,8 @@ cottonbaby
 crinkle
 cristalcopo
 crocantíssimo
-crokíssimi
 crokíssimo
 crunch
-cruzilia
 cruzília
 cultura orgânica
 cup noodles
@@ -573,13 +545,11 @@ da boa
 da colônia
 da márcia
 daboa
-dacolônia
 damasco
 danette
 danubio
 daoli
 dauvan
-delicia
 delícia
 destac
 devile
@@ -587,7 +557,7 @@ dihellen
 dipães
 doces caseiros sorocaba
 dois frades
-dois irmaos
+dois irmãos
 dom bruno
 dom fiorelo
 dona dida
@@ -654,21 +624,15 @@ h2oh!
 harpic
 heineken
 heinz
-hellmans
-hellmanns
 hellmann's
-hellmann´s
 hemmer
 henner
 hersheys
 hershey's
-hershey´s
 hoffmann
-holandes
 holandês
 hort silva
 horta zanolli
-hortalicas silva
 hortaliças silva
 hortazanolli
 ideale
@@ -680,13 +644,10 @@ itaipava
 jimo
 johnson & johnson
 johnson's baby
-johnson´s baby
 joice
 kalassi
 kanty
-kellog's
 kellogg's
-kellogg´s
 kenko
 kero coco
 ki-carvão
@@ -699,13 +660,11 @@ kleenex
 knorr
 sazon
 mais sabor
-l´or
 l'or
 la española
 la nonna
 la pastina
 la serenissima
-lac lelo
 lac lélo
 lay's
 leite niño
@@ -759,7 +718,6 @@ mu-mu
 muky
 mãe terra
 nat verde
-nat
 nescafé
 nesfit
 neumann
@@ -866,7 +824,6 @@ santa rita
 sazón
 schmitt
 schär
-scotch-brite
 scott
 seda
 sempre livre
@@ -1008,14 +965,12 @@ cajovil
 kuka
 panine
 ana júlia
-tra la la
 trá lá lá
 johnsons baby
 johnsons
 huggies
 plasvale
-plaustil
-plasutil
+plasútil
 ponjita
 anjinho
 hipoglós
@@ -1034,7 +989,6 @@ rap 10
 mentus
 pulman
 ta pronto
-3coracoes
 copag
 hot wheels
 regina
@@ -1101,7 +1055,6 @@ kichef
 guidali
 taumer
 michelon
-plasútil
 martiplas
 são gabriel
 catarinense
@@ -1111,12 +1064,9 @@ bon gourmet
 break
 trium
 zamac
-plaústil
 termolar
 pasabahce
 multiflon
-scoth brite
-scocth-b
 marinex
 wolff
 wolf
@@ -1302,7 +1252,6 @@ calipso
 casaredo
 piccinini
 yupi
-pomodori
 bravo
 chilliboy
 tabasco
@@ -1316,7 +1265,6 @@ fandangos
 mais pura
 panetini
 santa helena
-dr oekter
 ki fritas
 mosmann
 liguori
@@ -1427,7 +1375,6 @@ secret
 tenys
 giovanna baby
 cbskin
-old spic
 paixão
 belliz
 veet
@@ -1447,7 +1394,6 @@ salon
 casting
 neutrox
 glycolic force
-head  shoulders
 soul power
 eu sou
 sensodyn
@@ -1518,11 +1464,12 @@ lar
 fini
 lor
 bibs
-mms
 karo
 bmh
 raid
 buss
 jcw
 enox
+cif
+nat
 ox

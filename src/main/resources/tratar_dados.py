@@ -46,12 +46,12 @@ for line in fileID1.readlines()[1:] + fileID2.readlines()[1:]:
 #		print(len(marcas), sorted(marcas))
 	if medida=='unidades':
 		medida = 'un'
-	marca = marca.replace('´', "'").replace('`', "'")
-	descricao = descricao.replace('  ', ' ').replace(' leve mais pague menos', '').replace(' leve mais pague manos', '').replace(' leve pague -', '')
-	descricao = descricao.replace('130g', ' 130g').replace('450ml', ' 450ml').replace('700ml', ' 700ml').replace('c/', '').replace('vidro', 'vidro ').replace(' pó', ' pó ').replace('  ', ' ')
-	descricao = descricao.replace(' com1', ' 1').replace(' com 1', ' 1').replace(' com 2', ' 2').replace(' com 3', ' 3').replace(' com 4', ' 4').replace(' com 5', ' 5').replace(' com 6', ' 6').replace(' com 7', ' 7').replace(' com 8', ' 8').replace(' com 9', ' 9')
 	if 'leve' in descricao and 'pague' in descricao:
 		descricao = re.sub(' leve (.*) pague [^ ]+', ' \\1', descricao)
+	descricao = descricao.replace('  ', ' ')+' '
+	for key in traducoes:
+		descricao = descricao.replace(key, traducoes[key])
+	descricao = descricao.strip().replace('  ', ' ')
 	for medida in medidas:
 		if re.match('.*?[0-9,\\.]+'+medida+r'\b.*', descricao): # para casos como 310ml
 			produto = re.sub('(.*?) [0-9,\\.]+'+medida+r'\b.*', '\\1', descricao)
@@ -76,10 +76,6 @@ for line in fileID1.readlines()[1:] + fileID2.readlines()[1:]:
 			valorMedida = '1'
 			medida = 'un'
 
-	produto = produto+' '
-	for key in traducoes:
-		produto = produto.replace(key, traducoes[key])
-	produto = produto.strip()
 	produto = produto.title().replace(' E ', ' e ').replace(' De ', ' de ').replace(' Em ', ' em ').replace(' Com ', ' com ').replace(' Sem ', ' sem ').replace(' Para ', ' para ')
 
 	medida = medida.replace('l', 'L').replace('gr','g').replace('unidades', 'un').replace('unidade', 'un')
