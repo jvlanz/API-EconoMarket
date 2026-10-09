@@ -35,6 +35,10 @@ import com.economarket.api.services.ProdutoMarcaService;
 import com.economarket.api.services.ProdutoService;
 import com.economarket.api.services.PromocaoService;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
 @Component
 public class LerDados {
 	@Autowired
@@ -168,44 +172,50 @@ public class LerDados {
 		List<String[]> traducoes = new ArrayList<>();
 		List<Marca> marcas = marcaService.consultar();
 
-		try {
-			String tradFile = System.getProperty("user.dir") + "/src/main/resources/traducoes.txt";
-			if (Files.exists(Path.of(tradFile))) {
-				String linha = Files.readString(Path.of(tradFile));
-				traducoes.add(linha.replace("\n", "").split("|"));
+		String linha;
+		String tradFile = System.getProperty("user.dir") + "/src/main/resources/traducoes.txt";
+		try (BufferedReader reader = new BufferedReader(
+				new FileReader(tradFile, StandardCharsets.UTF_8))) {
+			while ((linha = reader.readLine()) != null) {
+				traducoes.add(linha.replace("\n", "").split("\\|"));
 			}
 		} catch (IOException e) {
-			System.err.println("Error ao ler " + Path.of("traducoes.txt"));
+			System.err.println("Erro ao ler " + Path.of("traducoes.txt"));
 		}
 
-		String linha;
-		try (BufferedReader reader = new BufferedReader(
-				new FileReader(csvFile, StandardCharsets.UTF_8))) {
+		try (CSVParser parser = CSVParser.parse(Path.of(csvFile), StandardCharsets.UTF_8, CSVFormat.DEFAULT)) {
 			boolean primeiraLinha = true;
-			while ((linha = reader.readLine()) != null) {
+			for (CSVRecord registro : parser) {
 				if (primeiraLinha) {
 					primeiraLinha = false;
 					continue;
 				}
-// remover ',' entre aspas duplas, e então remover aspas, mantendo ',' como delimitador de campos; permite ler arquivos/campos com ou sem aspas duplas
-				linha = linha.replaceAll("\"([^\"]+),([^\"]+)\"","$1^virgula^$2").replaceAll("\"","");
-				String[] parts = linha.split("\",\"");
 // id, descricao, preco, ...
-				if (parts.length < 3) continue;
-				float preco = Float.parseFloat(parts[2].replace("\"", ""));
-				String descricao = parts[1].replace("\"", "").replaceAll("  ", " ").toLowerCase()+" ";
+				if (registro.size() < 3) continue;
+				float preco = Float.parseFloat(registro.get(2).replace("\"", ""));
+				String descricao = registro.get(1).replace("\"", "").replaceAll("  ", " ").toLowerCase()+" ";
 				String medida = "";
 				String valorMedida = "";
 				String produto = "";
 				String marca = "";
 				String categoria = "";
-				if (parts.length < 5)
-					categoria = parts[5].split(" >")[0].replace("\"", "");
+				if (registro.size() > 5)
+					categoria = registro.get(5).split(" >")[0].replace("\"", "");
+				if (categoria.equals("Eletro")) continue;
+				if (categoria.equals("Bebidas Alcoólicas")) categoria = "Bebidas";
+				if (categoria.equals("Casa & Utilidades")) categoria = "Utilidades";
+				if (categoria.equals("Padaria & Confeitaria")) categoria = "Padaria";
+				if (categoria.equals("Pet Care")) categoria = "Pets";
+				categoria = categoria.replace("&", "e");
 
 				if (descricao.contains("leve") && descricao.contains("pague"))
 					descricao = descricao.replaceAll(" leve (.*) pague [^ ]*", "$1");
-				for (String[] trad : traducoes)
-					descricao = descricao.replaceAll(trad[0], trad[1]);
+				for (String[] trad : traducoes) {
+					if (trad.length>1)
+						descricao = descricao.replaceAll(trad[0], trad[1]);
+					else
+						descricao = descricao.replaceAll(trad[0], "");
+				}
 				descricao = descricao.replaceAll("  ", " ");
 
 				for (Marca mar : marcas) {
@@ -217,12 +227,12 @@ public class LerDados {
 				}
 
 				for (String m : medidas) {
-					if (Pattern.matches(".*?[0-9,\\.]+" + m + "\\b.*", descricao)) {
+					if (Pattern.matches(".*? [0-9,\\.]+" + m + "\\b.*", descricao)) {
 						produto = descricao.replaceAll("(.*?) [0-9,\\.]+" + m + "\\b.*", "$1");
 						valorMedida = descricao.replaceAll(".*? ([0-9,\\.]+)" + m + "\\b.*", "$1");
 						medida = m;
 						break;
-					} else if (Pattern.matches(".*?[0-9,\\.]+ " + m + "\\b.*", descricao)) {
+					} else if (Pattern.matches(".*? [0-9,\\.]+ " + m + "\\b.*", descricao)) {
 						produto = descricao.replaceAll("(.*?) [0-9,\\.]+ " + m + "\\b.*", "$1");
 						valorMedida = descricao.replaceAll(".*? ([0-9,\\.]+) " + m + "\\b.*", "$1");
 						medida = m;
@@ -240,7 +250,8 @@ public class LerDados {
 						produto = descricao.replaceAll("(.*) [0-9]+ .*", "$1");
 						valorMedida = descricao.replaceAll(".* ([0-9]+) .*", "$1");
 						medida = descricao.replaceAll(".* [0-9]+ ([^ ]*).*", "$1");
-						medidas.add(medida);
+						if (!medidas.contains(medida)) // unidade estranha, ou vazia
+							medida = "un";
 					} else {
 						produto = descricao;
 						valorMedida = "1";
@@ -253,10 +264,10 @@ public class LerDados {
 				medida = medida.replace('l', 'L').replace("gr", "g").replace("unidades", "un").replace("unidade", "un");
 				valorMedida = valorMedida.replace(',', '.');
 
-				lerDados(descricao, marca, categoria, medida, Float.parseFloat(valorMedida), preco, mercado);
+				lerDados(produto, marca, categoria, medida, Float.parseFloat(valorMedida), preco, mercado);
 			}
 		} catch (IOException e) {
-			System.err.println("Error ao ler arquivo: " + e.getMessage());
+			System.err.println("Erro ao ler arquivo: " + e.getMessage());
 		}
 	}
 
