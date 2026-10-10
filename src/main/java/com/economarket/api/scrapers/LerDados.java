@@ -25,11 +25,13 @@ import com.economarket.api.dto.ProdutoRequest;
 import com.economarket.api.dto.PromocaoRequest;
 import com.economarket.api.entities.Categoria;
 import com.economarket.api.entities.Marca;
+import com.economarket.api.entities.Mercado;
 import com.economarket.api.entities.Preco;
 import com.economarket.api.entities.Produto;
 import com.economarket.api.entities.ProdutoMarca;
 import com.economarket.api.services.CategoriaService;
 import com.economarket.api.services.MarcaService;
+import com.economarket.api.services.MercadoService;
 import com.economarket.api.services.PrecoService;
 import com.economarket.api.services.ProdutoMarcaService;
 import com.economarket.api.services.ProdutoService;
@@ -50,25 +52,81 @@ public class LerDados {
 	@Autowired
 	ProdutoMarcaService produtoMarcaService;
 	@Autowired
+	MercadoService mercadoService;
+	@Autowired
 	PrecoService precoService;
 	@Autowired
 	PromocaoService promocaoService;
+
+	List<Produto> produtos;
+	List<Marca> marcas;
+	List<Categoria> categorias;
+	List<ProdutoMarca> produtoMarcas;
+	List<Mercado> mercados;
+	List<Preco> precos;
+	Date data = new Date();
+
+/*
+	private final ProdutoService produtoService;
+	private final MarcaService marcaService;
+	private final CategoriaService categoriaService;
+	private final ProdutoMarcaService produtoMarcaService;
+	private final MercadoService mercadoService;
+	private final PrecoService precoService;
+	private final PromocaoService promocaoService;
+	private final List<Produto> produtos;
+	private final List<Marca> marcas;
+	private final List<Categoria> categorias;
+	private final List<ProdutoMarca> produtoMarcas;
+	private final List<Mercado> mercados;
+	private final List<Preco> precos;
 	public Date data = new Date();
 
+	public LerDados(
+		ProdutoService produtoService,
+		MarcaService marcaService,
+		CategoriaService categoriaService,
+		ProdutoMarcaService produtoMarcaService,
+		MercadoService mercadoService,
+		PrecoService precoService,
+		PromocaoService promocaoService
+	) {
+		this.produtoService = produtoService;
+		this.marcaService = marcaService;
+		this.categoriaService = categoriaService;
+		this.produtoMarcaService = produtoMarcaService;
+		this.mercadoService = mercadoService;
+		this.precoService = precoService;
+		this.promocaoService = promocaoService;
+		this.produtos = produtoService.consultar();
+		this.marcas = marcaService.consultar();
+		this.categorias = categoriaService.consultar();
+		this.produtoMarcas = produtoMarcaService.consultar();
+		this.mercados = mercadoService.consultar();
+		this.precos = precoService.consultar();
+	}
+*/
 
 
 	public void lerDados(String descricao, String marca, String categoria, String medida, Float valorMedida, Float preco, String mercado) {
-		Long idProduto = 1L;
-		Long idCategoria = 1L; // id=1 para categoria=""
-		Long idMarca = 1L;
-		Long idProdutoMarca = 1L;
+		Long idProduto = 0L;
+		Long idCategoria = 1L; // default=""
+		Long idMarca = 0L;
+		Long idProdutoMarca = 0L;
 		Long idMercado = 1L;
-		System.out.println("ADICIONAR PRODUTO: "+descricao+", "+marca+", "+categoria+", "+medida+", "+valorMedida+", "+preco+", "+idMercado+", "+data);
+		System.out.println("ADICIONAR PRODUTO: "+descricao+", "+marca+", "+categoria+", "+medida+", "+valorMedida+", "+preco+", "+mercado+", "+data);
+
+// checar mercados; senão, default=1; PENSAR NO CASO de inserir novos mercados via frontend (basta colocar outros inputs)
+		for (Mercado mercadoDB : mercados) {
+			if (mercadoDB.getNome().equals(mercado)) {
+				idMercado = mercadoDB.getId();
+				break;
+			}
+		}
 
 // checar se categoria existe; senão manter categoria ""
 		Categoria novaCategoria = new Categoria();
 		novaCategoria.setCategoria(categoria);
-		List<Categoria> categorias = categoriaService.consultar();
 		for (Categoria categoriaDB : categorias) {
 			if (categoriaDB.getCategoria().equals(categoria)) {
 //				novaCategoria.setId(categoriaDB.getId());
@@ -78,7 +136,7 @@ public class LerDados {
 		}
 //		idCategoria = categoriaService.salvar(novaCategoria).getId();
 		if (idCategoria==1L) // se categoria não for reconhecida
-			categoria = "";
+			System.out.println("Categoria não reconhecida: "+categoria);
 
 // checar se produto existe; senão criar um; obter idProduto; precisa DTO
 		ProdutoRequest produtoRequest = new ProdutoRequest();
@@ -89,12 +147,12 @@ public class LerDados {
 		produtoRequest.setPrecoMin(preco);
 		produtoRequest.setPrecoMax(preco);
 		produtoRequest.setFigura(descricao.split(" ")[0].toLowerCase()+".jpg");
-		List<Produto> produtos = produtoService.consultar();
 		for (Produto produtoDB : produtos) {
-			if (produtoDB.getDescricao().toLowerCase().equals(descricao.toLowerCase())) {
+			if (produtoDB.getDescricao().toLowerCase().equals(descricao.toLowerCase()) && produtoDB.getValorMedida().equals(produtoRequest.getValorMedida())) {
+				idProduto = produtoDB.getId();
 				produtoRequest.setId(produtoDB.getId());
 				produtoRequest.setIdCategoria(produtoDB.getCategoria().getId());
-				categoria = produtoDB.getCategoria().getCategoria();
+//				categoria = produtoDB.getCategoria().getCategoria();
 				produtoRequest.setFigura(produtoDB.getFigura());
 				produtoRequest.setPrecoMin(produtoDB.getPrecoMin());
 				produtoRequest.setPrecoMax(produtoDB.getPrecoMax());
@@ -103,46 +161,58 @@ public class LerDados {
 				break;
 			}
 		}
-		idProduto = produtoService.salvar(produtoRequest).getId();
+		if (idProduto==0L) {
+			Produto produtoDB = produtoService.salvar(produtoRequest);
+			idProduto = produtoDB.getId();
+			produtos.add(produtoDB);
+		} else {
+			produtoService.alterar(idProduto, produtoRequest); // precisa salvar sempre, para atualizar a faixa de preços
+		}
 
 // checar se marca existe; senão criar uma; obter idMarca
 		Marca novaMarca = new Marca();
 		novaMarca.setMarca(marca);
-		List<Marca> marcas = marcaService.consultar();
 		for (Marca marcaDB : marcas) {
 			if (marcaDB.getMarca().toLowerCase().equals(marca.toLowerCase())) {
-				novaMarca.setId(marcaDB.getId());
+				idMarca = marcaDB.getId();
 				break;
 			}
 		}
-		idMarca = marcaService.salvar(novaMarca).getId();
+		if (idMarca==0L) {
+			Marca marcaDB = marcaService.salvar(novaMarca);
+			marcas.add(marcaDB);
+			idMarca = marcaDB.getId();
+		}
 
 // checar se produtoMarca existe; senão criar um; obter idProdutoMarca; precisa DTO
 		ProdutoMarcaRequest produtoMarcaRequest = new ProdutoMarcaRequest();
 		produtoMarcaRequest.setIdProduto(idProduto);
 		produtoMarcaRequest.setIdMarca(idMarca);
-		List<ProdutoMarca> produtoMarcas = produtoMarcaService.consultar();
 		for (ProdutoMarca produtoMarcaDB : produtoMarcas) {
 			if (produtoMarcaDB.getProduto().getId()==idProduto
 					&& produtoMarcaDB.getMarca().getId()==idMarca) {
-				produtoMarcaRequest.setId(produtoMarcaDB.getId());
+				idProdutoMarca = produtoMarcaDB.getId();
 				break;
 			}
 		}
 // usar marca=categoria para marcar novos produtos (sem marca) que requerem revisão
-	//	if (marca.equals("") && produtoMarcaRequest.getId()==null) {
-	//		Marca tempMarca = new Marca();
-	//		tempMarca.setMarca(marca);
-	//		for (Marca marcaDB : marcas) { // marcas já foram lidas acima
-	//			if (marcaDB.getMarca().toLowerCase().equals(marca.toLowerCase())) {
-	//				tempMarca.setId(marcaDB.getId());
-	//				break;
-	//			}
-	//		}
-	//		produtoMarcaRequest.setIdMarca(marcaService.salvar(tempMarca).getId());
-	//	}
+//		if (marca.equals("") && produtoMarcaRequest.getId()==null) {
+//			Marca tempMarca = new Marca();
+//			tempMarca.setMarca(marca);
+//			for (Marca marcaDB : marcas) { // marcas já foram lidas acima
+//				if (marcaDB.getMarca().toLowerCase().equals(marca.toLowerCase())) {
+//					tempMarca.setId(marcaDB.getId());
+//					break;
+//				}
+//			}
+//			produtoMarcaRequest.setIdMarca(marcaService.salvar(tempMarca).getId());
+//		}
 // enfim, gravar novo produtoMarca
-		idProdutoMarca = produtoMarcaService.salvar(produtoMarcaRequest).getId();
+		if (idProdutoMarca==0L) {
+			ProdutoMarca produtoMarcaDB = produtoMarcaService.salvar(produtoMarcaRequest);
+			produtoMarcas.add(produtoMarcaDB);
+			idProdutoMarca = produtoMarcaDB.getId();
+		}
 
 // checar se produtoMarca existe em mercado; senão criar um; obter idPreco; precisa DTO
 		PrecoRequest precoRequest = new PrecoRequest();
@@ -150,7 +220,6 @@ public class LerDados {
 		precoRequest.setIdMercado(idMercado);
 		precoRequest.setPreco(preco);
 		precoRequest.setData(data);
-		List<Preco> precos = precoService.consultar();
 		for (Preco precoDB : precos) {
 			if (precoDB.getProdutoMarca().getId()==idProdutoMarca && precoDB.getMercado().getId()==idMercado) {
 				if (preco<precoDB.getPreco()*0.85) { // preço ao menos 15% menor = promoção
@@ -158,7 +227,7 @@ public class LerDados {
 					promocaoRequest.setIdPreco(precoDB.getId());
 					promocaoService.salvar(promocaoRequest);   // TODO limpar promoções antes de ler valores diários
 				}
-				precoRequest.setId(precoDB.getId());
+//				precoRequest.setId(precoDB.getId());
 				break;
 			}
 		}
@@ -168,9 +237,15 @@ public class LerDados {
 
 
 	public void lerCSV(String mercado, String csvFile) {
+		produtos = produtoService.consultar();
+		marcas = marcaService.consultar();
+		categorias = categoriaService.consultar();
+		produtoMarcas = produtoMarcaService.consultar();
+		mercados = mercadoService.consultar();
+		precos = precoService.consultar();
 		List<String> medidas = new ArrayList<>(Arrays.asList("ml", "l", "kg", "gr", "g", "unidades", "unidade", "un"));
 		List<String[]> traducoes = new ArrayList<>();
-		List<Marca> marcas = marcaService.consultar();
+		data = new Date();
 
 		String linha;
 		String tradFile = System.getProperty("user.dir") + "/src/main/resources/dicionario_produtos.txt";
@@ -190,7 +265,7 @@ public class LerDados {
 					primeiraLinha = false;
 					continue;
 				}
-// id, descricao, preco, ...
+// id, descricao, preco, ..., ..., categoria
 				if (registro.size() < 3) continue;
 				float preco = Float.parseFloat(registro.get(2).replace("\"", ""));
 				String descricao = registro.get(1).replace("\"", "").replaceAll("  ", " ").toLowerCase()+" ";
