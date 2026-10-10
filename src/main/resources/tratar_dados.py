@@ -25,7 +25,7 @@ with open('marcas.txt') as fileID:
 #	maxlen -= 1
 #exit()
 
-with open('traducoes.txt') as fileID:
+with open('dicionario_produtos.txt') as fileID:
 	for line in fileID.readlines():
 		if line.strip() and line[0]!='#':
 			traducoes[line.split('|')[0].lower()] = line.split('|')[1].strip('\n').lower()

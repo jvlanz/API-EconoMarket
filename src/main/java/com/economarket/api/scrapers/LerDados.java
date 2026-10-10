@@ -173,14 +173,14 @@ public class LerDados {
 		List<Marca> marcas = marcaService.consultar();
 
 		String linha;
-		String tradFile = System.getProperty("user.dir") + "/src/main/resources/traducoes.txt";
+		String tradFile = System.getProperty("user.dir") + "/src/main/resources/dicionario_produtos.txt";
 		try (BufferedReader reader = new BufferedReader(
 				new FileReader(tradFile, StandardCharsets.UTF_8))) {
 			while ((linha = reader.readLine()) != null) {
 				traducoes.add(linha.replace("\n", "").split("\\|"));
 			}
 		} catch (IOException e) {
-			System.err.println("Erro ao ler " + Path.of("traducoes.txt"));
+			System.err.println("Erro ao ler " + Path.of(tradFile));
 		}
 
 		try (CSVParser parser = CSVParser.parse(Path.of(csvFile), StandardCharsets.UTF_8, CSVFormat.DEFAULT)) {
@@ -219,9 +219,11 @@ public class LerDados {
 				descricao = descricao.replaceAll("  ", " ");
 
 				for (Marca mar : marcas) {
-					if (descricao.contains(mar.getMarca().toLowerCase())) {
+//					if (!marca.isEmpty() && descricao.contains("\\b"+mar.getMarca().toLowerCase())+"\\b") {
+					String novaDescricao = descricao.replaceAll("\\b" + mar.getMarca().toLowerCase() + "\\b", "");
+					if (! novaDescricao.equals(descricao)) {
 						marca = mar.getMarca().toLowerCase();
-						descricao = descricao.replaceAll("\\b" + marca + "\\b", "");
+						descricao = novaDescricao;
 						break;
 					}
 				}

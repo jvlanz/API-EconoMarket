@@ -1445,7 +1445,6 @@ Lar
 Lor
 Lux
 Mat
-Mor
 Mór
 Nat
 Off
@@ -1460,7 +1459,6 @@ Suq
 Uno
 Vim
 Yaí
-Ype
 Ypê
 3M
 51

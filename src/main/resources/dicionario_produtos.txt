@@ -49,6 +49,8 @@ scoth brite|scotch brite
 3coracoes|3corações
 pomodori|pomodoro
 mms|m&m's
+mor|mór
+ype|ypê
 ´|'
 `|'
  leve mais pague menos|
@@ -90,7 +92,7 @@ vidro|vidro
  fracionado|
  cunha|
  pague|
- leve|
+ leve | 
 sabão barra|sabão em barra
 refri |refrigerante 
 refresco em pó|refresco
