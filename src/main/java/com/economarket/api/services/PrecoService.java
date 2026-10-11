@@ -53,6 +53,7 @@ public class PrecoService {
 		Preco preco = new Preco();
 		preco.setProdutoMarca(produtoMarca);
 		preco.setMercado(mercado);
+		preco.setData(request.getData());
 		preco.setPreco(request.getPreco());
 		precoRepository.save(preco);
 		return preco;

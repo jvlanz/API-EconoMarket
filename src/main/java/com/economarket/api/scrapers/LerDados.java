@@ -64,7 +64,7 @@ public class LerDados {
 	List<ProdutoMarca> produtoMarcas;
 	List<Mercado> mercados;
 	List<Preco> precos;
-	Date data = new Date();
+	Date data;
 
 /*
 	private final ProdutoService produtoService;
@@ -245,7 +245,7 @@ public class LerDados {
 		precos = precoService.consultar();
 		List<String> medidas = new ArrayList<>(Arrays.asList("ml", "l", "kg", "gr", "g", "unidades", "unidade", "un"));
 		List<String[]> traducoes = new ArrayList<>();
-		data = new Date();
+		data = new Date(System.currentTimeMillis());
 
 		String linha;
 		String tradFile = System.getProperty("user.dir") + "/src/main/resources/dicionario_produtos.txt";
@@ -360,7 +360,10 @@ public class LerDados {
 				}
 			}
 			text = sb.toString().trim();
-			text = text.replace(" E ", " e ").replace(" Da ", " da ").replace(" De ", " de ").replace(" Do ", " do ").replace(" Em ", " em ").replace(" Com ", " com ").replace(" Sem ", " sem ").replace(" para ", " para ");
+			text = text.replace(" E ", " e ") //.replace(" A ", " a ")
+				.replace(" Da ", " da ").replace(" De ", " de ").replace(" Do ", " do ")
+				.replace(" Com ", " com ").replace(" Sem ", " sem ")
+				.replace(" Em ", " em ").replace(" para ", " para ");
 		}
 		return text;
 	}
