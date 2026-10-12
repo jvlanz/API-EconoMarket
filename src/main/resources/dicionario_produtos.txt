@@ -71,6 +71,15 @@ vidro|vidro
  com7| 7
  com8| 8
  com9| 9
+ com 1| 1
+ com 2| 2
+ com 3| 3
+ com 4| 4
+ com 5| 5
+ com 6| 6
+ com 7| 7
+ com 8| 8
+ com 9| 9
  pacote| 
  frasco|
  squeeze|
