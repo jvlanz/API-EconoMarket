@@ -77,7 +77,8 @@ public class PrecoService {
 			if (pre.getProdutoMarca().getProduto().getId()==id) {
 				if (pre.getData().after(desde)) { // adicionar apenas preços recentes, i.e. no máximo de 1 semana atrás
 					for (Preco ppre : precos) { // remover preços repetidos, mais antigos; considera que ids menores referem-se a datas anteriores
-						if (ppre.getId()==pre.getId()) {
+						if (ppre.getProdutoMarca().getId()==pre.getProdutoMarca().getId()
+								&& ppre.getMercado().getId()==pre.getMercado().getId()) {
 							precos.remove(ppre);
 						}
 					}
