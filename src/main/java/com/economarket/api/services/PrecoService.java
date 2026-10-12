@@ -1,5 +1,6 @@
 package com.economarket.api.services;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -68,12 +69,20 @@ public class PrecoService {
 		return pre;
 	}
 	public List<Preco> consultarPrecos(Long id) {
-//		LocalDate hoje = new LocalDate();
+		Date desde = new Date();
+		desde.setTime(desde.getTime() - 7L * 24 * 60 * 60 * 1000); // limitar preços de 7 dias atrás
 		List<Preco> precos = new ArrayList<Preco>();
 //		for(Preco pre : precoRepository.findByData(hoje)) {
 		for(Preco pre : precoRepository.findAll()) {
 			if (pre.getProdutoMarca().getProduto().getId()==id) {
-				precos.add(pre);
+				if (pre.getData().after(desde)) { // adicionar apenas preços recentes, i.e. no máximo de 1 semana atrás
+					for (Preco ppre : precos) { // remover preços repetidos, mais antigos; considera que ids menores referem-se a datas anteriores
+						if (ppre.getId()==pre.getId()) {
+							precos.remove(ppre);
+						}
+					}
+					precos.add(pre);
+				}
 			}
 		}
 		return precos;
