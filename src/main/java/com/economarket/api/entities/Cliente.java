@@ -1,6 +1,7 @@
 package com.economarket.api.entities;
 
 import java.util.List;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,6 +41,8 @@ public class Cliente {
 	@JsonManagedReference
 	private List<Favorito> favoritos;
 	private String role;
+	private Date assinatura;
+
 	public Long getId() {
 		return id;
 	}
@@ -84,6 +87,12 @@ public class Cliente {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public Date getAssinatura() {
+		return assinatura;
+	}
+	public void setAssinatura(Date assinatura) {
+		this.assinatura = assinatura;
 	}
 	
 }

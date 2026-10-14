@@ -29,7 +29,7 @@ insert into mercado (nome, link) values ('Atacadão', 'https://www.atacadao.com.
 -- ==========================================
 -- 3. CLIENTES (20 entradas)
 -- ==========================================
-insert into cliente (nome, email, senha, telefone, role) values ('admin', 'admin@economarket', '$2a$10$By15wuMJUs6/Qbcf73UvDu0G.n7QVVxfEzM1j4M.lvUUkVDw2YV3S', '', 'ADMIN');
+insert into cliente (nome, email, senha, telefone, role, assinatura) values ('admin', 'admin@economarket', '$2a$10$By15wuMJUs6/Qbcf73UvDu0G.n7QVVxfEzM1j4M.lvUUkVDw2YV3S', '', 'ADMIN', '2030-12-31');
 --insert into cliente (nome, email, senha, telefone, role) values ('admin', 'igorfepazuch@gmail.com', '$2a$10$By15wuMJUs6/Qbcf73UvDu0G.n7QVVxfEzM1j4M.lvUUkVDw2YV3S', '', 'ADMIN');
 --insert into cliente (nome, email, senha, telefone, role) values ('admin', 'jvlanzbr@gmail.com', '$2a$10$By15wuMJUs6/Qbcf73UvDu0G.n7QVVxfEzM1j4M.lvUUkVDw2YV3S', '', 'ADMIN');
 --insert into cliente (nome, email, senha, telefone, role) values ('admin', 'leorosa@gmail.com', '$2a$10$By15wuMJUs6/Qbcf73UvDu0G.n7QVVxfEzM1j4M.lvUUkVDw2YV3S', '', 'ADMIN');

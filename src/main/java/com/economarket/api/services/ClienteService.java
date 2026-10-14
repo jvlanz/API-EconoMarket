@@ -42,6 +42,7 @@ public class ClienteService {
 		clienteConsultado.setListaCompra(cliente.getListaCompra());
 		clienteConsultado.setFavoritos(cliente.getFavoritos());
 		clienteConsultado.setRole(cliente.getRole());
+		clienteConsultado.setAssinatura(cliente.getAssinatura());
 		return repository.save(clienteConsultado);
 	}
 
